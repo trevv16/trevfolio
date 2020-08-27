@@ -16,42 +16,37 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - Single Page App
 - Data Caching
 - Responsiveness
-- Code Splitting
 - Implementation
     - CDN (S3)
-    - API Gateway
     - FaaS (Lambda)
-    - CI/CD/CM
+    - CI/CD
 - Test Driven Development
 
 
 
 ### Front-End
 - React
-- Relay
 - Material UI
 - SCSS
 
 
 ### Back-End
 - Node js
-- Apollo Server
-- GraphQL
+- Mongo DB
+- Redis
 
 
 ### Deployment
-- Jest
 - Docker
 - Kubernetes
 
-Continuous Integration - 
-Continuous Deployment - 
-Continuous Monitoring
+Tests: Jest
+
+CI/CD: Jenkins
 
 
 ### Cloud Arcitecture
 - AWS EC2
-- AWS API Gateway
 - AWS S3
 - AWS Redis
 - AWS Cognito
@@ -59,4 +54,6 @@ Continuous Monitoring
 
 
 #### Dependencies
+
+
 
