@@ -64,4 +64,4 @@ projectSchema.plugin(timestamps);
 
 const Project = mongoose.model("Project", projectSchema, "projects");
 
-module.exports = User;
+module.exports = Project;

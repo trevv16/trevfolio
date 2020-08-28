@@ -3,7 +3,7 @@ var timestamps = require("mongoose-timestamp");
 
 // Lean Queries
 
-const postSchema = new mongoose.Schema({
+const resumeSchema = new mongoose.Schema({
  _id: mongoose.Schema.Types.ObjectId,
  blogID: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
  name: {
@@ -199,8 +199,8 @@ const postSchema = new mongoose.Schema({
  },
 });
 
-postSchema.plugin(timestamps);
+resumeSchema.plugin(timestamps);
 
-const Post = mongoose.model("Post", postSchema, "posts");
+const Resume = mongoose.model("Resume", resumeSchema, "resumes");
 
-module.exports = Post;
+module.exports = Resume;

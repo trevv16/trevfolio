@@ -84,6 +84,6 @@ const gallerySchema = new mongoose.Schema({
 
 gallerySchema.plugin(timestamps);
 
-const Post = mongoose.model("Gallery", gallerySchema, "galleries");
+const Gallery = mongoose.model("Gallery", gallerySchema, "galleries");
 
 module.exports = Gallery;

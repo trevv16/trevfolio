@@ -49,6 +49,6 @@ const emailSchema = new mongoose.Schema({
 
 emailSchema.plugin(timestamps);
 
-const Post = mongoose.model("Email", emailSchema, "emails");
+const Email = mongoose.model("Email", emailSchema, "emails");
 
 module.exports = Email;

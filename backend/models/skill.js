@@ -32,6 +32,6 @@ const skillSchema = new mongoose.Schema({
 
 skillSchema.plugin(timestamps);
 
-const Post = mongoose.model("Skill", skillSchema, "skills");
+const Skill = mongoose.model("Skill", skillSchema, "skills");
 
 module.exports = Skill;
