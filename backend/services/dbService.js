@@ -1,7 +1,14 @@
 const mongoose = require("mongoose");
 const { conformsTo } = require("lodash");
+const User = require("../models/user");
 
 module.exports = {
+ getUserById: async (email) => {
+  return User.find({ _id: id }).exec();
+ },
+ getUserByEmail: async (email) => {
+  return User.find({ email: email }).exec();
+ },
  create: async (Model, obj) => {
   genObj = new Model();
 
