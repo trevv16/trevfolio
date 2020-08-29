@@ -45,7 +45,6 @@ CI/CD: Jenkins
 - AWS EC2
 - AWS S3
 - AWS Redis
-- AWS Cognito
 - AWS Lambda
 
 #### Dependencies

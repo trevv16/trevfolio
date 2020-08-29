@@ -1,5 +1,5 @@
 const fs = require("fs");
-const dummy = require("mongoose-dummy");
+// const dummy = require("mongoose-dummy");
 const dataFolder = "./dummy-data";
 const User = require("../models/user");
 // const {
