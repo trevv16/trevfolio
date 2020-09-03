@@ -4,10 +4,18 @@ const User = require("../models/user");
 
 module.exports = {
  getUserById: async (email) => {
-  return User.find({ _id: id }).exec();
+  try {
+   return User.find({ _id: id }).exec();
+  } catch (e) {
+   console.error("DB Find Error", e.message);
+  }
  },
  getUserByEmail: async (email) => {
-  return User.find({ email: email }).exec();
+  try {
+   return User.find({ email: email }).exec();
+  } catch (e) {
+   console.error("DB Find Error", e.message);
+  }
  },
  create: async (Model, obj) => {
   genObj = new Model();
