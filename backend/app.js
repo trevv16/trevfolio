@@ -41,15 +41,26 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
-app.use(flash());
+// app.use(cors());
 app.use(
  session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  store: new (require("express-sessions"))({
+   storage: "mongodb",
+   instance: mongoose,
+   db: process.env.MONGO_ATLAS_DB_NAME, // optional
+   collection: process.env.SESSION_STORE_COLLECTION, // optional
+   expire: parseInt(process.env.SESSION_STORE_EXPIRES), // optional
+  }),
+  cookie: {
+   expires: new Date(Date.now() + parseInt(process.env.SESSION_COOKIE_MAX_AGE)),
+   maxAge: process.env.SESSION_COOKIE_MAX_AGE,
+  },
  })
 );
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride("_method"));
