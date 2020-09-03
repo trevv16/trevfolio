@@ -1,6 +1,6 @@
 process.env.NODE_ENV !== "production" ? require("dotenv").config() : null;
-
 const express = require("express");
+const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -11,6 +11,7 @@ const passport = require("passport");
 const methodOverride = require("method-override");
 
 // Configs
+const initializeMongo = require("./config/db_config");
 const initializePassport = require("./config/passport_config");
 
 // Services
@@ -18,6 +19,13 @@ const { getUserByEmail, getUserById } = require("../services/dbService");
 
 // Middlewares
 const { checkAuth, checkNotAuth } = require("./middlewares/authControl");
+
+initializeMongo(
+ mongoose,
+ process.env.MONOG_ATLAS_USER,
+ process.env.MONGO_ATLAS_PW,
+ process.env.MONGO_ATLAS_DB_NAME
+);
 
 initializePassport(
  passport,
