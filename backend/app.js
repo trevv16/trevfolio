@@ -53,7 +53,6 @@ app.use(
    secret: process.env.SESSION_SECRET,
   }),
   cookie: {
-   expires: new Date(Date.now() + Number(process.env.SESSION_STORE_EXPIRES)),
    maxAge: 4 * 60 * 60 * 1000,
   },
  })
