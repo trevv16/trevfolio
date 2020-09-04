@@ -6,6 +6,7 @@
   "db": "node ./config/db_config",
   "start": "nodemon ./bin/www",
   "dev": "DEBUG=backend:* npm start",
+  "kill": "npx kill-port 3000",
   "prettier": "prettier --write ."
  },
  "dependencies": {
