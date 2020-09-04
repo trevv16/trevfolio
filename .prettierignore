@@ -1,0 +1,5 @@
+.travis.yml
+
+node_modules
+
+coverage

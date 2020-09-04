@@ -1,11 +1,13 @@
 module.exports = {
   env: {
     browser: true,
+    node: true,
     es2020: true,
   },
   extends: [
     "prettier",
     "airbnb-base",
+    "plugin:react/recommended",
     "plugin:promise/recommended",
     "plugin:jest/recommended",
   ],

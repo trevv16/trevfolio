@@ -1,139 +1,142 @@
 // Load the SDK for JavaScript
-var AWS = require("aws-sdk");
-var fs = require("fs");
-var path = require("path");
+import { config, S3 } from "aws-sdk";
+import { createReadStream } from "fs";
+import { basename } from "path";
+
 // Set the Region
-AWS.config.update({
- accessKeyId: process.env.AWS_ACCESS_KEY_ID,
- secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
- region: process.env.AWS_REGION,
- s3ForcePathStyle: true,
+config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+  s3ForcePathStyle: true,
 });
 
 // Create S3 service object
-s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+const s3 = new S3({ apiVersion: "2006-03-01" });
 
-/**
- * Function that returns s3 buckets
- * @param {func} cb - Takes in (err, data)
- */
-function listBuckets(cb) {
- // Call S3 to list the buckets
- s3.listBuckets(function (err, data) {
-  if (err) {
-   cb(err, null);
-  } else {
-   cb(null, data);
-  }
- });
-}
-
-/**
- * Creates new s3 bucket
- * @param {String} bucketName - Name of s3 bucket
- * @param {func} cb - Takes in (err, data)
- */
-function createBucket(bucketName, cb) {
- const bucket_params = {
-  Bucket: bucketName,
-  CreateBucketConfiguration: {
-   LocationConstraint: process.env.AWS_REGION,
+module.exports = {
+  /**
+   * Function that returns s3 buckets
+   * @param {func} cb - Takes in (err, data)
+   */
+  listBuckets: (cb) => {
+    // Call S3 to list the buckets
+    s3.listBuckets((err, data) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, data);
+      }
+    });
   },
- };
 
- s3.createBucket(bucket_params, function (err, data) {
-  if (err) {
-   cb(err, null);
-  } else {
-   cb(null, data);
-  }
- });
-}
+  /**
+   * Creates new s3 bucket
+   * @param {String} bucketName - Name of s3 bucket
+   * @param {func} cb - Takes in (err, data)
+   */
+  createBucket: (bucketName, cb) => {
+    const bucketParams = {
+      Bucket: bucketName,
+      CreateBucketConfiguration: {
+        LocationConstraint: process.env.AWS_REGION,
+      },
+    };
 
-/**
- * Deletes s3 bucket
- * @param {String} bucketName - Name of s3 bucket
- * @param {*} cb - Takes in (err, data)
- */
-function deleteBucket(bucketName, cb) {
- const bucket_params = {
-  Bucket: bucketName,
- };
+    s3.createBucket(bucketParams, (err, data) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, data);
+      }
+    });
+  },
 
- s3.deleteBucket(bucket_params, function (err, data) {
-  if (err) {
-   cb(err, null);
-  } else {
-   cb(null, data);
-  }
- });
-}
+  /**
+   * Deletes s3 bucket
+   * @param {String} bucketName - Name of s3 bucket
+   * @param {*} cb - Takes in (err, data)
+   */
+  deleteBucket: (bucketName, cb) => {
+    const bucketParams = {
+      Bucket: bucketName,
+    };
 
-/**
- * Lists items in s3 bucket
- * @param {String} bucketName - Name of s3 bucket
- * @param {*} cb - Takes in (err, data)
- */
-function listObjects(bucketName, cb) {
- // Create the parameters for calling listObjects
- const bucket_params = {
-  Bucket: bucketName,
- };
+    s3.deleteBucket(bucketParams, (err, data) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, data);
+      }
+    });
+  },
 
- // Call S3 to obtain a list of the objects in the bucket
- s3.listObjects(bucketParams, function (err, data) {
-  if (err) {
-   cb(err, null);
-  } else {
-   cb(null, data);
-  }
- });
-}
+  /**
+   * Lists items in s3 bucket
+   * @param {String} bucketName - Name of s3 bucket
+   * @param {*} cb - Takes in (err, data)
+   */
+  listObjects: (bucketName, cb) => {
+    // Create the parameters for calling listObjects
+    const bucketParams = {
+      Bucket: bucketName,
+    };
 
-/**
- * Uploads object to s3 bucket
- * @param {*} bucketName - Name of s3 bucket
- * @param {*} user - name of user for path
- * @param {*} file - file object for upload
- * @param {*} cb - Takes in (err, data)
- */
-function uploadObject(bucketName, user, file, cb) {
- const upload_params = { Bucket: bucketName, Key: "", Body: "" };
+    // Call S3 to obtain a list of the objects in the bucket
+    s3.listObjects(bucketParams, (err, data) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, data);
+      }
+    });
+  },
 
- const fileStream = fs.createReadStream(file);
- fileStream.on("error", function (err) {
-  console.log("File Error", err);
- });
- uploadParams.Body = fileStream;
- uploadParams.Key = path.basename(`${user}/${file}`);
+  /**
+   * Uploads object to s3 bucket
+   * @param {*} bucketName - Name of s3 bucket
+   * @param {*} user - name of user for path
+   * @param {*} file - file object for upload
+   * @param {*} cb - Takes in (err, data)
+   */
+  uploadObject: (bucketName, user, file, cb) => {
+    const uploadParams = { Bucket: bucketName, Key: "", Body: "" };
 
- // call S3 to retrieve upload file to specified bucket
- s3.upload(upload_params, function (err, data) {
-  if (err) {
-   cb(err, null);
-  } else {
-   cb(null, data); //data.Location
-  }
- });
-}
+    const fileStream = createReadStream(file);
+    fileStream.on("error", (err) => {
+      console.error("File Error", err);
+    });
+    uploadParams.Body = fileStream;
+    uploadParams.Key = basename(`${user}/${file}`);
 
-/**
- * Deletes object form s3 bucket
- * @param {String} bucketName - Name of s3 bucket
- * @param {String} key - file object for upload
- * @param {func} cb - Takes in (err, data)
- */
-function deleteObject(bucketName, cb) {
- const bucket_params = {
-  Bucket: bucketName,
-  Key: key,
- };
+    // call S3 to retrieve upload file to specified bucket
+    s3.upload(uploadParams, (err, data) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, data); // data.Location
+      }
+    });
+  },
 
- s3.deleteBucket(bucket_params, function (err, data) {
-  if (err) {
-   cb(err, null);
-  } else {
-   cb(null, data);
-  }
- });
-}
+  /**
+   * Deletes object form s3 bucket
+   * @param {String} bucketName - Name of s3 bucket
+   * @param {String} key - file object for upload
+   * @param {func} cb - Takes in (err, data)
+   */
+  deleteObject: (bucketName, key, cb) => {
+    const bucketParams = {
+      Bucket: bucketName,
+      Key: key,
+    };
+
+    s3.deleteBucket(bucketParams, (err, data) => {
+      if (err) {
+        cb(err, null);
+      } else {
+        cb(null, data);
+      }
+    });
+  },
+};

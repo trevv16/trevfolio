@@ -26,24 +26,24 @@ generateFiles(User, "user");
 // generateFiles(Gallery, "gallery");
 
 function generateFiles(Model, fileName) {
- const location = `${dataFolder}/${fileName}.json`;
- const data = JSON.stringify(getModelData(Model));
+  const location = `${dataFolder}/${fileName}.json`;
+  const data = JSON.stringify(getModelData(Model));
 
- fs.writeFile(location, data, function (err) {
-  if (err) throw err;
-  console.log("Generated dummy data for", fileName);
- });
+  fs.writeFile(location, data, (err) => {
+    if (err) throw err;
+    console.log("Generated dummy data for", fileName);
+  });
 }
 
 function getModelData(Model) {
- return dummy(Model, {
-  ignore: ignored,
-  returnDate: true,
-  applyFilter: true,
-  //   custom: {
-  //    phone: "String",
-  //    email: "String",
-  //    password: "String",
-  //   },
- });
+  return dummy(Model, {
+    ignore: ignored,
+    returnDate: true,
+    applyFilter: true,
+    //   custom: {
+    //    phone: "String",
+    //    email: "String",
+    //    password: "String",
+    //   },
+  });
 }

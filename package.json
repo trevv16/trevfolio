@@ -1,13 +1,32 @@
 {
  "name": "trevfolio",
- "version": "0.0.1",
- "description": "v0.0.1",
+ "version": "0.0.0",
+ "description": "MVP in progress",
  "main": "index.js",
  "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "nodemon ./bin/www",
-  "dev": "DEBUG=backend:* npm start",
-  "prettier": "prettier --write ."
+  "lint": "eslint '**/*.js'",
+  "lint:fix": "prettier '**/*.js' --write",
+  "test": "jest",
+  "test:watch": "jest --watch",
+  "test:coverage": "jest --coverage",
+  "test:staged": "jest --findRelatedTests",
+  "start": "npm run server",
+  "dev": "npm run server:dev",
+  "server": "cd backend && npm start",
+  "server:dev": "cd backend && npm run dev",
+  "kill": "npx kill-port 3000"
+ },
+ "husky": {
+  "hooks": {
+   "pre-commit --no-verify": "lint-staged",
+   "pre-push": "npm test"
+  }
+ },
+ "lint-staged": {
+  "*.js": [
+   "npm run lint:fix",
+   "git add"
+  ]
  },
  "repository": {
   "type": "git",
@@ -19,14 +38,24 @@
   "url": "https://github.com/trevv16/trevfolio/issues"
  },
  "homepage": "https://github.com/trevv16/trevfolio#readme",
- "dependencies": {},
+ "dependencies": {
+  "core-js": "^3.6.5",
+  "husky": "^4.2.5",
+  "jest": "^26.4.2"
+ },
  "devDependencies": {
-  "eslint": "^7.7.0",
+  "@babel/cli": "^7.11.6",
+  "@babel/core": "^7.11.6",
+  "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+  "@babel/preset-env": "^7.11.5",
+  "eslint": "^7.8.1",
   "eslint-config-airbnb-base": "^14.2.0",
   "eslint-config-prettier": "^6.11.0",
   "eslint-plugin-import": "^2.22.0",
   "eslint-plugin-jest": "^23.20.0",
   "eslint-plugin-promise": "^4.2.1",
+  "eslint-plugin-react": "^7.20.6",
+  "lint-staged": "^10.3.0",
   "prettier": "^2.1.1"
  }
 }

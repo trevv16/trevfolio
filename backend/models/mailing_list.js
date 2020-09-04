@@ -1,79 +1,79 @@
 const mongoose = require("mongoose");
-var timestamps = require("mongoose-timestamp");
+const timestamps = require("mongoose-timestamp");
 
 // Lean Queries
 
 const mailing_listSchema = new mongoose.Schema({
- _id: mongoose.Schema.Types.ObjectId,
- name: {
-  type: String,
-  minlength: 1,
-  maxlength: 160,
-  required: [true, "Provide a mailing list name"],
-  trim: true,
- },
- description: {
-  type: String,
-  required: [true, "Provide a description"],
-  minlength: 1,
-  maxlength: 260,
-  trim: true,
- },
- blog: {
-  type: mongoose.Schema.Types.ObjectId,
-  ref: "Blog",
-  required: [true, "Provide a blog ID"],
- },
- audience: [
-  {
-   name: {
+  _id: mongoose.Schema.Types.ObjectId,
+  name: {
     type: String,
     minlength: 1,
     maxlength: 160,
-    required: [true, "Provide a member name"],
+    required: [true, "Provide a mailing list name"],
     trim: true,
-   },
-   email: {
-    type: String,
-    required: [true, "Provide an email"],
-    set: (v) => v.toLowerCase(),
-    match:
-     '/^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/',
-    trim: true,
-   },
-   join_message: {
-    type: String,
-    minlength: 1,
-    maxlength: 200,
-    trim: true,
-   },
-   subscribed: {
-    type: Date,
-    required: true,
-    default: Date.now(),
-    trim: true,
-   },
-   unsubscribed: {
-    type: Date,
-    trim: true,
-   },
-   received_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: "Email" }],
   },
- ],
- all_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: "Email" }],
- published: {
-  type: Boolean,
-  required: true,
-  trim: true,
- },
+  description: {
+    type: String,
+    required: [true, "Provide a description"],
+    minlength: 1,
+    maxlength: 260,
+    trim: true,
+  },
+  blog: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Blog",
+    required: [true, "Provide a blog ID"],
+  },
+  audience: [
+    {
+      name: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        required: [true, "Provide a member name"],
+        trim: true,
+      },
+      email: {
+        type: String,
+        required: [true, "Provide an email"],
+        set: (v) => v.toLowerCase(),
+        match:
+          '/^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/',
+        trim: true,
+      },
+      join_message: {
+        type: String,
+        minlength: 1,
+        maxlength: 200,
+        trim: true,
+      },
+      subscribed: {
+        type: Date,
+        required: true,
+        default: Date.now(),
+        trim: true,
+      },
+      unsubscribed: {
+        type: Date,
+        trim: true,
+      },
+      received_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: "Email" }],
+    },
+  ],
+  all_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: "Email" }],
+  published: {
+    type: Boolean,
+    required: true,
+    trim: true,
+  },
 });
 
 mailing_listSchema.plugin(timestamps);
 
 const MailingList = mongoose.model(
- "MailingList",
- mailing_listSchema,
- "mailing_lists"
+  "MailingList",
+  mailing_listSchema,
+  "mailing_lists"
 );
 
 module.exports = MailingList;
