@@ -1,5 +1,9 @@
 # Trevfolio
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3936717d73e94e0d81adc68f161225bb)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=trevv16/trevfolio&utm_campaign=Badge_Grade)
+
+[![Build Status](https://travis-ci.com/trevv16/trevfolio.svg?token=tjs3oD6tbXuHirtHszq6&branch=master)](https://travis-ci.com/trevv16/trevfolio)
+
 v: alpha
 
 This is my portfolio hosting all information about me and my dev skills.
@@ -18,6 +22,7 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - FaaS (Lambda)
 - CI/CD (Travis CI/Github Actions)
 - Unit Tests (Jest)
+- Browser Compatibility (Babel)
 
 ### Front-End
 
