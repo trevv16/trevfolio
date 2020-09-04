@@ -17,7 +17,8 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - Implementation
 - CDN (S3)
 - FaaS (Lambda)
-- CI/CD (Jenkins)
+- CI/CD (Travis CI/Github Actions)
+- Unit Tests (Jest)
 
 ### Front-End
 
@@ -31,20 +32,11 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - Mongo DB
 - Redis
 
-### Deployment
+### Cloud Deployment
 
-- Docker
-- Kubernetes
-
-Tests: Jest
-
-CI/CD: Jenkins
-
-### Cloud Arcitecture
+- Docker/Kubernetes
 
 - AWS EC2
 - AWS S3
 - AWS Redis
 - AWS Lambda
-
-#### Dependencies
