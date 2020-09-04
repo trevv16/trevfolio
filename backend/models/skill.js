@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const timestamps = require("mongoose-timestamp");
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
@@ -22,8 +22,8 @@ const skillSchema = new mongoose.Schema({
       trim: true,
     },
   },
-  projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
-  recent_proj: { type: mongoose.Schema.Types.ObjectId, ref: "Project" },
+  projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+  recent_proj: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
   published: {
     type: Boolean,
     required: true,
@@ -32,6 +32,6 @@ const skillSchema = new mongoose.Schema({
 
 skillSchema.plugin(timestamps);
 
-const Skill = mongoose.model("Skill", skillSchema, "skills");
+const Skill = mongoose.model('Skill', skillSchema, 'skills');
 
 module.exports = Skill;

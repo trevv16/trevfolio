@@ -5,16 +5,25 @@ module.exports = {
     es2020: true,
   },
   extends: [
-    "prettier",
-    "airbnb-base",
-    "plugin:react/recommended",
-    "plugin:promise/recommended",
-    "plugin:jest/recommended",
+    'prettier',
+    'airbnb-base',
+    'plugin:react/recommended',
+    'plugin:promise/recommended',
+    'plugin:jest/recommended',
   ],
-  plugins: ["promise", "jest"],
+  plugins: ['promise', 'jest'],
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    quotes: [
+      'error',
+      'single',
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true,
+      },
+    ],
+  },
 };

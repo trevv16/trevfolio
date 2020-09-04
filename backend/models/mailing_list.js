@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const timestamps = require("mongoose-timestamp");
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
@@ -9,20 +9,20 @@ const mailing_listSchema = new mongoose.Schema({
     type: String,
     minlength: 1,
     maxlength: 160,
-    required: [true, "Provide a mailing list name"],
+    required: [true, 'Provide a mailing list name'],
     trim: true,
   },
   description: {
     type: String,
-    required: [true, "Provide a description"],
+    required: [true, 'Provide a description'],
     minlength: 1,
     maxlength: 260,
     trim: true,
   },
   blog: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Blog",
-    required: [true, "Provide a blog ID"],
+    ref: 'Blog',
+    required: [true, 'Provide a blog ID'],
   },
   audience: [
     {
@@ -30,12 +30,12 @@ const mailing_listSchema = new mongoose.Schema({
         type: String,
         minlength: 1,
         maxlength: 160,
-        required: [true, "Provide a member name"],
+        required: [true, 'Provide a member name'],
         trim: true,
       },
       email: {
         type: String,
-        required: [true, "Provide an email"],
+        required: [true, 'Provide an email'],
         set: (v) => v.toLowerCase(),
         match:
           '/^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/',
@@ -57,10 +57,10 @@ const mailing_listSchema = new mongoose.Schema({
         type: Date,
         trim: true,
       },
-      received_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: "Email" }],
+      received_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Email' }],
     },
   ],
-  all_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: "Email" }],
+  all_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Email' }],
   published: {
     type: Boolean,
     required: true,
@@ -71,9 +71,9 @@ const mailing_listSchema = new mongoose.Schema({
 mailing_listSchema.plugin(timestamps);
 
 const MailingList = mongoose.model(
-  "MailingList",
+  'MailingList',
   mailing_listSchema,
-  "mailing_lists"
+  'mailing_lists'
 );
 
 module.exports = MailingList;

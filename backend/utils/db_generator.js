@@ -1,7 +1,7 @@
-const fs = require("fs");
+const fs = require('fs');
 // const dummy = require("mongoose-dummy");
-const dataFolder = "./dummy-data";
-const User = require("../models/user");
+const dataFolder = './dummy-data';
+const User = require('../models/user');
 // const {
 //  User,
 //  Project,
@@ -13,9 +13,9 @@ const User = require("../models/user");
 //  MailingList,
 //  Gallery,
 // } = require("../models");
-const ignored = ["_id"];
+const ignored = ['_id'];
 
-generateFiles(User, "user");
+generateFiles(User, 'user');
 // generateFiles(Project, "project");
 // generateFiles(Email, "email");
 // generateFiles(Blog, "blog");
@@ -31,7 +31,7 @@ function generateFiles(Model, fileName) {
 
   fs.writeFile(location, data, (err) => {
     if (err) throw err;
-    console.log("Generated dummy data for", fileName);
+    console.log('Generated dummy data for', fileName);
   });
 }
 

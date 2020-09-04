@@ -1,22 +1,22 @@
-process.env.NODE_ENV !== "production" ? require("dotenv").config() : null;
-const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const cors = require("cors");
-const flash = require("express-flash");
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-const passport = require("passport");
-const methodOverride = require("method-override");
+process.env.NODE_ENV !== 'production' ? require('dotenv').config() : null;
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const flash = require('express-flash');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const passport = require('passport');
+const methodOverride = require('method-override');
 
 // Configs
-const initializeMongo = require("./config/db_config");
-const initializePassport = require("./config/passport_config");
+const initializeMongo = require('./config/db_config');
+const initializePassport = require('./config/passport_config');
 
 // Services
-const { getUserByEmail, getUserById } = require("./services/dbService");
+const { getUserByEmail, getUserById } = require('./services/dbService');
 
 initializeMongo(
   mongoose,
@@ -31,12 +31,12 @@ initializePassport(
   (id) => getUserById(id)
 );
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 const app = express();
 
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cors());
@@ -48,7 +48,7 @@ app.use(
     store: new MongoStore({
       url: `mongodb+srv://${process.env.MONOG_ATLAS_USER}:${process.env.MONGO_ATLAS_PW}@dev-rv8ag.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}?retryWrites=true&w=majority`,
       collection: process.env.SESSION_STORE_COLLECTION,
-      autoRemove: "disabled",
+      autoRemove: 'disabled',
       touchAfter: 90,
       secret: process.env.SESSION_SECRET,
     }),
@@ -60,13 +60,13 @@ app.use(
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(methodOverride("_method"));
+app.use(methodOverride('_method'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Routes
-app.use("/", indexRouter);
-app.use("/user", usersRouter);
+app.use('/', indexRouter);
+app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -77,11 +77,11 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
 module.exports = app;
