@@ -1,7 +1,7 @@
 // Load the SDK for JavaScript
-var AWS = require("aws-sdk");
-var fs = require("fs");
-var path = require("path");
+const AWS = require("aws-sdk");
+const fs = require("fs");
+const path = require("path");
 // Set the Region
 AWS.config.update({
  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -34,14 +34,14 @@ function listBuckets(cb) {
  * @param {func} cb - Takes in (err, data)
  */
 function createBucket(bucketName, cb) {
- const bucket_params = {
+ const bucketParams = {
   Bucket: bucketName,
   CreateBucketConfiguration: {
    LocationConstraint: process.env.AWS_REGION,
   },
  };
 
- s3.createBucket(bucket_params, function (err, data) {
+ s3.createBucket(bucketParams, function (err, data) {
   if (err) {
    cb(err, null);
   } else {
@@ -56,11 +56,11 @@ function createBucket(bucketName, cb) {
  * @param {*} cb - Takes in (err, data)
  */
 function deleteBucket(bucketName, cb) {
- const bucket_params = {
+ const bucketParams = {
   Bucket: bucketName,
  };
 
- s3.deleteBucket(bucket_params, function (err, data) {
+ s3.deleteBucket(bucketParams, function (err, data) {
   if (err) {
    cb(err, null);
   } else {
@@ -76,7 +76,7 @@ function deleteBucket(bucketName, cb) {
  */
 function listObjects(bucketName, cb) {
  // Create the parameters for calling listObjects
- const bucket_params = {
+ const bucketParams = {
   Bucket: bucketName,
  };
 
@@ -124,12 +124,12 @@ function uploadObject(bucketName, user, file, cb) {
  * @param {func} cb - Takes in (err, data)
  */
 function deleteObject(bucketName, cb) {
- const bucket_params = {
+ const bucketParams = {
   Bucket: bucketName,
   Key: key,
  };
 
- s3.deleteBucket(bucket_params, function (err, data) {
+ s3.deleteBucket(bucketParams, function (err, data) {
   if (err) {
    cb(err, null);
   } else {

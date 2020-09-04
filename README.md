@@ -34,7 +34,6 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 ### Cloud Deployment
 
 - Docker
-
 - AWS EC2
 - AWS S3
 - AWS Redis
