@@ -4,24 +4,22 @@
  "private": true,
  "scripts": {
   "db": "node ./config/db_config",
-  "start": "nodemon ./bin/www",
-  "dev": "DEBUG=backend:* npm start",
-  "kill": "npx kill-port 3000",
-  "prettier": "prettier --write ."
+  "start": "node ./bin/www",
+  "dev": "DEBUG=backend:* nodemon ./bin/www"
  },
  "dependencies": {
   "bcrypt": "^5.0.0",
   "connect-mongo": "^3.2.0",
   "cookie-parser": "~1.4.4",
   "cors": "^2.8.5",
-  "debug": "~2.6.9",
-  "express": "~4.16.1",
+  "debug": "^2.6.9",
+  "express": "^4.17.1",
   "express-flash": "0.0.2",
   "express-session": "^1.17.1",
   "method-override": "^3.0.0",
-  "mongoose": "^5.10.1",
+  "mongoose": "^5.10.3",
   "mongoose-timestamp": "^0.6.0",
-  "morgan": "~1.9.1",
+  "morgan": "^1.10.0",
   "passport": "^0.4.1",
   "passport-local": "^1.0.0",
   "redis": "^3.0.2"
