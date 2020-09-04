@@ -19,7 +19,6 @@ const gallerySchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 160,
     required: [true, "Provide a media type"],
-    required: true,
     trim: true,
    },
    url: {

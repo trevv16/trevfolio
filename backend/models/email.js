@@ -10,7 +10,6 @@ const emailSchema = new mongoose.Schema({
   minlength: 1,
   maxlength: 160,
   required: [true, "Provide an email type"],
-  required: true,
   trim: true,
  },
  template: {
