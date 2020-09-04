@@ -54,7 +54,7 @@ app.use(
   }),
   cookie: {
    expires: new Date(Date.now() + Number(process.env.SESSION_STORE_EXPIRES)),
-   maxAge: process.env.SESSION_COOKIE_MAX_AGE,
+   maxAge: 4 * 60 * 60 * 1000,
   },
  })
 );
