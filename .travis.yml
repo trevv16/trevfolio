@@ -5,6 +5,8 @@ node_js:
 
 install:
   - npm ci
+  - cd backend
+  - npm ci
 
 script:
   - npm test
