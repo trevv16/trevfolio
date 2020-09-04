@@ -1,0 +1,32 @@
+{
+ "name": "trevfolio",
+ "version": "0.0.1",
+ "description": "v0.0.1",
+ "main": "index.js",
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "nodemon ./bin/www",
+  "dev": "DEBUG=backend:* npm start",
+  "prettier": "prettier --write ."
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/trevv16/trevfolio.git"
+ },
+ "author": "Trevor Njeru <trevnjeru@gmail.com>",
+ "license": "ISC",
+ "bugs": {
+  "url": "https://github.com/trevv16/trevfolio/issues"
+ },
+ "homepage": "https://github.com/trevv16/trevfolio#readme",
+ "dependencies": {},
+ "devDependencies": {
+  "eslint": "^7.7.0",
+  "eslint-config-airbnb-base": "^14.2.0",
+  "eslint-config-prettier": "^6.11.0",
+  "eslint-plugin-import": "^2.22.0",
+  "eslint-plugin-jest": "^23.20.0",
+  "eslint-plugin-promise": "^4.2.1",
+  "prettier": "^2.1.1"
+ }
+}
