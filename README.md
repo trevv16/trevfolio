@@ -14,7 +14,6 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - Single Page App
 - Data Caching
 - Responsiveness
-- Implementation
 - CDN (S3)
 - FaaS (Lambda)
 - CI/CD (Travis CI/Github Actions)
