@@ -1,4 +1,5 @@
-const moment = require("moment");
+// const moment = require("moment");
+import moment from "moment";
 
 export const TIME_FORMAT = "h:mm a";
 export const DATE_FORMAT = "DD-MMM-YY";
