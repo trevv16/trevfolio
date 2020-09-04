@@ -19,9 +19,7 @@
   "url": "https://github.com/trevv16/trevfolio/issues"
  },
  "homepage": "https://github.com/trevv16/trevfolio#readme",
- "dependencies": {
-  "express": "^4.17.1"
- },
+ "dependencies": {},
  "devDependencies": {
   "eslint": "^7.7.0",
   "eslint-config-airbnb-base": "^14.2.0",
