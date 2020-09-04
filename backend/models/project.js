@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const timestamps = require('mongoose-timestamp');
+import { Schema, model } from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 
-const projectSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+const projectSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   title: {
     type: String,
     minlength: 1,
@@ -38,7 +38,7 @@ const projectSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
+  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
   process: [
     {
       order: {
@@ -62,6 +62,6 @@ const projectSchema = new mongoose.Schema({
 
 projectSchema.plugin(timestamps);
 
-const Project = mongoose.model('Project', projectSchema, 'projects');
+const Project = model('Project', projectSchema, 'projects');
 
-module.exports = Project;
+export default Project;

@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const { conformsTo } = require('lodash');
+import { mongoose } from 'mongoose';
 const User = require('../models/user');
 
 module.exports = {

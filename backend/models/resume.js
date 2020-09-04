@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
-const timestamps = require('mongoose-timestamp');
+import { Schema, model } from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 
 // Lean Queries
 
-const resumeSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  blogID: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }],
+const resumeSchema = new Schema({
+  _id: Schema.Types.ObjectId,
+  blogID: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   name: {
     type: String,
     minlength: 1,
@@ -188,10 +188,8 @@ const resumeSchema = new mongoose.Schema({
       ],
     },
   ],
-  recommended_projects: [
-    { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
-  ],
-  skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
+  recommended_projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
   published: {
     type: Boolean,
     required: true,
@@ -201,6 +199,6 @@ const resumeSchema = new mongoose.Schema({
 
 resumeSchema.plugin(timestamps);
 
-const Resume = mongoose.model('Resume', resumeSchema, 'resumes');
+const Resume = model('Resume', resumeSchema, 'resumes');
 
-module.exports = Resume;
+export default Resume;

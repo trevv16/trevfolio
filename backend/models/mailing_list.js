@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const timestamps = require('mongoose-timestamp');
+import { Schema, model } from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 
 // Lean Queries
 
-const mailing_listSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+const mailing_listSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   name: {
     type: String,
     minlength: 1,
@@ -20,7 +20,7 @@ const mailing_listSchema = new mongoose.Schema({
     trim: true,
   },
   blog: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Blog',
     required: [true, 'Provide a blog ID'],
   },
@@ -57,10 +57,10 @@ const mailing_listSchema = new mongoose.Schema({
         type: Date,
         trim: true,
       },
-      received_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Email' }],
+      received_emails: [{ type: Schema.Types.ObjectId, ref: 'Email' }],
     },
   ],
-  all_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Email' }],
+  all_emails: [{ type: Schema.Types.ObjectId, ref: 'Email' }],
   published: {
     type: Boolean,
     required: true,
@@ -70,10 +70,6 @@ const mailing_listSchema = new mongoose.Schema({
 
 mailing_listSchema.plugin(timestamps);
 
-const MailingList = mongoose.model(
-  'MailingList',
-  mailing_listSchema,
-  'mailing_lists'
-);
+const MailingList = model('MailingList', mailing_listSchema, 'mailing_lists');
 
-module.exports = MailingList;
+export default MailingList;

@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const timestamps = require('mongoose-timestamp');
+import { Schema, model } from 'mongoose';
+import timestamps from 'mongoose-timestamp';
 
 // Lean Queries
 
-const userSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+const userSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   first_name: {
     type: String,
     minlength: 1,
@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(timestamps);
 
-const User = mongoose.model('User', userSchema, 'users');
+const User = model('User', userSchema, 'users');
 
 /**
  ******************* Virtuals
@@ -148,4 +148,4 @@ async function obfuscate(email) {
   );
 }
 
-module.exports = User;
+export default User;
