@@ -7,6 +7,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const flash = require("express-flash");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
 const methodOverride = require("method-override");
 
@@ -15,10 +16,7 @@ const initializeMongo = require("./config/db_config");
 const initializePassport = require("./config/passport_config");
 
 // Services
-const { getUserByEmail, getUserById } = require("../services/dbService");
-
-// Middlewares
-const { checkAuth, checkNotAuth } = require("./middlewares/authControl");
+const { getUserByEmail, getUserById } = require("./services/dbService");
 
 initializeMongo(
  mongoose,
@@ -47,15 +45,15 @@ app.use(
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  store: new (require("express-sessions"))({
-   storage: "mongodb",
-   instance: mongoose,
-   db: process.env.MONGO_ATLAS_DB_NAME, // optional
-   collection: process.env.SESSION_STORE_COLLECTION, // optional
-   expire: parseInt(process.env.SESSION_STORE_EXPIRES), // optional
+  store: new MongoStore({
+   url: `mongodb+srv://${process.env.MONOG_ATLAS_USER}:${process.env.MONGO_ATLAS_PW}@dev-rv8ag.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}?retryWrites=true&w=majority`,
+   collection: process.env.SESSION_STORE_COLLECTION,
+   autoRemove: "disabled",
+   touchAfter: 90,
+   secret: process.env.SESSION_SECRET,
   }),
   cookie: {
-   expires: new Date(Date.now() + parseInt(process.env.SESSION_COOKIE_MAX_AGE)),
+   expires: new Date(Date.now() + Number(process.env.SESSION_STORE_EXPIRES)),
    maxAge: process.env.SESSION_COOKIE_MAX_AGE,
   },
  })
