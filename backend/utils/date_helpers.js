@@ -1,4 +1,3 @@
-// const moment = require("moment");
 import moment from "moment";
 
 export const TIME_FORMAT = "h:mm a";
