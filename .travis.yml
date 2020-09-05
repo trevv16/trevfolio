@@ -11,7 +11,7 @@ install:
 - cd backend
 - npm ci
 script:
-- npm test:coverage
+- npm run test:coverage
 after_success:
 - java -jar codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
 env:
