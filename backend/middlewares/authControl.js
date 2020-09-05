@@ -1,14 +1,17 @@
-module.exports = {
-  checkAuth: (req, res, next) =>
-    //   if (req.isAuthenticated()) {
-    next(), //   }
+export const checkAuth = (req, res, next) => {
+  //   if (req.isAuthenticated()) {
+  // next();
+  //   }
 
-  //   res.redirect("/signin");
+  next();
 
-  checkNotAuth: (req, res, next) =>
-    //   if (req.isAuthenticated()) {
-    //    return res.redirect("/admin");
-    //   }
+  // res.redirect("/signin");
+};
 
-    next(),
+export const checkNotAuth = (req, res, next) => {
+  // if (req.isAuthenticated()) {
+  //   return res.redirect('/admin');
+  // }
+
+  next();
 };
