@@ -1,18 +1,18 @@
 // Load the SDK for JavaScript
-import { config, S3 } from "aws-sdk";
-import { createReadStream } from "fs";
-import { basename } from "path";
+import { config, S3 } from 'aws-sdk';
+import { createReadStream } from 'fs';
+import { basename } from 'path';
 
 // Set the Region
 config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
-  s3ForcePathStyle: true,
+  s3ForcePathStyle: true
 });
 
 // Create S3 service object
-const s3 = new S3({ apiVersion: "2006-03-01" });
+const s3 = new S3({ apiVersion: '2006-03-01' });
 
 module.exports = {
   /**
@@ -39,8 +39,8 @@ module.exports = {
     const bucketParams = {
       Bucket: bucketName,
       CreateBucketConfiguration: {
-        LocationConstraint: process.env.AWS_REGION,
-      },
+        LocationConstraint: process.env.AWS_REGION
+      }
     };
 
     s3.createBucket(bucketParams, (err, data) => {
@@ -59,7 +59,7 @@ module.exports = {
    */
   deleteBucket: (bucketName, cb) => {
     const bucketParams = {
-      Bucket: bucketName,
+      Bucket: bucketName
     };
 
     s3.deleteBucket(bucketParams, (err, data) => {
@@ -79,7 +79,7 @@ module.exports = {
   listObjects: (bucketName, cb) => {
     // Create the parameters for calling listObjects
     const bucketParams = {
-      Bucket: bucketName,
+      Bucket: bucketName
     };
 
     // Call S3 to obtain a list of the objects in the bucket
@@ -100,11 +100,12 @@ module.exports = {
    * @param {*} cb - Takes in (err, data)
    */
   uploadObject: (bucketName, user, file, cb) => {
-    const uploadParams = { Bucket: bucketName, Key: "", Body: "" };
+    const uploadParams = { Bucket: bucketName, Key: '', Body: '' };
 
     const fileStream = createReadStream(file);
-    fileStream.on("error", (err) => {
-      console.error("File Error", err);
+    fileStream.on('error', (err) => {
+      // eslint-disable-next-line no-console
+      console.error('File Error', err);
     });
     uploadParams.Body = fileStream;
     uploadParams.Key = basename(`${user}/${file}`);
@@ -128,7 +129,7 @@ module.exports = {
   deleteObject: (bucketName, key, cb) => {
     const bucketParams = {
       Bucket: bucketName,
-      Key: key,
+      Key: key
     };
 
     s3.deleteBucket(bucketParams, (err, data) => {
@@ -138,5 +139,5 @@ module.exports = {
         cb(null, data);
       }
     });
-  },
+  }
 };
