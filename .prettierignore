@@ -1,4 +1,4 @@
-.travis.yml
+*.yml
 
 node_modules
 

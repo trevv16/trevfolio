@@ -1,4 +1,4 @@
-import moment from 'moment';
+const moment = require('moment');
 
 export const TIME_FORMAT = 'h:mm a';
 export const DATE_FORMAT = 'DD-MMM-YY';
@@ -54,7 +54,8 @@ export const isDateValid = (dateString) => {
   return true;
 };
 
-export const getYearFromString = (dateString) => String(dateString.split('-', 1));
+export const getYearFromString = (dateString) =>
+  String(dateString.split('-', 1));
 
 export const momentToDateTime = (m) => {
   if (m) {

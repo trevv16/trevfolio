@@ -20,7 +20,7 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - Responsiveness
 - CDN (S3)
 - FaaS (Lambda)
-- CI/CD (Travis CI/Github Actions)
+- CI/CD (Github Actions)
 - Unit Tests (Jest)
 - Browser Compatibility (Babel)
 
@@ -33,8 +33,8 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 ### Back-End
 
 - Node js
+- Express
 - Mongo DB
-- Redis
 
 ### Cloud Deployment
 

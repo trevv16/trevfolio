@@ -1,4 +1,4 @@
-function initialize(mongoose, dbUser, dbPW, dbName) {
+export const initializeMongo = (mongoose, dbUser, dbPW, dbName) => {
   mongoose.connect(
     `mongodb+srv://${dbUser}:${dbPW}@dev-rv8ag.mongodb.net/${dbName}?retryWrites=true&w=majority`,
     {
@@ -15,6 +15,4 @@ function initialize(mongoose, dbUser, dbPW, dbName) {
   db.once('open', () => {
     // we're connected!
   });
-}
-
-export default initialize;
+};
