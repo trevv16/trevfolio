@@ -8,13 +8,11 @@ before_install:
   | .[0].browser_download_url')" -o codacy-coverage-reporter-assembly.jar
 install:
 - npm ci
-- cd backend
-- npm ci
+- cd backend && npm ci
 script:
-- cd ..
-- npm run test:coverage
+- cd .. && npm run test:coverage
 after_success:
-- java -jar codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
+- java -jar codacy-coverage-reporter-assembly.jar report -l Java -r ../coverage/clover.xml
 env:
   global:
     secure: KEfnrHLPn8FIHcZy4l6JKhZAXy4g2oB59+UNQAdYxQJJYEllJPlt3IbxxmjwmBPg6bCMu8HI0CoHAfvYjX2GCCQO6REE029igAFIFSiupqY2dT0m4WUtoeu3C1Fupilsm9GOhufNw5lgNMdgNSgPjk6NIrRbX9AmAL7DQhJZ9ew3pBbrz1KAJrto68p5l+/vTc2rBQrbnzaig/xt9OEnK1fd0pXDCMXmFOdhVfsXjdjqVgW/uqfgiIuigXqf7TQ5+Mids5iEv6kSy04Ip3pnyr6qnsOaMcHTk1iOHv1FsJdHbUTGFVe/OiDd4ciZSxywfrjC20GXFrI/Dg/K5/n1nuXTeHrSzjiu5kV0zTfi42Rh7eKX1Zjr0DkSthKgOZSxAMaCgVpLKweGZU7wouM85I+N2+ss6DqAXVx3B8aD+qN3UY6AtaHul4d4hzDYzLqEjTRpOYrFhwG3brjmdUCSNZdZTVLx2V0KDDorNptQRdXgIPlQEeP+NKkLo2bDg43BL/GgjBboxLKKMXIUe9uicO/BrVDMLktaWrVo0/zkY5El63iAJ+KKSLX4JYK8HOE+rX4xLUORfB03Gp1lBIDu3iPIGr+CKVxZIqcD/26EIB69XhkyRXIVmWenTsxHkk2Qb7Vj3U/pR0AD+58wXUn/vAa2SkH0SUd7N7RPeucVXwo=
