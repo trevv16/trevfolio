@@ -1,22 +1,25 @@
-process.env.NODE_ENV !== 'production' ? require('dotenv').config() : null;
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
-const flash = require('express-flash');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const passport = require('passport');
-const methodOverride = require('method-override');
+import express, { json, urlencoded } from 'express';
+import mongoose from 'mongoose';
+import { path } from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+// import cors from 'cors';
+import flash from 'express-flash';
+import session from 'express-session';
+import passport, { initialize, session as _session } from 'passport';
+import methodOverride from 'method-override';
 
 // Configs
-const initializeMongo = require('./config/db_config');
-const initializePassport = require('./config/passport_config');
+import initializeMongo from './config/db_config';
+import initializePassport from './config/passport_config';
 
 // Services
-const { getUserByEmail, getUserById } = require('./services/dbService');
+import { getUserByEmail, getUserById } from './services/dbService';
+
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
+
+const MongoStore = require('connect-mongo')(session);
 
 initializeMongo(
   mongoose,
@@ -31,14 +34,11 @@ initializePassport(
   (id) => getUserById(id)
 );
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(json());
+app.use(urlencoded({ extended: false }));
 // app.use(cors());
 app.use(
   session({
@@ -50,16 +50,16 @@ app.use(
       collection: process.env.SESSION_STORE_COLLECTION,
       autoRemove: 'disabled',
       touchAfter: 90,
-      secret: process.env.SESSION_SECRET,
+      secret: process.env.SESSION_SECRET
     }),
     cookie: {
-      maxAge: 4 * 60 * 60 * 1000,
-    },
+      maxAge: 4 * 60 * 60 * 1000
+    }
   })
 );
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(initialize());
+app.use(_session());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -70,11 +70,11 @@ app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  next(createError(404)); // eslint-disable-line no-undef
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -84,4 +84,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

@@ -8,7 +8,7 @@ config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
-  s3ForcePathStyle: true,
+  s3ForcePathStyle: true
 });
 
 // Create S3 service object
@@ -39,8 +39,8 @@ module.exports = {
     const bucketParams = {
       Bucket: bucketName,
       CreateBucketConfiguration: {
-        LocationConstraint: process.env.AWS_REGION,
-      },
+        LocationConstraint: process.env.AWS_REGION
+      }
     };
 
     s3.createBucket(bucketParams, (err, data) => {
@@ -59,7 +59,7 @@ module.exports = {
    */
   deleteBucket: (bucketName, cb) => {
     const bucketParams = {
-      Bucket: bucketName,
+      Bucket: bucketName
     };
 
     s3.deleteBucket(bucketParams, (err, data) => {
@@ -79,7 +79,7 @@ module.exports = {
   listObjects: (bucketName, cb) => {
     // Create the parameters for calling listObjects
     const bucketParams = {
-      Bucket: bucketName,
+      Bucket: bucketName
     };
 
     // Call S3 to obtain a list of the objects in the bucket
@@ -104,6 +104,7 @@ module.exports = {
 
     const fileStream = createReadStream(file);
     fileStream.on('error', (err) => {
+      // eslint-disable-next-line no-console
       console.error('File Error', err);
     });
     uploadParams.Body = fileStream;
@@ -128,7 +129,7 @@ module.exports = {
   deleteObject: (bucketName, key, cb) => {
     const bucketParams = {
       Bucket: bucketName,
-      Key: key,
+      Key: key
     };
 
     s3.deleteBucket(bucketParams, (err, data) => {
@@ -138,5 +139,5 @@ module.exports = {
         cb(null, data);
       }
     });
-  },
+  }
 };

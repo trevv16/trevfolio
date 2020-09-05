@@ -8,26 +8,26 @@ const skillSchema = new Schema({
   name: {
     type: String,
     required: true,
-    trim: true,
+    trim: true
   },
   thumbnail: {
     pre: {
       type: String,
       required: true,
-      trim: true,
+      trim: true
     },
     hover: {
       type: String,
       required: false,
-      trim: true,
-    },
+      trim: true
+    }
   },
   projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
   recent_proj: { type: Schema.Types.ObjectId, ref: 'Project' },
   published: {
     type: Boolean,
-    required: true,
-  },
+    required: true
+  }
 });
 
 skillSchema.plugin(timestamps);

@@ -8,14 +8,14 @@ const projectSchema = new Schema({
     minlength: 1,
     maxlength: 160,
     required: [true, 'Provide a project title'],
-    trim: true,
+    trim: true
   },
   description: {
     type: String,
     minlength: 1,
     maxlength: 160,
     required: [true, 'Provide a project description'],
-    trim: true,
+    trim: true
   },
   thumbnail: {
     type: String,
@@ -23,7 +23,7 @@ const projectSchema = new Schema({
       '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
     required: [true, 'Provide thumbnail url'],
     trim: true,
-    set: (v) => v.toLowerCase(),
+    set: (v) => v.toLowerCase()
   },
   demo_url: {
     type: String,
@@ -31,12 +31,12 @@ const projectSchema = new Schema({
       '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
     required: [true, 'Provide thumbnail url'],
     trim: true,
-    set: (v) => v.toLowerCase(),
+    set: (v) => v.toLowerCase()
   },
   published: {
     type: Boolean,
     required: true,
-    trim: true,
+    trim: true
   },
   skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
   process: [
@@ -45,19 +45,19 @@ const projectSchema = new Schema({
         type: Number,
         min: 1,
         max: 20,
-        required: [true, 'Provide process order'],
+        required: [true, 'Provide process order']
       },
       type: {
         type: String,
-        required: [true, 'Provide process type'],
+        required: [true, 'Provide process type']
       },
       content: {
         type: String,
-        required: [true, 'Provide process content'],
-      },
-    },
+        required: [true, 'Provide process content']
+      }
+    }
   ],
-  github: { type: String },
+  github: { type: String }
 });
 
 projectSchema.plugin(timestamps);

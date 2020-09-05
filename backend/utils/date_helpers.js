@@ -9,7 +9,7 @@ export const DB_DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm';
 export const DB_DATE_FORMAT = 'YYYY-MM-DD';
 export const FRIENDLY_DATE_FORMAT = 'ddd, DD-MMM-YY';
 
-export const momentFromString = function (date, fmt = null) {
+export const momentFromString = (date, fmt = null) => {
   if (fmt) {
     return moment(date, fmt, true);
   }
@@ -54,9 +54,7 @@ export const isDateValid = (dateString) => {
   return true;
 };
 
-export const getYearFromString = (dateString) => {
-  return String(dateString.split('-', 1));
-};
+export const getYearFromString = (dateString) => String(dateString.split('-', 1));
 
 export const momentToDateTime = (m) => {
   if (m) {
@@ -73,12 +71,14 @@ export const getDateTimeStringFromMoment = (m) => {
 };
 
 export const existsAndIsBetween = (dttm, fr, th, inFormat1, inFormat2) => {
+  let format1 = null;
+  let format2 = null;
   if (!dttm) return false;
-  if (!inFormat1) inFormat1 = DB_DATE_TIME_FORMAT;
-  if (!inFormat2) inFormat2 = DATE_TIME_FORMAT;
-  const dttmMoment = momentFromString(dttm, inFormat1);
-  const frMoment = momentFromString(fr, inFormat2);
-  const toMoment = momentFromString(th, inFormat2);
+  if (!inFormat1) format1 = DB_DATE_TIME_FORMAT;
+  if (!inFormat2) format2 = DATE_TIME_FORMAT;
+  const dttmMoment = momentFromString(dttm, format1);
+  const frMoment = momentFromString(fr, format2);
+  const toMoment = momentFromString(th, format2);
   return dttmMoment.isBetween(frMoment, toMoment, null, '[]');
 };
 
@@ -88,8 +88,8 @@ export const hoursSince = (dtTmStr, fmt) => {
 };
 
 export const diffInHours = (earlierStr, laterStr, fmt) => {
-  earlier = momentFromString(earlierStr, fmt);
-  later = momentFromString(laterStr, fmt);
+  const earlier = momentFromString(earlierStr, fmt);
+  const later = momentFromString(laterStr, fmt);
   return moment.duration(later.diff(earlier)).asHours();
 };
 
@@ -125,15 +125,17 @@ export const reformat = (inString, inFormat, outFormat) => {
 
 export const getStringFromMoment = (m, fmt = null) => {
   if (m) {
-    fmt = fmt === null ? DATE_FORMAT : fmt;
-    return m.format(fmt);
+    const inFmt = fmt === null ? DATE_FORMAT : fmt;
+    return m.format(inFmt);
   }
-  return null;
+  return null; // eslint-disable-line consistent-return
 };
 
+// eslint-disable-next-line consistent-return
 export const getTimeRange = () => {
   const start = moment().startOf('06:00');
   const times = 14 * 2; // 14 hours * two 30 mins sessions/hour
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < times; i++) {
     const toPrint = moment(start)
       .add(30 * i, 'minutes')
@@ -150,7 +152,7 @@ export const parseDate = (s, fmt = 'YYYY-MM-DD') => {
     'MM/DD/YY',
     'MM/D/YYYY',
     'M/D/YYYY',
-    'YYYY-MM-DD',
+    'YYYY-MM-DD'
   ]);
   if (test.isValid()) {
     if (test.year() > new Date().getFullYear()) {

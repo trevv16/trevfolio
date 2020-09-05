@@ -10,7 +10,7 @@ const gallerySchema = new Schema({
     minlength: 1,
     maxlength: 160,
     required: [true, 'Provide a gallery title'],
-    trim: true,
+    trim: true
   },
   media: [
     {
@@ -19,33 +19,33 @@ const gallerySchema = new Schema({
         minlength: 1,
         maxlength: 160,
         required: [true, 'Provide a media type'],
-        trim: true,
+        trim: true
       },
       url: {
         type: String,
         match:
-          '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
+          '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/', // eslint-disable-line max-len
         required: [true, 'Provide media url'],
         trim: true,
-        set: (v) => v.toLowerCase(),
+        set: (v) => v.toLowerCase()
       },
       caption: {
         type: String,
         minlength: 1,
         maxlength: 160,
         required: [true, 'Provide a caption'],
-        trim: true,
+        trim: true
       },
       size: {
         width: {
           type: Number,
           min: 1,
-          trim: true,
+          trim: true
         },
         height: {
           type: Number,
           min: 1,
-          trim: true,
+          trim: true
         },
         units: {
           type: String,
@@ -54,17 +54,17 @@ const gallerySchema = new Schema({
           required: [true, 'Provide a size units'],
           enum: ['px', 'in'],
           set: (v) => v.toLowerCase(),
-          trim: true,
-        },
-      },
-    },
+          trim: true
+        }
+      }
+    }
   ],
   description: {
     type: String,
     minlength: 1,
     maxlength: 160,
     required: [true, 'Provide a gallery description'],
-    trim: true,
+    trim: true
   },
   thumbnail: {
     type: String,
@@ -72,13 +72,13 @@ const gallerySchema = new Schema({
       '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
     required: [true, 'Provide thumbnail url'],
     trim: true,
-    set: (v) => v.toLowerCase(),
+    set: (v) => v.toLowerCase()
   },
   published: {
     type: Boolean,
     required: true,
-    trim: true,
-  },
+    trim: true
+  }
 });
 
 gallerySchema.plugin(timestamps);

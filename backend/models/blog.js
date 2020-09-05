@@ -10,7 +10,7 @@ const blogSchema = new Schema({
     minlength: 1,
     maxlength: 60,
     required: [true, 'Provide a blog name'],
-    trim: true,
+    trim: true
   },
   slug: {
     type: String,
@@ -19,14 +19,14 @@ const blogSchema = new Schema({
     required: [true, 'Provide a blog slug'],
     match: '/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
     set: (v) => v.toLowerCase(),
-    trim: true,
+    trim: true
   },
   description: {
     type: String,
     minlength: 1,
     maxlength: 160,
     required: [true, 'Provide a blog description'],
-    trim: true,
+    trim: true
   },
   thumbnail: {
     type: String,
@@ -34,15 +34,15 @@ const blogSchema = new Schema({
       '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
     required: [true, 'Provide thumbnail url'],
     trim: true,
-    set: (v) => v.toLowerCase(),
+    set: (v) => v.toLowerCase()
   },
   media: [{ type: Schema.Types.ObjectId, ref: 'Media' }],
   posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
   published: {
     type: Boolean,
     required: true,
-    trim: true,
-  },
+    trim: true
+  }
 });
 
 blogSchema.plugin(timestamps);

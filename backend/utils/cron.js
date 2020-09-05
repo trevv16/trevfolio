@@ -9,7 +9,7 @@ module.exports = {
       },
       null,
       true,
-      'America/Los_Angeles'
+      'America/Los_Angeles',
     );
     job.start();
   },
