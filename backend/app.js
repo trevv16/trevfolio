@@ -1,17 +1,17 @@
-import express, { json, urlencoded } from 'express';
-import mongoose from 'mongoose';
-import { path } from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-// import cors from 'cors';
-import flash from 'express-flash';
-import session from 'express-session';
-import passport, { initialize, session as _session } from 'passport';
-import methodOverride from 'method-override';
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+// const cors = require('cors');
+const flash = require('express-flash');
+const session = require('express-session');
+const passport = require('passport');
+const methodOverride = require('method-override');
 
 // Configs
-import initializeMongo from './config/db_config';
-import initializePassport from './config/passport_config';
+import { initializeMongo } from './config/db_config';
+import { initializePassport } from './config/passport_config';
 
 // Services
 import { getUserByEmail, getUserById } from './services/dbService';
@@ -37,8 +37,8 @@ initializePassport(
 const app = express();
 
 app.use(logger('dev'));
-app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 // app.use(cors());
 app.use(
   session({
@@ -58,8 +58,8 @@ app.use(
   })
 );
 app.use(flash());
-app.use(initialize());
-app.use(_session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
