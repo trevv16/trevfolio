@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 // const cors = require('cors');
+require('dotenv').config();
 const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
@@ -12,6 +13,8 @@ const methodOverride = require('method-override');
 // Configs
 const mongoConfig = require('./config/db_config');
 const passConfig = require('./config/passport_config');
+
+const app = express();
 
 // Services
 const dbService = require('./services/dbService');
@@ -34,8 +37,6 @@ passConfig.initializePassport(
   (email) => dbService.getUserByEmail(email),
   (id) => dbService.getUserById(id)
 );
-
-const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());

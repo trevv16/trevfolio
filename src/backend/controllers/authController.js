@@ -1,5 +1,5 @@
 module.exports = {
-  // signUp: (req, res, next) => {},
+  signUp: (req, res, next) => {},
   signIn: (passport) => {
     passport.authenticate('local', {
       successRedirect: '/admin',
@@ -11,7 +11,7 @@ module.exports = {
   signOut: (req, res) => {
     req.logOut();
     res.redirect('/signin');
-  }
-  // forgot: (req, res, next) => {},
-  // reset: (req, res, next) => {}
+  },
+  forgot: (req, res, next) => {},
+  reset: (req, res, next) => {}
 };
