@@ -10,28 +10,29 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 
 // Configs
-import { initializeMongo } from './config/db_config';
-import { initializePassport } from './config/passport_config';
+const mongoConfig = require('./config/db_config');
+const passConfig = require('./config/passport_config');
 
 // Services
-import { getUserByEmail, getUserById } from './services/dbService';
+const dbService = require('./services/dbService');
 
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+// Routes
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 const MongoStore = require('connect-mongo')(session);
 
-initializeMongo(
+mongoConfig.initializeMongo(
   mongoose,
   process.env.MONOG_ATLAS_USER,
   process.env.MONGO_ATLAS_PW,
   process.env.MONGO_ATLAS_DB_NAME
 );
 
-initializePassport(
+passConfig.initializePassport(
   passport,
-  (email) => getUserByEmail(email),
-  (id) => getUserById(id)
+  (email) => dbService.getUserByEmail(email),
+  (id) => dbService.getUserById(id)
 );
 
 const app = express();
@@ -84,4 +85,4 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
-export default app;
+module.exports = app;

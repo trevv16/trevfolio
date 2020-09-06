@@ -2,7 +2,7 @@ const localStrategy = require('passport-local');
 const { getUserByEmail, getUserById } = require('../services/dbService');
 const bcrypt = require('bcrypt');
 
-export const initializePassport = (passport, getUserByEmail, getUserById) => {
+function initializePassport(passport, getUserByEmail, getUserById) {
   const authenticateUser = async (email, password, done) => {
     const user = getUserByEmail(email);
     if (user == null) {
@@ -27,4 +27,6 @@ export const initializePassport = (passport, getUserByEmail, getUserById) => {
   passport.deserializeUser((id, done) => {
     return done(null, getUserById(id));
   });
-};
+}
+
+module.exports = initializePassport;
