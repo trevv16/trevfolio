@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
-import timestamps from 'mongoose-timestamp';
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
-const gallerySchema = new Schema({
+const gallerySchema = new mongoose.Schema({
   _id: Schema.Types.ObjectId,
   title: {
     type: String,
@@ -83,6 +83,6 @@ const gallerySchema = new Schema({
 
 gallerySchema.plugin(timestamps);
 
-const Gallery = model('Gallery', gallerySchema, 'galleries');
+const Gallery = mongoose.model('Gallery', gallerySchema, 'galleries');
 
-export default Gallery;
+module.exports = Gallery;

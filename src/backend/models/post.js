@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
-import timestamps from 'mongoose-timestamp';
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
-const postSchema = new Schema({
+const postSchema = new mongoose.Schema({
   _id: Schema.Types.ObjectId,
   blogID: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
   title: {
@@ -52,6 +52,6 @@ const postSchema = new Schema({
 
 postSchema.plugin(timestamps);
 
-const Post = model('Post', postSchema, 'posts');
+const Post = mongoose.model('Post', postSchema, 'posts');
 
-export default Post;
+module.exports = Post;

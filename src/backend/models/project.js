@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose';
-import timestamps from 'mongoose-timestamp';
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
-const projectSchema = new Schema({
+const projectSchema = new mongoose.Schema({
   _id: Schema.Types.ObjectId,
   title: {
     type: String,
@@ -62,6 +62,6 @@ const projectSchema = new Schema({
 
 projectSchema.plugin(timestamps);
 
-const Project = model('Project', projectSchema, 'projects');
+const Project = mongoose.model('Project', projectSchema, 'projects');
 
-export default Project;
+module.exports = Project;

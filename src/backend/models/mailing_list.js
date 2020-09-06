@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
-import timestamps from 'mongoose-timestamp';
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
-const mailingListSchema = new Schema({
+const mailingListSchema = new mongoose.Schema({
   _id: Schema.Types.ObjectId,
   name: {
     type: String,
@@ -70,6 +70,10 @@ const mailingListSchema = new Schema({
 
 mailingListSchema.plugin(timestamps);
 
-const MailingList = model('MailingList', mailingListSchema, 'mailing_lists');
+const MailingList = mongoose.model(
+  'MailingList',
+  mailingListSchema,
+  'mailing_lists'
+);
 
-export default MailingList;
+module.exports = MailingList;

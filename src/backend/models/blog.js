@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
-import timestamps from 'mongoose-timestamp';
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
-const blogSchema = new Schema({
+const blogSchema = new mongoose.Schema({
   _id: Schema.Types.ObjectId,
   title: {
     type: String,
@@ -47,6 +47,6 @@ const blogSchema = new Schema({
 
 blogSchema.plugin(timestamps);
 
-const Blog = model('Blog', blogSchema, 'blogs');
+const Blog = mongoose.model('Blog', blogSchema, 'blogs');
 
-export default Blog;
+module.exports = Blog;
