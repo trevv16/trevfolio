@@ -1,21 +1,21 @@
-import { Schema, model } from 'mongoose';
-import timestamps from 'mongoose-timestamp';
+const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 // Lean Queries
 
-const userSchema = new Schema({
-  _id: Schema.Types.ObjectId,
+const userSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   first_name: {
     type: String,
     minlength: 1,
     required: [true, 'Provide a first name'],
-    trim: true,
+    trim: true
   },
   last_name: {
     type: String,
     minlength: 1,
     required: [true, 'Provide a last name'],
-    trim: true,
+    trim: true
   },
   email: {
     type: String,
@@ -23,18 +23,18 @@ const userSchema = new Schema({
     set: (v) => v.toLowerCase(),
     match:
       '/^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/',
-    trim: true,
+    trim: true
   },
   password: {
     type: String,
-    required: [true, 'Provide a password'],
+    required: [true, 'Provide a password']
   },
   social_links: [
     {
       title: {
         type: String,
         minlength: 1,
-        maxlength: 80,
+        maxlength: 80
       },
       url: {
         type: String,
@@ -42,15 +42,15 @@ const userSchema = new Schema({
           '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
         required: [true, 'Provide media url'],
         trim: true,
-        set: (v) => v.toLowerCase(),
-      },
-    },
-  ],
+        set: (v) => v.toLowerCase()
+      }
+    }
+  ]
 });
 
 userSchema.plugin(timestamps);
 
-const User = model('User', userSchema, 'users');
+const User = mongoose.model('User', userSchema, 'users');
 
 /**
  ******************* Virtuals
@@ -100,7 +100,7 @@ userSchema.methods = {
    */
   privateEmail: async function () {
     return obfuscate(this.email);
-  },
+  }
 };
 
 /**
@@ -148,4 +148,4 @@ async function obfuscate(email) {
   );
 }
 
-export default User;
+module.exports = User;
