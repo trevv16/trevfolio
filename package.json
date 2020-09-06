@@ -22,7 +22,7 @@
   "husky": {
     "hooks": {
       "pre-commit --no-verify": "lint-staged",
-      "pre-push": "npm test"
+      "pre-push --no-verify": "npm test"
     }
   },
   "lint-staged": {
