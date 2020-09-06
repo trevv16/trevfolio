@@ -10,10 +10,13 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:staged": "jest --findRelatedTests",
+    "build": "rm -rf lib && npx babel src -d lib",
     "start": "npm run server",
     "dev": "npm run server:dev",
-    "server": "cd backend && npm start",
-    "server:dev": "cd backend && npm run dev",
+    "server": "cd src/backend && npm start",
+    "server:dev": "cd src/backend && npm run dev",
+    "client": "cd src/frontend && echo 'PROD:fronted starting.... :)'",
+    "client:dev": "cd src/frontend && echo 'DEV:fronted starting.... :)'",
     "kill": "npx kill-port 3000"
   },
   "husky": {
@@ -39,6 +42,7 @@
   },
   "homepage": "https://github.com/trevv16/trevfolio#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
     "core-js": "^3.6.5",
     "husky": "^4.2.5",
     "jest": "^26.4.2"
