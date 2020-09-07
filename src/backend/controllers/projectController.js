@@ -18,7 +18,7 @@ module.exports = {
     res.send(result);
   },
   update: async (req, res, next) => {
-    const projectID = req.params.id;
+    const projectID = req.params.projectID;
     const updateProject = req.body;
     const result = await dbService.update(
       Project,
@@ -29,7 +29,7 @@ module.exports = {
     res.send(result);
   },
   remove: async (req, res, next) => {
-    const projectID = req.params.id;
+    const projectID = req.params.projectID;
     const result = await dbService.remove(Project, { _id: projectID });
 
     res.send(result);

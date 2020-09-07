@@ -1,5 +1,5 @@
 const dbService = require('../services/dbService');
-const MailingList = require('../models/mailingList');
+const MailingList = require('../models/mailing_list');
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -18,7 +18,7 @@ module.exports = {
     res.send(result);
   },
   update: async (req, res, next) => {
-    const mailingListID = req.params.id;
+    const mailingListID = req.params.mailingListID;
     const updateMailingList = req.body;
     const result = await dbService.update(
       MailingList,
@@ -29,7 +29,7 @@ module.exports = {
     res.send(result);
   },
   remove: async (req, res, next) => {
-    const mailingListID = req.params.id;
+    const mailingListID = req.params.mailingListID;
     const result = await dbService.remove(MailingList, { _id: mailingListID });
 
     res.send(result);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 
 const projectSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   title: {
     type: String,
     minlength: 1,
@@ -38,7 +38,7 @@ const projectSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
+  skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
   process: [
     {
       order: {

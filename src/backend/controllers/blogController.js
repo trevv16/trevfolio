@@ -18,14 +18,14 @@ module.exports = {
     res.send(result);
   },
   update: async (req, res, next) => {
-    const blogID = req.params.id;
+    const blogID = req.params.blogID;
     const updateBlog = req.body;
     const result = await dbService.update(Blog, { _id: blogID }, updateBlog);
 
     res.send(result);
   },
   remove: async (req, res, next) => {
-    const blogID = req.params.id;
+    const blogID = req.params.blogID;
     const result = await dbService.remove(Blog, { _id: blogID });
 
     res.send(result);
