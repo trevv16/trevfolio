@@ -18,14 +18,14 @@ module.exports = {
     res.send(result);
   },
   update: async (req, res, next) => {
-    const skillID = req.params.id;
+    const skillID = req.params.skillID;
     const updateSkill = req.body;
     const result = await dbService.update(Skill, { _id: skillID }, updateSkill);
 
     res.send(result);
   },
   remove: async (req, res, next) => {
-    const skillID = req.params.id;
+    const skillID = req.params.skillID;
     const result = await dbService.remove(Skill, { _id: skillID });
 
     res.send(result);

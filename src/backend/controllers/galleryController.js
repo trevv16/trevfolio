@@ -18,7 +18,7 @@ module.exports = {
     res.send(result);
   },
   update: async (req, res, next) => {
-    const galleryID = req.params.id;
+    const galleryID = req.params.galleryID;
     const updateGallery = req.body;
     const result = await dbService.update(
       Gallery,
@@ -29,7 +29,7 @@ module.exports = {
     res.send(result);
   },
   remove: async (req, res, next) => {
-    const galleryID = req.params.id;
+    const galleryID = req.params.galleryID;
     const result = await dbService.remove(Gallery, { _id: galleryID });
 
     res.send(result);
