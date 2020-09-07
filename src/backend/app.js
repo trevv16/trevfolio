@@ -20,7 +20,7 @@ const app = express();
 const dbService = require('./services/dbService');
 
 // Routes
-const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
 const apiRouter = require('./routes/api');
 const adminRouter = require('./routes/admin');
 
