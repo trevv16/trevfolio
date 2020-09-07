@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // Middlewares
-const { checkAuth, checkNotAuth } = require('../middlewares/authControl');
+const { checkAuth } = require('../middlewares/authControl');
 
 // Controllers
 const userCon = require('../controllers/userController');
