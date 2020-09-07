@@ -21,7 +21,8 @@ const dbService = require('./services/dbService');
 
 // Routes
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
+const adminRouter = require('./routes/admin');
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -67,8 +68,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Routes
-app.use('/', indexRouter);
-app.use('/user', usersRouter);
+app.use('/auth', authRouter);
+app.use('/api', apiRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
