@@ -1,5 +1,5 @@
 const dbService = require('../services/dbService');
-const MailingList = require('../models/mailingList');
+const MailingList = require('../models/mailing_list');
 
 module.exports = {
   getAll: async (req, res, next) => {

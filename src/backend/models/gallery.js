@@ -4,7 +4,7 @@ const timestamps = require('mongoose-timestamp');
 // Lean Queries
 
 const gallerySchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   title: {
     type: String,
     minlength: 1,

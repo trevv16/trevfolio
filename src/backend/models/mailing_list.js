@@ -4,7 +4,7 @@ const timestamps = require('mongoose-timestamp');
 // Lean Queries
 
 const mailingListSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     minlength: 1,
@@ -20,7 +20,7 @@ const mailingListSchema = new mongoose.Schema({
     trim: true
   },
   blog: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Blog',
     required: [true, 'Provide a blog ID']
   },
@@ -57,10 +57,10 @@ const mailingListSchema = new mongoose.Schema({
         type: Date,
         trim: true
       },
-      received_emails: [{ type: Schema.Types.ObjectId, ref: 'Email' }]
+      received_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Email' }]
     }
   ],
-  all_emails: [{ type: Schema.Types.ObjectId, ref: 'Email' }],
+  all_emails: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Email' }],
   published: {
     type: Boolean,
     required: true,
