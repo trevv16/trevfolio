@@ -6,4 +6,8 @@ export default class MainSkills extends Component {
 
     this.state = {};
   }
+
+  render() {
+    return <div>Main Skills</div>;
+  }
 }

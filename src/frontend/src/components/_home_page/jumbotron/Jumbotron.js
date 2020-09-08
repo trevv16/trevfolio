@@ -6,4 +6,8 @@ export default class Introduction extends Component {
 
     this.state = {};
   }
+
+  render() {
+    return <div>Jumbotron</div>;
+  }
 }

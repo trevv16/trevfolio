@@ -6,4 +6,8 @@ export default class Jumbotron extends Component {
 
     this.state = {};
   }
+
+  render() {
+    return <div>Introduction</div>;
+  }
 }

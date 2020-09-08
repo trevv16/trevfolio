@@ -6,4 +6,8 @@ export default class RecentProjects extends Component {
 
     this.state = {};
   }
+
+  render() {
+    return <div>Recent Projects</div>;
+  }
 }
