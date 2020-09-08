@@ -6,4 +6,8 @@ export default class Footer extends Component {
 
     this.state = {};
   }
+
+  render() {
+    return <div>Footer</div>;
+  }
 }

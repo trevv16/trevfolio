@@ -6,4 +6,8 @@ export default class MailingList extends Component {
 
     this.state = {};
   }
+
+  render() {
+    return <div>Mailing List</div>;
+  }
 }
