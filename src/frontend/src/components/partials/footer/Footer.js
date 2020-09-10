@@ -61,4 +61,4 @@ class Footer extends Component {
   }
 }
 
-export default withStyles(useStyles)(Footer);
+export default withStyles(useStyles, { withTheme: true })(Footer);
