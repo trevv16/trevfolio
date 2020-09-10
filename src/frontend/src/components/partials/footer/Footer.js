@@ -9,16 +9,14 @@ import {
 
 function Copyright() {
   return (
-    <React.Fragment>
-      <Typography variant='body2' color='textSecondary'>
-        {'Copyright © '}
-        <Link color='inherit' href='https://trevornjeru.com/'>
-          Trevor Njeru
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    </React.Fragment>
+    <Typography variant='body2' color='textSecondary'>
+      {'Copyright © '}
+      <Link color='inherit' href='https://trevornjeru.com/'>
+        Trevor Njeru
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
