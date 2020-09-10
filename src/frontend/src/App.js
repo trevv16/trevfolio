@@ -7,10 +7,20 @@ import {
   useParams,
   useRouteMatch
 } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 
 import { Home, About, Resume, Contact } from './views/index';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh'
+  }
+}));
+
 function App() {
+  const classes = useStyles();
   return (
     <div>
       <Router>
