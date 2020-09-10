@@ -22,7 +22,7 @@ function Introduction() {
       <Box
         component='div'
         spacing={3}
-        bgcolor='warning.light'
+        bgcolor='gray.light'
         height='60vh'
         minWidth='sm'
         className={classes.introBox}

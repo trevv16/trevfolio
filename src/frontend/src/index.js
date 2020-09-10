@@ -38,6 +38,17 @@ let theme = createMuiTheme({
       main: '#59a5d8',
       dark: '#2f8ac6'
     },
+    gray: {
+      light: '#e1e4f1',
+      main: '#edf3fd',
+      dark: '#bbb7cc'
+    },
+    light: {
+      main: '#edf3fd'
+    },
+    dark: {
+      main: '#061a37'
+    },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     contrastThreshold: 3,
