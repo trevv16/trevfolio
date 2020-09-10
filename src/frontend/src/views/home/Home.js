@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-// import {} from '@material-ui/core';
+
+import {
+  CssBaseline,
+  Container,
+  Link,
+  Typography,
+  makeStyles
+} from '@material-ui/core';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
 import {
@@ -12,24 +19,36 @@ import {
   Footer
 } from '../../components/index';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
+const useStyles = makeStyles((theme) => ({
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2)
+  },
+  footer: {
+    padding: theme.spacing(3, 2),
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'light'
+        ? theme.palette.grey[200]
+        : theme.palette.grey[800]
   }
+}));
 
-  render() {
-    return (
-      <div>
-        <Navigation />
-        <Jumbotron />
-        <Introduction />
-        <MainSkills />
-        <RecentProjects />
-        <MailingList />
-        <Footer />
-      </div>
-    );
-  }
+function Home() {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <CssBaseline />
+      <Navigation />
+      <Jumbotron />
+      <Introduction />
+      <MainSkills />
+      <RecentProjects />
+      <MailingList />
+      <Footer />
+    </div>
+  );
 }
+
+export default Home;
