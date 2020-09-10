@@ -4,7 +4,7 @@ import {
   Container,
   Link,
   Typography,
-  withStyles
+  makeStyles
 } from '@material-ui/core';
 
 function Copyright() {
@@ -22,7 +22,7 @@ function Copyright() {
   );
 }
 
-const useStyles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -36,29 +36,21 @@ const useStyles = (theme) => ({
         ? theme.palette.grey[200]
         : theme.palette.grey[800]
   }
-});
+}));
 
-class Footer extends Component {
-  constructor(props) {
-    super(props);
+function Footer() {
+  const classes = useStyles();
 
-    this.state = {};
-  }
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <footer className={classes.footer}>
-          <Container maxWidth='sm'>
-            <Copyright />
-          </Container>
-        </footer>
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <footer className={classes.footer}>
+        <Container maxWidth='sm'>
+          <Copyright />
+        </Container>
+      </footer>
+    </div>
+  );
 }
 
-export default withStyles(useStyles, { withTheme: true })(Footer);
+export default Footer;
