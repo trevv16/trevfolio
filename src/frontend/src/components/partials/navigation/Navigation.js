@@ -7,10 +7,22 @@ import {
   useScrollTrigger,
   Slide,
   Typography,
-  makeStyles
+  makeStyles,
+  Grow
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  grow: {
+    flexGrow: 1
+  },
+  link: {
+    padding: theme.spacing(3, 6),
+    color: '#fff'
+  },
+  headline: {
+    color: 'primary'
+  }
+}));
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -35,7 +47,40 @@ function Navigation(props) {
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant='h4'>Trevor Njeru</Typography>
+            <Link
+              component='a'
+              href='/'
+              variant='h4'
+              className={classes.headline}
+              underline='hover'
+            >
+              Trevor Njeru
+            </Link>
+            <div className={classes.grow} />
+            <Link
+              component='a'
+              href='/about'
+              variant='h6'
+              className={classes.link}
+            >
+              About
+            </Link>
+            <Link
+              component='a'
+              href='/projects'
+              variant='h6'
+              className={classes.link}
+            >
+              Projects
+            </Link>
+            <Link
+              component='a'
+              href='/contact'
+              variant='h6'
+              className={classes.link}
+            >
+              Contact
+            </Link>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
