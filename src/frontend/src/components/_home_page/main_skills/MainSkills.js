@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: theme.spacing(8, 0)
+    margin: theme.spacing(4, 0)
   }
 }));
 
@@ -103,7 +103,8 @@ function MainSkills() {
             variant='contained'
             color='secondary'
             size='large'
-            className={classes.button}
+            href='#'
+            className={classes.skillButton}
             endIcon={<ChevronRightIcon />}
           >
             View All
