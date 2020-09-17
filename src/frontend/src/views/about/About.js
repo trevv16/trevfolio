@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import {
-  CssBaseline,
-  Container,
-  Grid,
-  Link,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import React from 'react';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
-import { MailingList, Navigation, Footer } from '../../components/index';
+import {
+  MailingList,
+  Navigation,
+  Footer,
+  Gallery
+} from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +58,9 @@ function About() {
             <strong>Computer Science</strong> with a concentration in{' '}
             <strong>Human Computer Interaction</strong>.
           </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Gallery />
         </Grid>
       </Grid>
       <Grid container spacing={3} xs={12} className={classes.content}>
