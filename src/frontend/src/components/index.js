@@ -11,7 +11,6 @@ export { default as Header } from '../components/_resume_page/header/Header';
 export { default as WorkHistory } from '../components/_resume_page/work_history/WorkHistory';
 export { default as Skills } from '../components/_resume_page/skills/Skills';
 
-export { default as ContactForm } from '../components/contact_form/ContactForm';
 export { default as Gallery } from '../components/gallery/Gallery';
 export { default as MailingList } from '../components/mailing_list/MailingList';
 export { default as Navigation } from '../components/partials/navigation/Navigation';

@@ -1,15 +1,8 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch
-} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import {  } from '@material-ui/core';
 
-import { Home, About, Resume, Contact } from './views/index';
+import { Home, About, Resume, Contact, SkillList, Skill } from './views/index';
 
 function App() {
   return (
@@ -20,6 +13,8 @@ function App() {
           <Route exact path='/about' component={About} />
           <Route exact path='/resume' component={Resume} />
           <Route exact path='/contact' component={Contact} />
+          <Route path='/skill' component={SkillList} />
+          <Route path='/skill?' component={Skill} />
         </Switch>
       </Router>
     </div>

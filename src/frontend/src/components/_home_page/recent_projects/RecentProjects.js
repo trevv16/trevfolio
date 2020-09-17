@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  CssBaseline,
-  Link,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import { Box, CssBaseline, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   jumboBox: {

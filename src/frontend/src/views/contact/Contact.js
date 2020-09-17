@@ -1,29 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
   CssBaseline,
-  Container,
-  Link,
   Grid,
   TextField,
-  TextareaAutosize,
-  Box,
   Button,
   Typography,
-  makeStyles,
-  FormGroup
+  makeStyles
 } from '@material-ui/core';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
-import {
-  Introduction,
-  Jumbotron,
-  RecentProjects,
-  MainSkills,
-  MailingList,
-  Navigation,
-  Footer
-} from '../../components/index';
+import { MailingList, Navigation, Footer } from '../../components/index';
 import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,12 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  CssBaseline,
-  Link,
-  Typography,
-  makeStyles,
-  Grid
-} from '@material-ui/core';
+import React from 'react';
+import { CssBaseline, makeStyles, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   jumboBox: {
@@ -21,12 +14,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Jumbotron() {
   const classes = useStyles();
-  // let [slide, setSlide] = useState(0);
-  // const slideshowHandler = () => {
-  //   slide += 1;
-  // };
-
-  // setInterval(slideshowHandler, 3000);
 
   return (
     <div>
@@ -34,7 +21,7 @@ function Jumbotron() {
       <Grid container xs={12} className={classes.jumboBox}>
         <Grid item xs={12}>
           <img
-            src='https://source.unsplash.com/user/erondu/1920x500'
+            src='https://source.unsplash.com/random/1920x500'
             alt='jumbotron image'
             className={classes.jumboMedia}
           />

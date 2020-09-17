@@ -6,9 +6,7 @@ import {
   Toolbar,
   useScrollTrigger,
   Slide,
-  Typography,
-  makeStyles,
-  Grow
+  makeStyles
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({

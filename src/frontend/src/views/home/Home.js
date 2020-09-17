@@ -1,13 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import {
-  CssBaseline,
-  Container,
-  Link,
-  Grid,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import { CssBaseline, Grid, makeStyles } from '@material-ui/core';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
 import {

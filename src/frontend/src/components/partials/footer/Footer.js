@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
-import {
-  CssBaseline,
-  Container,
-  Link,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import React from 'react';
+import { CssBaseline, Link, Typography, makeStyles } from '@material-ui/core';
 
 function Copyright() {
   return (
