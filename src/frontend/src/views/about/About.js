@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   CssBaseline,
   Container,
+  Grid,
   Link,
   Typography,
   makeStyles
@@ -12,13 +13,19 @@ import { MailingList, Navigation, Footer } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh'
+    flexGrow: 1
   },
   main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2)
+    justifyContent: 'center',
+    marginTop: theme.spacing(14),
+    marginBottom: theme.spacing(8)
+  },
+  content: {
+    marginTop: theme.spacing(4),
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: theme.spacing(3)
   }
 }));
 
@@ -28,68 +35,80 @@ function About() {
   return (
     <div className={classes.root}>
       <Navigation />
-      <Container component='main' maxWidth='sm'>
-        <Typography variant='body1' component='body1'>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
-          </p>
-        </Typography>
 
-        <MailingList />
-      </Container>
+      <Grid container spacing={3} xs={12} className={classes.main}>
+        <Grid item xs={10}>
+          <Typography
+            align='center'
+            variant='h1'
+            component='h1'
+            color='palette.primary.dark'
+          >
+            About Me
+          </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Typography
+            align='center'
+            variant='h6'
+            component='h6'
+            className={classes.mailDesc}
+            color='primary.dark'
+          >
+            My name is Trevor Njeru, I am a Senior at{' '}
+            <strong>University of North Carolina at Charlotte</strong>, studying{' '}
+            <strong>Computer Science</strong> with a concentration in{' '}
+            <strong>Human Computer Interaction</strong>.
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3} xs={12} className={classes.content}>
+        <Grid item xs={10}>
+          <Typography
+            align='center'
+            variant='body1'
+            component='body1'
+            color='palette.primary.dark'
+          >
+            I am Kenyan-American, I have lived in North Carolina basically my
+            whole life, but I did experience living and going to school in Kenya
+            for about 2 years and as a result, I now think on a global scale. My
+            career objective is to become a well-sought after software engineer
+            in my field eventually utilizing my HCI skills in a senior software
+            architecture role to make a global social impact.
+          </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Typography
+            align='center'
+            variant='body1'
+            component='body1'
+            color='palette.primary.dark'
+          >
+            I am very comfortable with object-oriented programming and have
+            experience from school coding in Java, as well I have experience
+            working in an Agile environment using dev tools like Git, AWS,
+            Heroku, UI tools, Adobe CC, as well I am familiar with conventions
+            and best practices.
+          </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Typography
+            align='center'
+            variant='body1'
+            component='body1'
+            color='palette.primary.dark'
+          >
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+            eleifend leo.
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <MailingList />
       <Footer />
     </div>
   );
