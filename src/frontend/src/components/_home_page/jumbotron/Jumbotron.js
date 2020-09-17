@@ -22,7 +22,7 @@ function Jumbotron() {
         <Grid item xs={12}>
           <img
             src='https://source.unsplash.com/random/1920x500'
-            alt='jumbotron image'
+            alt='jumbotron'
             className={classes.jumboMedia}
           />
         </Grid>
