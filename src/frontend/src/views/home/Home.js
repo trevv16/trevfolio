@@ -4,6 +4,7 @@ import {
   CssBaseline,
   Container,
   Link,
+  Grid,
   Typography,
   makeStyles
 } from '@material-ui/core';
@@ -20,17 +21,12 @@ import {
 } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2)
-  },
-  footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[800]
   }
 }));
 
@@ -38,13 +34,23 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <Navigation />
-      <Jumbotron />
-      <Introduction />
-      <MainSkills />
-      <RecentProjects />
+      <Grid container xs={12} spacing={1} className={classes.main}>
+        <Grid item xs={12}>
+          <Jumbotron />
+        </Grid>
+        <Grid item xs={12}>
+          <Introduction />
+        </Grid>
+        <Grid item xs={12}>
+          <MainSkills />
+        </Grid>
+        <Grid item xs={12}>
+          <RecentProjects />
+        </Grid>
+      </Grid>
       <MailingList />
       <Footer />
     </div>
