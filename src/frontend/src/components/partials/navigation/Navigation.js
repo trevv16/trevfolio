@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff'
   },
   headline: {
-    color: 'primary'
+    // color: 'secondary'
   }
 }));
 
@@ -51,6 +51,7 @@ function Navigation(props) {
               component='a'
               href='/'
               variant='h4'
+              color='secondary'
               className={classes.headline}
               underline='hover'
             >
