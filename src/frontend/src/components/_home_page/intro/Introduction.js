@@ -43,17 +43,77 @@ function Introduction() {
         className={classes.introBox}
         boxShadow={4}
       >
-        <Typography align='center' variant='h3' component='h3'>
+        <Typography
+          align='center'
+          variant='h2'
+          component='h2'
+          color='primary.dark'
+        >
           Hi, im Trevor Njeru
         </Typography>
         <Typography
+          align='center'
+          variant='h4'
+          component='h4'
+          className={classes.description}
+        >
+          A computer science student based in Charlotte, NC. Enhancing my skills
+          as a full stack developer with a keen interest in design.
+        </Typography>
+        <Typography
+          align='center'
+          variant='h5'
+          component='h5'
+          className={classes.description}
+        >
+          I made this site using{' '}
+          <Link href='#' color='secondary'>
+            Node js
+          </Link>
+          ,{' '}
+          <Link href='#' color='secondary'>
+            Express
+          </Link>
+          ,{' '}
+          <Link href='#' color='secondary'>
+            React
+          </Link>
+          ,{' '}
+          <Link href='#' color='secondary'>
+            Material UI
+          </Link>
+          , and{' '}
+          <Link href='#' color='secondary'>
+            MongoDB
+          </Link>
+          . It is unit tested with{' '}
+          <Link href='#' color='secondary'>
+            Jest
+          </Link>
+          , deployed with{' '}
+          <Link href='#' color='secondary'>
+            Docker
+          </Link>
+          , and{' '}
+          <Link href='#' color='secondary'>
+            Github Actions
+          </Link>{' '}
+          to an{' '}
+          <Link href='#' color='secondary'>
+            AWS EC2
+          </Link>{' '}
+          instance.
+        </Typography>
+        {/* <Typography
           align='center'
           variant='h6'
           component='h6'
           className={classes.description}
         >
-          A computer science student based in Charlotte, NC.
-        </Typography>
+          I made this to include functionality like Authentication, Docker
+          Virtualization, Continuous Integration, Continuous Deployment, Unit
+          Testing, and <strong>more</strong>.
+        </Typography> */}
 
         <Box className={classes.options}>
           <Box className={classes.introOption}>
