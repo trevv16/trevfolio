@@ -43,3 +43,22 @@ Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
 - AWS S3
 - AWS Redis
 - AWS Lambda
+
+### To-Do
+
+- [ ] #6 Public pages (In Progress)
+- [ ] #7 gallery components
+- [ ] #8 blog pages
+- [ ] #9 static resume
+- [ ] #10 skills sections
+- [ ] #11 authentication
+- [ ] #12 authentication settings
+- [ ] #13 mailing list subscribe
+- [ ] #14 admin dashboard
+- [ ] #15 admin send mailing list messages
+- [ ] #16 admin post to blogs
+- [ ] #32 admin can read message from /contact
+- [ ] #20 Setup docker & create images for frontend/backend
+- [ ] #26 Tests & Coverage report with github actions
+- [ ] #24 Implement caching with redis
+- [ ] #23 Implement FaaS with Lambda
