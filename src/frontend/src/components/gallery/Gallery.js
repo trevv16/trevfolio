@@ -8,7 +8,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(10)
   },
-  carousel: {}
+  carousel: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 }));
 
 function Gallery() {
@@ -16,18 +19,18 @@ function Gallery() {
   const images = [
     {
       name: 'image1',
-      src: 'https://source.unsplash.com/random/1080x1080',
-      description: 'Picture of me'
+      src: 'https://source.unsplash.com/random/1600x600',
+      description: 'Trev'
     },
     {
       name: 'image2',
-      src: 'https://source.unsplash.com/random/1080x1080',
-      description: 'Picture of me'
+      src: 'https://source.unsplash.com/random/1600x600',
+      description: 'Trev'
     },
     {
       name: 'image2',
-      src: 'https://source.unsplash.com/random/1080x1080',
-      description: 'Picture of me'
+      src: 'https://source.unsplash.com/random/1600x600',
+      description: 'Trev'
     }
   ];
 
@@ -37,10 +40,12 @@ function Gallery() {
       <Carousel
         navButtonsAlwaysVisible
         animation='slide'
+        interval={5500}
+        timeout={800}
         className={classes.carousel}
       >
-        {images.map((src, description, i) => (
-          <img key={i} src={src} alt={description} />
+        {images.map((img, i) => (
+          <img key={i} src={img.src} alt={img.description} />
         ))}
       </Carousel>
     </div>
