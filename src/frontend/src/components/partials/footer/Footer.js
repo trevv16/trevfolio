@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh'
-  },
-  footer: {
+    minHeight: '6vh',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
     backgroundColor:
@@ -42,10 +42,8 @@ function Footer() {
   return (
     <div>
       <CssBaseline />
-      <footer className={classes.footer}>
-        <Container maxWidth='sm'>
-          <Copyright />
-        </Container>
+      <footer className={classes.root}>
+        <Copyright />
       </footer>
     </div>
   );
