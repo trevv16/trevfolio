@@ -4,12 +4,18 @@ import {
   CssBaseline,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
+  Grid
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   jumboBox: {
-    marginTop: theme.spacing(8)
+    marginTop: theme.spacing(3),
+    overflow: 'hidden'
+  },
+  jumboMedia: {
+    maxWidth: '100%',
+    maxHeight: '100%'
   }
 }));
 
@@ -25,20 +31,15 @@ function Jumbotron() {
   return (
     <div>
       <CssBaseline />
-      <Box
-        component='div'
-        spacing={3}
-        bgcolor='gray.dark'
-        height='59vh'
-        minWidth='sm'
-        className={classes.jumboBox}
-        boxShadow={4}
-      >
-        <img
-          src='https://source.unsplash.com/user/erondu/2560x530'
-          alt='jumbotron image'
-        />
-      </Box>
+      <Grid container xs={12} className={classes.jumboBox}>
+        <Grid item xs={12}>
+          <img
+            src='https://source.unsplash.com/user/erondu/1920x500'
+            alt='jumbotron image'
+            className={classes.jumboMedia}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 }
