@@ -2,16 +2,18 @@ import React from 'react';
 import {
   Box,
   CssBaseline,
-  Link,
   TextField,
   Button,
   Typography,
   makeStyles
 } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(10)
+  },
   mailBox: {
     paddingTop: theme.spacing(8)
   },
@@ -22,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: theme.spacing(6)
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(12)
   },
   subField: {
     width: '50vw'
@@ -37,14 +40,15 @@ function MailingList() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <Box
         component='div'
         spacing={3}
         bgcolor='light'
-        height='38vh'
+        minHeight='34vh'
         minWidth='sm'
+        direction='column'
         className={classes.mailBox}
         boxShadow={4}
       >
