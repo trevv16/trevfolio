@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   link: {
-    padding: theme.spacing(3, 6),
+    padding: theme.spacing(3, 2),
     color: '#fff'
   },
   headline: {
