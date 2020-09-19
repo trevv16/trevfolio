@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   icon_group: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '2vh'
+    marginTop: theme.spacing(4)
   },
   social_icons: {
     justifyContent: 'center',
