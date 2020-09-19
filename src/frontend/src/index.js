@@ -58,7 +58,43 @@ let theme = createMuiTheme({
     tonalOffset: 0.2
   },
   typography: {
-    fontFamily: '"Poppins", sans-serif'
+    fontFamily: '"Poppins", sans-serif',
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    h1: {
+      fontWeight: 500,
+      fontFamily: '"Poppins", sans-serif'
+    },
+    h2: {
+      fontWeight: 500,
+      fontFamily: '"Poppins", sans-serif'
+    },
+    h3: {
+      fontWeight: 500,
+      fontFamily: '"Poppins", sans-serif'
+    },
+    h4: {
+      fontWeight: 500,
+      fontFamily: '"Poppins", sans-serif'
+    },
+    h5: {
+      fontWeight: 500,
+      fontFamily: '"Poppins", sans-serif'
+    },
+    h6: {
+      fontWeight: 500,
+      fontFamily: '"Poppins", sans-serif'
+    },
+    body1: {
+      fontWeight: 500,
+      fontFamily: '"Roboto", sans-serif',
+      fontSize: '2rem'
+    },
+    body2: {
+      fontWeight: 500,
+      fontFamily: '"Roboto", sans-serif'
+    }
   },
   overrides: {
     MuiCssBaseline: {
