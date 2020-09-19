@@ -57,7 +57,6 @@ function Icons() {
             className={classes.social_icons}
             src='/github_icon.png'
             alt='github icon'
-            onMouseOver={console.log('test')}
           />
         </Link>
       </Grid>
