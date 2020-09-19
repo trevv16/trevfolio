@@ -43,12 +43,7 @@ function Introduction() {
         className={classes.introBox}
         boxShadow={4}
       >
-        <Typography
-          align='center'
-          variant='h2'
-          component='h2'
-          color='primary.dark'
-        >
+        <Typography align='center' variant='h2' component='h2'>
           Hi, im Trevor Njeru
         </Typography>
         <Typography
@@ -67,39 +62,39 @@ function Introduction() {
           className={classes.description}
         >
           I made this site using{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=node' color='secondary'>
             Node js
           </Link>
           ,{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=express' color='secondary'>
             Express
           </Link>
           ,{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=react' color='secondary'>
             React
           </Link>
           ,{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=material_ui' color='secondary'>
             Material UI
           </Link>
           , and{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=mongodb' color='secondary'>
             MongoDB
           </Link>
           . It is unit tested with{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=jest' color='secondary'>
             Jest
           </Link>
           , deployed with{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=docker' color='secondary'>
             Docker
           </Link>
           , and{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=github_actions' color='secondary'>
             Github Actions
           </Link>{' '}
           to an{' '}
-          <Link href='#' color='secondary'>
+          <Link href='/skill?skill=aws_ec2' color='secondary'>
             AWS EC2
           </Link>{' '}
           instance.

@@ -30,7 +30,7 @@ function Home() {
     <div className={classes.root}>
       <CssBaseline />
       <Navigation />
-      <Grid container xs={12} spacing={1} className={classes.main}>
+      <Grid container spacing={1} className={classes.main}>
         <Grid item xs={12}>
           <Jumbotron />
         </Grid>
