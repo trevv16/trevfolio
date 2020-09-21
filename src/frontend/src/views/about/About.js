@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
+import Carousel from 'react-material-ui-carousel';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
 import {
@@ -29,6 +30,23 @@ const useStyles = makeStyles((theme) => ({
 
 function About() {
   const classes = useStyles();
+  const images = [
+    {
+      name: 'image1',
+      src: 'https://source.unsplash.com/random/1600x600',
+      description: 'Trev'
+    },
+    {
+      name: 'image2',
+      src: 'https://source.unsplash.com/random/1600x600',
+      description: 'Trev'
+    },
+    {
+      name: 'image2',
+      src: 'https://source.unsplash.com/random/1600x600',
+      description: 'Trev'
+    }
+  ];
 
   return (
     <div className={classes.root}>
@@ -60,7 +78,17 @@ function About() {
           </Typography>
         </Grid>
         <Grid item xs={10}>
-          <Gallery />
+          <Carousel
+            navButtonsAlwaysVisible
+            animation='slide'
+            interval={5500}
+            timeout={800}
+            className={classes.carousel}
+          >
+            {images.map((img, i) => (
+              <img key={i} src={img.src} alt={img.description} />
+            ))}
+          </Carousel>
         </Grid>
       </Grid>
       <Grid container spacing={3} xs={12} className={classes.content}>
