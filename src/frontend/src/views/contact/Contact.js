@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Helmet } from 'react-helmet';
 import {
   CssBaseline,
   Grid,
@@ -55,6 +55,10 @@ function Contact() {
 
   return (
     <div className={classes.root}>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Contact | Trevor's Portfolio</title>
+      </Helmet>
       <CssBaseline />
       <Navigation />
 

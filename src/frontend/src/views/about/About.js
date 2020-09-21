@@ -1,14 +1,10 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Carousel from 'react-material-ui-carousel';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
-import {
-  MailingList,
-  Navigation,
-  Footer,
-  Gallery
-} from '../../components/index';
+import { MailingList, Navigation, Footer } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     justifyContent: 'center',
-    marginTop: theme.spacing(14),
+    marginTop: theme.spacing(18),
     marginBottom: theme.spacing(8)
   },
   content: {
@@ -50,8 +46,11 @@ function About() {
 
   return (
     <div className={classes.root}>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>About | Trevor's Portfolio</title>
+      </Helmet>
       <Navigation />
-
       <Grid container spacing={3} xs={12} className={classes.main}>
         <Grid item xs={10}>
           <Typography
