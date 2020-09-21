@@ -59,7 +59,7 @@ function GenGrid(props) {
     html.push(
       <Grid item key={index}>
         <Skill
-          imgSrc='https://source.unsplash.com/user/erondu/80x80'
+          imgSrc='https://source.unsplash.com/random/80x80'
           altText='skill icon'
         />
       </Grid>

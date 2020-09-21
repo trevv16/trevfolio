@@ -38,7 +38,7 @@ function Jumbotron() {
   return (
     <div>
       <CssBaseline />
-      <Grid container xs={12} className={classes.jumboBox}>
+      <Grid container className={classes.jumboBox}>
         <Grid item xs={12}>
           <Carousel
             navButtonsAlwaysVisible
