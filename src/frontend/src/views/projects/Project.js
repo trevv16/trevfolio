@@ -6,8 +6,8 @@ import { CssBaseline, Grid, makeStyles, Typography } from '@material-ui/core';
 import {
   MailingList,
   Navigation,
-  Footer
-  // ProjectCard
+  Footer,
+  ProjectCard
 } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,29 +22,107 @@ const useStyles = makeStyles((theme) => ({
 
 function Project() {
   const classes = useStyles();
-  // const projectData = [
-  //   {
-  //     _id: '1',
-  //     title: 'Calculator',
-  //     description: 'This is a website showing some basic js and design skills.',
-  //     thumbnail: 'https://source.unsplash.com/random/550x500',
-  //     published: 'Apr 30 2019'
-  //   },
-  //   {
-  //     _id: '2',
-  //     title: 'Clock',
-  //     description: 'This is a website showing some basic js and design skills.',
-  //     thumbnail: 'https://source.unsplash.com/random/550x500',
-  //     published: 'May 04 2019'
-  //   },
-  //   {
-  //     _id: '3',
-  //     title: 'Weather',
-  //     description: 'This is a website showing some basic js and design skills.',
-  //     thumbnail: 'https://source.unsplash.com/random/550x500',
-  //     published: 'Sep 01 2019'
-  //   }
-  // ];
+  const projectData = [
+    {
+      _id: '1',
+      title: 'Calculator',
+      description: 'This is a website showing some basic js and design skills.',
+      skills: [
+        {
+          _id: '1',
+          name: 'html',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        },
+        {
+          _id: '2',
+          name: 'css',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        },
+        {
+          _id: '3',
+          name: 'javascript',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        }
+      ],
+      thumbnail: 'https://source.unsplash.com/random/55x50',
+      published: 'Apr 30 2019'
+    },
+    {
+      _id: '2',
+      title: 'Clock',
+      description: 'This is a website showing some basic js and design skills.',
+      skills: [
+        {
+          _id: '1',
+          name: 'html',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        },
+        {
+          _id: '2',
+          name: 'css',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        },
+        {
+          _id: '3',
+          name: 'javascript',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        }
+      ],
+      thumbnail: 'https://source.unsplash.com/random/550x500',
+      published: 'May 04 2019'
+    },
+    {
+      _id: '3',
+      title: 'Weather',
+      description: 'This is a website showing some basic js and design skills.',
+      skills: [
+        {
+          _id: '1',
+          name: 'html',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        },
+        {
+          _id: '2',
+          name: 'css',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        },
+        {
+          _id: '3',
+          name: 'javascript',
+          thumbnail: {
+            pre: 'https://source.unsplash.com/random/55x50',
+            hover: 'https://source.unsplash.com/random/55x51'
+          }
+        }
+      ],
+      thumbnail: 'https://source.unsplash.com/random/550x500',
+      published: 'Sep 01 2019'
+    }
+  ];
 
   return (
     <div className={classes.root}>
@@ -65,13 +143,15 @@ function Project() {
             Projects
           </Typography>
         </Grid>
-        {/* {projectData.map((proj, i) => {
-          return (
-            <Grid item xs={12}>
-              <ProjectCard />
-            </Grid>
-          );
-        })} */}
+        <Grid container spacing={4} className={classes.main}>
+          {projectData.map((proj, i) => {
+            return (
+              <Grid item xs={6}>
+                <ProjectCard key={i} project={proj} />
+              </Grid>
+            );
+          })}
+        </Grid>
       </Grid>
       <MailingList />
       <Footer />
