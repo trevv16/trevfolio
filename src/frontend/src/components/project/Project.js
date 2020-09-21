@@ -1,47 +1,42 @@
-import React, { Component } from 'react';
-import {
-  Link,
-  Grid,
-  Typography,
-  makeStyles,
-  withStyles
-} from '@material-ui/core';
+import React, { Component, useState } from 'react';
+import { Link, Grid, Typography, makeStyles } from '@material-ui/core';
 // import {} from '@material-ui/icons';
 
 // const params = useParams();
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  main: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: theme.spacing(18),
+    marginBottom: theme.spacing(2)
+  },
+  project: {
+    backgroundColor: theme.palette.primary,
+    border: 'none',
+    borderRadius: '10px',
+    padding: theme.spacing(1)
+  },
+  published: {
+    border: `1px solid ${theme.palette.primary.light}`,
+    borderRadius: '6px',
+    fontSize: '2rem',
+    padding: theme.spacing(2),
+    height: 'auto',
+    textTransform: 'uppercase'
+  },
+  thumbnail: {
+    width: '100%',
+    height: 'auto',
+    padding: 0
+  }
+}));
+
 export function ProjectHighlight(props) {
-  const classes = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1
-    },
-    main: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: theme.spacing(18),
-      marginBottom: theme.spacing(2)
-    },
-    project: {
-      backgroundColor: theme.palette.primary,
-      border: 'none',
-      borderRadius: '10px',
-      padding: theme.spacing(1)
-    },
-    published: {
-      backgroundColor: theme.palette.primary.light,
-      border: 'none',
-      borderRadius: '6px',
-      fontSize: '2rem',
-      padding: theme.spacing(2),
-      height: 'auto',
-      textTransform: 'uppercase'
-    },
-    thumbnail: {
-      width: '100%',
-      height: 'auto',
-      padding: 0
-    }
-  }));
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -81,7 +76,7 @@ export function ProjectHighlight(props) {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography component='body2' variant='body2'>
+                  <Typography component='Body2' variant='Body2'>
                     {proj.description}
                   </Typography>
                 </Grid>
@@ -93,79 +88,162 @@ export function ProjectHighlight(props) {
     </div>
   );
 }
+
+const addStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  main: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: theme.spacing(18),
+    marginBottom: theme.spacing(1)
+  },
+  project: {
+    backgroundColor: '#e1e4f1',
+    border: 'none',
+    borderRadius: '10px',
+    padding: theme.spacing(1),
+    height: 'auto'
+  },
+  published: {
+    border: `1px solid ${theme.palette.primary.light}`,
+    borderRadius: '6px',
+    fontSize: '2rem',
+    padding: theme.spacing(2),
+    height: 'auto',
+    textTransform: 'uppercase',
+    color: theme.palette.primary.light
+  },
+  thumbnail: {
+    width: '100%',
+    height: 'auto',
+    padding: 0
+  },
+  skillList: {
+    display: 'inline-flex'
+  },
+  skill: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: theme.spacing(1),
+    position: 'relative'
+  },
+  skillImg: {
+    width: '100%',
+    height: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  skillName: {
+    background: 'rgb(237,243,253)',
+    background:
+      'linear-gradient(90deg, rgba(237,243,253,0.75) 1%, rgba(225,228,241,1) 50%, rgba(237,243,253,0.7511379551820728) 100%)',
+    color: 'theme.palette.primary.light',
+    left: '0',
+    padding: theme.spacing(2),
+    position: 'absolute',
+    textTransform: 'uppercase',
+    top: '0'
+  }
+}));
+
 export default function ProjectCard(props) {
-  const classes = withStyles((theme) => ({
-    root: {
-      flexGrow: 1
-    },
-    main: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: theme.spacing(18),
-      marginBottom: theme.spacing(2)
-    },
-    project: {
-      backgroundColor: theme.palette.primary,
-      border: 'none',
-      borderRadius: '10px',
-      padding: theme.spacing(1)
-    },
-    published: {
-      backgroundColor: theme.palette.primary.light,
-      border: 'none',
-      borderRadius: '6px',
-      fontSize: '2rem',
-      padding: theme.spacing(2),
-      height: 'auto',
-      textTransform: 'uppercase'
-    },
-    thumbnail: {
-      width: '100%',
-      height: 'auto',
-      padding: 0
-    }
-  }));
+  const classStyles = addStyles();
+  const skillList = props.project.skills;
+  const skillWidth = 12 / props.project.skills.length;
+  const [hover, handleHover] = useState(false);
+
+  const handleMouseOver = (ctx, skill) => {
+    ctx.currentTarget.src = skill.thumbnail.hover;
+    handleHover(!hover);
+  };
+
+  const handleMouseOut = (ctx, skill) => {
+    ctx.currentTarget.src = skill.thumbnail.pre;
+    handleHover(!hover);
+  };
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={4} className={classes.main}>
-        {props.projects.map((proj, i) => {
-          return (
-            <Grid item xs={12 / props.projects.length} key={i}>
+    <div className={classStyles.root}>
+      <Grid container spacing={1} className={classStyles.project}>
+        <Grid item xs={12}>
+          <img
+            src={props.project.thumbnail}
+            alt='project thumbnail'
+            className={classStyles.thumbnail}
+          />
+        </Grid>
+        <Grid item xs={10}>
+          <Typography component='h3' variant='h3'>
+            <Link href={`/projects/${props.project._id}`} color='secondary'>
+              {props.project.title}
+            </Link>
+          </Typography>
+        </Grid>
+        <Grid item xs={2} className={classStyles.published}>
+          <Typography component='h5' variant='h5'>
+            {props.project.published}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography component='Body2' variant='Body2'>
+            {props.project.description}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography component='h4' variant='h4'>
+            <strong>Skills Used</strong>
+          </Typography>
+        </Grid>
+        <Grid item xs={11} className={classStyles.skillList}>
+          {skillList.map((skill, i) => {
+            return (
               <Grid
-                container
-                spacing={1}
-                className={classes.project}
-                className={classes.root}
+                key={i}
+                item
+                xs={skillWidth > 3 ? skillWidth : 3}
+                className={classStyles.skill}
               >
-                <Grid item xs={12}>
-                  <img
-                    src={proj.thumbnail}
-                    alt='project thumbnail'
-                    className={classes.thumbnail}
-                  />
-                </Grid>
-                <Grid item xs={10}>
-                  <Typography component='h3' variant='h3'>
-                    <Link href={`/projects/${proj._id}`} color='secondary'>
-                      {proj.title}
-                    </Link>
-                  </Typography>
-                </Grid>
-                <Grid item xs={2} className={classes.published}>
-                  <Typography component='h5' variant='h5'>
-                    {proj.published}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography component='body2' variant='body2'>
-                    {proj.description}
-                  </Typography>
-                </Grid>
+                {/* TODO: Replace with Skill component pass props */}
+                {hover && (
+                  <div onMouseOut={(e) => handleMouseOut(e, skill)}>
+                    <Grid item xs={12} className={classStyles.skillImg}>
+                      <img
+                        src={skill.thumbnail.pre}
+                        alt={`${skill.name} icon`}
+                        onMouseOver={(e) => handleMouseOver(e, skill)}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography
+                        component='h6'
+                        variant='h6'
+                        className={classStyles.skillName}
+                      >
+                        {skill.name}
+                      </Typography>
+                    </Grid>
+                  </div>
+                )}
+                {!hover && (
+                  <Grid
+                    item
+                    xs={12}
+                    className={classStyles.skillImg}
+                    onMouseOut={(e) => handleMouseOut(e, skill)}
+                  >
+                    <img
+                      src={skill.thumbnail.pre}
+                      alt={`${skill.name} icon`}
+                      onMouseOver={(e) => handleMouseOver(e, skill)}
+                    />
+                  </Grid>
+                )}
               </Grid>
-            </Grid>
-          );
-        })}
+            );
+          })}
+        </Grid>
       </Grid>
     </div>
   );
