@@ -6,8 +6,8 @@ import { CssBaseline, Grid, makeStyles } from '@material-ui/core';
 import {
   Introduction,
   Jumbotron,
-  RecentProjects,
   MainSkills,
+  ProjectHighlight,
   MailingList,
   Navigation,
   Footer
@@ -22,6 +22,27 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   }
 }));
+
+const projectData = [
+  {
+    title: 'Calculator',
+    description: 'This is a website showing some basic js and design skills.',
+    thumbnail: 'https://source.unsplash.com/random/500x500',
+    published: 'Apr 30 2019'
+  },
+  {
+    title: 'Clock',
+    description: 'This is a website showing some basic js and design skills.',
+    thumbnail: 'https://source.unsplash.com/random/500x500',
+    published: 'May 04 2019'
+  },
+  {
+    title: 'Weather',
+    description: 'This is a website showing some basic js and design skills.',
+    thumbnail: 'https://source.unsplash.com/random/500x500',
+    published: 'Sep 01 2019'
+  }
+];
 
 function Home() {
   const classes = useStyles();
@@ -41,7 +62,7 @@ function Home() {
           <MainSkills />
         </Grid>
         <Grid item xs={12}>
-          <RecentProjects />
+          <ProjectHighlight projects={projectData} />
         </Grid>
       </Grid>
       <MailingList />
