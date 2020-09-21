@@ -93,7 +93,8 @@ let theme = createMuiTheme({
     },
     body2: {
       fontWeight: 500,
-      fontFamily: '"Roboto", sans-serif'
+      fontFamily: '"Roboto", sans-serif',
+      fontSize: '1rem'
     }
   },
   overrides: {
