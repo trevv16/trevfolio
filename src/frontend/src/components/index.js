@@ -3,7 +3,6 @@ export { default as Jumbotron } from '../components/_home_page/jumbotron/Jumbotr
 export { default as MainSkills } from '../components/_home_page/main_skills/MainSkills';
 export { default as ProjectCard } from '../components/project/Project';
 export { ProjectHighlight } from '../components/project/Project';
-export { ProjectDetail } from '../components/project/Project';
 
 export { default as CareerStats } from '../components/_resume_page/career_stats/CareerStats';
 export { default as Education } from '../components/_resume_page/education_history/EducationHistory';
