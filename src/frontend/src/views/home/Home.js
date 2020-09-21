@@ -25,21 +25,24 @@ const useStyles = makeStyles((theme) => ({
 
 const projectData = [
   {
+    _id: '1',
     title: 'Calculator',
     description: 'This is a website showing some basic js and design skills.',
-    thumbnail: 'https://source.unsplash.com/random/500x500',
+    thumbnail: 'https://source.unsplash.com/random/550x500',
     published: 'Apr 30 2019'
   },
   {
+    _id: '2',
     title: 'Clock',
     description: 'This is a website showing some basic js and design skills.',
-    thumbnail: 'https://source.unsplash.com/random/500x500',
+    thumbnail: 'https://source.unsplash.com/random/550x500',
     published: 'May 04 2019'
   },
   {
+    _id: '3',
     title: 'Weather',
     description: 'This is a website showing some basic js and design skills.',
-    thumbnail: 'https://source.unsplash.com/random/500x500',
+    thumbnail: 'https://source.unsplash.com/random/550x500',
     published: 'Sep 01 2019'
   }
 ];
