@@ -57,7 +57,14 @@ const projectSchema = new mongoose.Schema({
       }
     }
   ],
-  github: { type: String }
+  github_url: {
+    type: String,
+    match:
+      '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
+    required: [true, 'Provide github url for project'],
+    trim: true,
+    set: (v) => v.toLowerCase()
+  }
 });
 
 projectSchema.plugin(timestamps);
