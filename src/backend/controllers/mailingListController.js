@@ -15,7 +15,7 @@ module.exports = {
   },
   getById: async (req, res, next) => {
     const mailingListID = req.params.mailingListID;
-    const result = await dbService.find(Project, { _id: mailingListID });
+    const result = await dbService.find(MailingList, { _id: mailingListID });
     res.setHeader('Content-Type', 'application/json');
     res.send(result);
   },
