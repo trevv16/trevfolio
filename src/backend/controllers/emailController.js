@@ -11,6 +11,11 @@ module.exports = {
     const result = await dbService.find(Email, query);
     res.send(result);
   },
+  getById: async (req, res, next) => {
+    const emailID = req.params.emailID;
+    const result = await dbService.find(Email, { _id: emailID });
+    res.send(result);
+  },
   create: async (req, res, next) => {
     const genEmail = req.body;
     const result = await dbService.create(Email, genEmail);

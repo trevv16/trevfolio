@@ -11,6 +11,11 @@ module.exports = {
     const result = await dbService.find(MailingList, query);
     res.send(result);
   },
+  getById: async (req, res, next) => {
+    const mailingListID = req.params.mailingListID;
+    const result = await dbService.find(Project, { _id: mailingListID });
+    res.send(result);
+  },
   create: async (req, res, next) => {
     const genMailingList = req.body;
     const result = await dbService.create(MailingList, genMailingList);

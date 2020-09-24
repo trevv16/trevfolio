@@ -11,6 +11,11 @@ module.exports = {
     const result = await dbService.find(Gallery, query);
     res.send(result);
   },
+  getById: async (req, res, next) => {
+    const galleryID = req.params.galleryID;
+    const result = await dbService.find(Gallery, { _id: galleryID });
+    res.send(result);
+  },
   create: async (req, res, next) => {
     const genGallery = req.body;
     const result = await dbService.create(Gallery, genGallery);

@@ -11,6 +11,11 @@ module.exports = {
     const result = await dbService.find(Project, query);
     res.send(result);
   },
+  getById: async (req, res, next) => {
+    const projectID = req.params.projectID;
+    const result = await dbService.find(Project, { _id: projectID });
+    res.send(result);
+  },
   create: async (req, res, next) => {
     const genProject = req.body;
     const result = await dbService.create(Project, genProject);

@@ -11,6 +11,11 @@ module.exports = {
     const result = await dbService.find(User, query);
     res.send(result);
   },
+  getById: async (req, res, next) => {
+    const userID = req.params.userID;
+    const result = await dbService.find(User, { _id: userID });
+    res.send(result);
+  },
   create: async (req, res, next) => {
     const genUser = req.body;
     const result = await dbService.create(User, genUser);
