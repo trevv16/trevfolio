@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const _ = require('underscore');
 
 module.exports = {
   getUserById: (id) => {
@@ -16,18 +17,17 @@ module.exports = {
       console.error('DB Find Error', e.message);
     }
   },
-  create: (Model, obj) => {
-    genObj = new Model();
-
+  create: async (Model, genObj) => {
+    var obj = new Model(genObj);
     obj._id = new mongoose.Types.ObjectId();
-    console.log(obj);
-
-    // obj.save().then( function(response) {
-    //     return response;
-    // })
-    // .catch((e) => {
-    //     console.error('DB Create Error:', e);
-    // });
+    obj
+      .save()
+      .then(function (response) {
+        return response;
+      })
+      .catch((e) => {
+        console.error('DB Create Error:', e);
+      });
   },
   find: (Model, query) => {
     try {
