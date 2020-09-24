@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = {
   signUp: (req, res, next) => {},
   signIn: (passport) => {
@@ -15,3 +17,8 @@ module.exports = {
   forgot: (req, res, next) => {},
   reset: (req, res, next) => {}
 };
+
+async function hashing() {
+  salt = await bcrypt.genSalt(10);
+  hashPassword = await bcrypt.hash(querypassword, salt);
+}
