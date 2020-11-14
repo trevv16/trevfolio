@@ -62,14 +62,15 @@ export default function Project(props) {
           </Typography>
         </Grid>
         <Grid container spacing={4} className={classes.main}>
-          {projects.map((proj, i) => {
-            console.log('proj', proj);
-            return (
-              <Grid item xs={6} key={i}>
-                <ProjectCard project={proj} />
-              </Grid>
-            );
-          })}
+          {projects &&
+            projects.map((proj, i) => {
+              console.log('proj', proj);
+              return (
+                <Grid item xs={6} key={i}>
+                  <ProjectCard project={proj} />
+                </Grid>
+              );
+            })}
         </Grid>
       </Grid>
       <MailingList />
