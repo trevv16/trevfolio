@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -85,7 +86,7 @@ app.use((err, req, res) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 module.exports = app;

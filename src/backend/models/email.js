@@ -22,7 +22,6 @@ const emailSchema = new mongoose.Schema({
     type: String,
     minlength: 1,
     maxlength: 80,
-    required: [true, 'Provide an email subject'],
     trim: true
   },
   media: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gallery' }],
@@ -36,7 +35,7 @@ const emailSchema = new mongoose.Schema({
     required: [true, 'Provide email content'],
     trim: true
   },
-  url: {
+  primary_url: {
     type: String,
     match:
       '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',

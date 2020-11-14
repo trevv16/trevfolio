@@ -46,15 +46,6 @@ const gallerySchema = new mongoose.Schema({
           type: Number,
           min: 1,
           trim: true
-        },
-        units: {
-          type: String,
-          minlength: 1,
-          maxlength: 10,
-          required: [true, 'Provide a size units'],
-          enum: ['px', 'in'],
-          set: (v) => v.toLowerCase(),
-          trim: true
         }
       }
     }

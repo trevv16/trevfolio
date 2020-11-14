@@ -5,7 +5,7 @@ const timestamps = require('mongoose-timestamp');
 
 const postSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  blogID: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }],
+  blogID: { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' },
   title: {
     type: String,
     minlength: 1,
@@ -42,7 +42,7 @@ const postSchema = new mongoose.Schema({
     trim: true,
     set: (v) => v.toLowerCase()
   },
-  media: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gallery' }],
+  media: { type: mongoose.Schema.Types.ObjectId, ref: 'Gallery' },
   published: {
     type: Boolean,
     required: true,
