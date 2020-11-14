@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 
 const projectSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   title: {
     type: String,
     minlength: 1,
@@ -38,7 +38,7 @@ const projectSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
+  skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
   process: [
     {
       order: {
@@ -57,7 +57,14 @@ const projectSchema = new mongoose.Schema({
       }
     }
   ],
-  github: { type: String }
+  github_url: {
+    type: String,
+    match:
+      '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
+    required: [true, 'Provide github url for project'],
+    trim: true,
+    set: (v) => v.toLowerCase()
+  }
 });
 
 projectSchema.plugin(timestamps);

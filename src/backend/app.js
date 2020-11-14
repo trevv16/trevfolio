@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -20,8 +21,9 @@ const app = express();
 const dbService = require('./services/dbService');
 
 // Routes
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
+const v1_apiRouter = require('./routes/api_v1');
+const v1_adminRouter = require('./routes/admin_v1');
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -67,8 +69,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Routes
-app.use('/', indexRouter);
-app.use('/user', usersRouter);
+app.use('/auth', authRouter);
+app.use('/api/v1', v1_apiRouter);
+app.use('/admin/v1', v1_adminRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -83,7 +86,7 @@ app.use((err, req, res) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 module.exports = app;

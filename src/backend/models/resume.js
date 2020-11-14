@@ -4,8 +4,7 @@ const timestamps = require('mongoose-timestamp');
 // Lean Queries
 
 const resumeSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
-  blogID: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
+  _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     minlength: 1,
@@ -90,7 +89,14 @@ const resumeSchema = new mongoose.Schema({
   },
   work_history: [
     {
-      company: [
+      company: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        required: [true, 'Provide a company name for work history'],
+        trim: true
+      },
+      history: [
         {
           title: {
             type: String,
@@ -126,70 +132,65 @@ const resumeSchema = new mongoose.Schema({
   ],
   education: [
     {
-      school: [
-        {
-          name: {
-            type: String,
-            minlength: 1,
-            maxlength: 160,
-            required: [true, 'Provide a school name'],
-            trim: true
-          },
-          degree: {
-            type: String,
-            minlength: 1,
-            maxlength: 160,
-            required: [true, 'Provide a degree type'],
-            trim: true
-          },
-          major: {
-            type: String,
-            minlength: 1,
-            maxlength: 160,
-            required: [true, 'Provide a major'],
-            trim: true
-          },
-          minor: {
-            type: String,
-            minlength: 1,
-            maxlength: 160,
-            required: [true, 'Provide a minor'],
-            trim: true
-          },
-          concentration: {
-            type: String,
-            minlength: 1,
-            maxlength: 160,
-            required: [true, 'Provide a school name'],
-            trim: true
-          },
-          activities: {
-            type: String,
-            minlength: 1,
-            maxlength: 160,
-            required: [true, 'Provide a degree type'],
-            trim: true
-          },
-          duration: {
-            from: {
-              type: Date,
-              required: true,
-              default: Date.now(),
-              trim: true
-            },
-            to: {
-              type: Date,
-              required: true,
-              default: Date.now(),
-              trim: true
-            }
-          }
+      name: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        required: [true, 'Provide a school name'],
+        trim: true
+      },
+      degree: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        required: [true, 'Provide a degree type'],
+        trim: true
+      },
+      major: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        required: [true, 'Provide a major'],
+        trim: true
+      },
+      minor: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        trim: true
+      },
+      concentration: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        trim: true
+      },
+      activities: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        trim: true
+      },
+      duration: {
+        from: {
+          type: Date,
+          required: true,
+          default: Date.now(),
+          trim: true
+        },
+        to: {
+          type: Date,
+          required: true,
+          default: Date.now(),
+          trim: true
         }
-      ]
+      }
     }
   ],
-  recommended_projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
-  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
+  recommended_projects: [
+    { type: mongoose.Schema.Types.ObjectId, ref: 'Project' }
+  ],
+  skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
   published: {
     type: Boolean,
     required: true,

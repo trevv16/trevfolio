@@ -4,7 +4,7 @@ const timestamps = require('mongoose-timestamp');
 // Lean Queries
 
 const gallerySchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   title: {
     type: String,
     minlength: 1,
@@ -45,15 +45,6 @@ const gallerySchema = new mongoose.Schema({
         height: {
           type: Number,
           min: 1,
-          trim: true
-        },
-        units: {
-          type: String,
-          minlength: 1,
-          maxlength: 10,
-          required: [true, 'Provide a size units'],
-          enum: ['px', 'in'],
-          set: (v) => v.toLowerCase(),
           trim: true
         }
       }

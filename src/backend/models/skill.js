@@ -4,7 +4,7 @@ const timestamps = require('mongoose-timestamp');
 // Lean Queries
 
 const skillSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
@@ -22,8 +22,8 @@ const skillSchema = new mongoose.Schema({
       trim: true
     }
   },
-  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
-  recent_proj: { type: Schema.Types.ObjectId, ref: 'Project' },
+  projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+  recent_proj: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
   published: {
     type: Boolean,
     required: true

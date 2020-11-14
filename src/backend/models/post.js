@@ -4,8 +4,8 @@ const timestamps = require('mongoose-timestamp');
 // Lean Queries
 
 const postSchema = new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
-  blogID: [{ type: Schema.Types.ObjectId, ref: 'Blog' }],
+  _id: mongoose.Schema.Types.ObjectId,
+  blogID: { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' },
   title: {
     type: String,
     minlength: 1,
@@ -42,7 +42,7 @@ const postSchema = new mongoose.Schema({
     trim: true,
     set: (v) => v.toLowerCase()
   },
-  media: [{ type: Schema.Types.ObjectId, ref: 'Gallery' }],
+  media: { type: mongoose.Schema.Types.ObjectId, ref: 'Gallery' },
   published: {
     type: Boolean,
     required: true,

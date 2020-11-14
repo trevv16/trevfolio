@@ -1,0 +1,90 @@
+$Primary: #3c4867;
+$PrimaryLight: #687395;
+$PrimaryDark: #11213c;
+$Secondary: #23ce6b;
+$SecondaryLight: #69ff9a;
+$SecondaryDark: #009c3e;
+$Success: #229631;
+$SuccessDark: #1a7426;
+$Danger: #f46036;
+$DangerDark: #e93c0c;
+$Warning: #fbbe4b;
+$WarningDark: #faa80f;
+$Info: #59a5d8;
+$InfoDark: #2f8ac6;
+
+$Light: #edf3fd;
+$GrayLighter: #e1e4f1;
+$Gray: #d4d5e5;
+$GrayDark: #bbb7cc;
+$Dark: #061a37;
+
+/*  Array of colors from _variables.scss */
+$theme-colors: (
+  primary: $Primary,
+  secondary: $Secondary,
+  success: $Success,
+  info: $Info,
+  warning: $Warning,
+  danger: $Danger,
+  light: $Light,
+  gray: $Gray,
+  dark: $Dark
+) !default;
+
+// Small tablets and large smartphones (landscape view)
+$screen-xs-min: 320px;
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 480px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1080px;
+
+// XXLarge tablets and desktops
+$screen-xxl-min: 1500px;
+
+// Large tablets and desktops
+$screen-wd-min: 1920px;
+
+@mixin xs {
+  @media (min-width: #{$screen-xs-min}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+@mixin xxl {
+  @media (min-width: #{$screen-xxl-min}) {
+    @content;
+  }
+}
+@mixin wd {
+  @media (min-width: #{$screen-wd-min}) {
+    @content;
+  }
+}
