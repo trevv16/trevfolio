@@ -54,7 +54,7 @@ export function ProjectHighlight(props) {
                 container
                 spacing={1}
                 className={classes.project}
-                className={classes.root}
+                // className={classes.root}
               >
                 <Grid item xs={12}>
                   <img
@@ -76,9 +76,7 @@ export function ProjectHighlight(props) {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography component='Body2' variant='Body2'>
-                    {proj.description}
-                  </Typography>
+                  <Typography variant='body2'>{proj.description}</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -137,6 +135,7 @@ const addStyles = makeStyles((theme) => ({
   },
   skillName: {
     background: 'rgb(237,243,253)',
+    // eslint-disable-next-line
     background:
       'linear-gradient(90deg, rgba(237,243,253,0.75) 1%, rgba(225,228,241,1) 50%, rgba(237,243,253,0.7511379551820728) 100%)',
     color: 'theme.palette.primary.light',
@@ -155,12 +154,12 @@ export default function ProjectCard(props) {
   const [hover, handleHover] = useState(false);
 
   const handleMouseOver = (ctx, skill) => {
-    ctx.currentTarget.src = skill.thumbnail.hover;
+    ctx.currentTarget.src = skill.thumbnail; //replace with hover
     handleHover(!hover);
   };
 
   const handleMouseOut = (ctx, skill) => {
-    ctx.currentTarget.src = skill.thumbnail.pre;
+    ctx.currentTarget.src = skill.thumbnail; //replace with pre
     handleHover(!hover);
   };
 
@@ -182,14 +181,12 @@ export default function ProjectCard(props) {
           </Typography>
         </Grid>
         <Grid item xs={2} className={classStyles.published}>
-          <Typography component='h5' variant='h5'>
-            {props.project.published}
+          <Typography variant='h5'>
+            {props.project.published && 'Active'}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography component='Body2' variant='Body2'>
-            {props.project.description}
-          </Typography>
+          <Typography variant='body2'>{props.project.description}</Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography component='h4' variant='h4'>
@@ -210,7 +207,7 @@ export default function ProjectCard(props) {
                   <div onMouseOut={(e) => handleMouseOut(e, skill)}>
                     <Grid item xs={12} className={classStyles.skillImg}>
                       <img
-                        src={skill.thumbnail.pre}
+                        src={skill.thumbnail} // change to thumbnail.hover only
                         alt={`${skill.name} icon`}
                         onMouseOver={(e) => handleMouseOver(e, skill)}
                       />
@@ -234,7 +231,7 @@ export default function ProjectCard(props) {
                     onMouseOut={(e) => handleMouseOut(e, skill)}
                   >
                     <img
-                      src={skill.thumbnail.pre}
+                      src={skill.thumbnail} // change to thumbnail.pre only
                       alt={`${skill.name} icon`}
                       onMouseOver={(e) => handleMouseOver(e, skill)}
                     />
