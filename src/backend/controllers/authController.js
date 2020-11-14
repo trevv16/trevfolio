@@ -18,7 +18,7 @@ module.exports = {
   reset: (req, res, next) => {}
 };
 
-async function hashing() {
+async function hashing(pwd) {
   const salt = await bcrypt.genSalt(10);
-  return await bcrypt.hash(querypassword, salt);
+  return await bcrypt.hash(pwd, salt);
 }
