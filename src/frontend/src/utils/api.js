@@ -37,6 +37,8 @@ export default {
         return axios.put(`${API}/${url}`, data, { headers: headers() });
       case 'patch':
         return axios.patch(`${API}/${url}`, data, { headers: headers() });
+      default:
+        return axios.post(`${API}/${url}`, data, { headers: headers() });
     }
   },
 
