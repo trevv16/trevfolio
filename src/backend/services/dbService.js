@@ -43,6 +43,13 @@ module.exports = {
       console.error('DB FindById Error', e.message);
     }
   },
+  findAllPopulate: (Model, query, pop) => {
+    try {
+      return Model.find().populate(pop).exec();
+    } catch (e) {
+      console.error('DB Find-Populate Error', e.message);
+    }
+  },
   search: (Model, query) => {
     try {
       return Model.find(query).exec();
