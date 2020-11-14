@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { CssBaseline, Grid, makeStyles, Typography } from '@material-ui/core';
-// import {} from '@material-ui/icons';
-// import api from '../../utils/api';
+import _ from 'underscore';
+import api from '../../utils/api';
 import {
   MailingList,
   Navigation,
@@ -10,153 +10,126 @@ import {
   ProjectCard
 } from '../../components/index';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  main: {
-    marginTop: theme.spacing(18),
-    marginBottom: theme.spacing(2)
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1
+//   },
+//   main: {
+//     marginTop: theme.spacing(18),
+//     marginBottom: theme.spacing(2)
+//   }
+// }));
+
+export default class Project extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      projects: []
+    };
+
+    this.fetchProjects = this.fetchProjects.bind(this);
   }
-}));
 
-function Project() {
-  const classes = useStyles();
-  const projectData = [
-    {
-      _id: '1',
-      title: 'Calculator',
-      description: 'This is a website showing some basic js and design skills.',
-      skills: [
-        {
-          _id: '1',
-          name: 'html',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        },
-        {
-          _id: '2',
-          name: 'css',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        },
-        {
-          _id: '3',
-          name: 'javascript',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        }
-      ],
-      thumbnail: 'https://source.unsplash.com/random/55x50',
-      published: 'Apr 30 2019'
-    },
-    {
-      _id: '2',
-      title: 'Clock',
-      description: 'This is a website showing some basic js and design skills.',
-      skills: [
-        {
-          _id: '1',
-          name: 'html',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        },
-        {
-          _id: '2',
-          name: 'css',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        },
-        {
-          _id: '3',
-          name: 'javascript',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        }
-      ],
-      thumbnail: 'https://source.unsplash.com/random/550x500',
-      published: 'May 04 2019'
-    },
-    {
-      _id: '3',
-      title: 'Weather',
-      description: 'This is a website showing some basic js and design skills.',
-      skills: [
-        {
-          _id: '1',
-          name: 'html',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        },
-        {
-          _id: '2',
-          name: 'css',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        },
-        {
-          _id: '3',
-          name: 'javascript',
-          thumbnail: {
-            pre: 'https://source.unsplash.com/random/55x50',
-            hover: 'https://source.unsplash.com/random/55x51'
-          }
-        }
-      ],
-      thumbnail: 'https://source.unsplash.com/random/550x500',
-      published: 'Sep 01 2019'
-    }
-  ];
+  fetchProjects = () => {
+    return Promise.resolve(
+      api
+        .fetch(`v1/projects`)
+        .then((response) => {
+          return _.first(response.data, 4);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  };
 
-  return (
-    <div className={classes.root}>
-      <Helmet>
-        <meta charSet='utf-8' />
-        <title>Projects | Trevor's Portfolio</title>
-      </Helmet>
-      <CssBaseline />
-      <Navigation />
-      <Grid container spacing={1} className={classes.main}>
-        <Grid item xs={12}>
-          <Typography
-            align='center'
-            variant='h1'
-            component='h1'
-            color='palette.primary.dark'
-          >
-            Projects
-          </Typography>
+  componentDidMount() {
+    this.fetchProjects()
+      .then((data) => {
+        this.setState({
+          projects: [...data]
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  render() {
+    const classes = this.props;
+    // console.log('Projects: ', this.state.projects);
+    return (
+      <div className={classes.root}>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Projects | Trevor's Portfolio</title>
+        </Helmet>
+        <CssBaseline />
+        <Navigation />
+        <Grid container spacing={1} className={classes.main}>
+          <Grid item xs={12}>
+            <Typography align='center' variant='h1'>
+              Projects
+            </Typography>
+          </Grid>
+          <Grid container spacing={4} className={classes.main}>
+            {this.state.projects.map((proj, i) => {
+              console.log('proj', proj);
+              return (
+                <Grid item xs={6} key={i}>
+                  <ProjectCard project={proj} />
+                </Grid>
+              );
+            })}
+          </Grid>
         </Grid>
-        <Grid container spacing={4} className={classes.main}>
-          {projectData.map((proj, i) => {
-            return (
-              <Grid item xs={6}>
-                <ProjectCard key={i} project={proj} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Grid>
-      <MailingList />
-      <Footer />
-    </div>
-  );
+        <MailingList />
+        <Footer />
+      </div>
+    );
+  }
 }
 
-export default Project;
+// function Project(props) {
+//   const classes = useStyles();
+//   // let projectData = [];
+//   const projectData = fetchProjects()
+//     .then((data) => {
+//       return data;
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+
+//   return (
+//     <div className={classes.root}>
+//       <Helmet>
+//         <meta charSet='utf-8' />
+//         <title>Projects | Trevor's Portfolio</title>
+//       </Helmet>
+//       <CssBaseline />
+//       <Navigation />
+//       <Grid container spacing={1} className={classes.main}>
+//         <Grid item xs={12}>
+//           <Typography align='center' variant='h1'>
+//             Projects
+//           </Typography>
+//         </Grid>
+//         <Grid container spacing={4} className={classes.main}>
+//           {projectData.map((proj, i) => {
+//             return (
+//               <Grid item xs={6}>
+//                 <ProjectCard key={i} project={proj} />,
+//               </Grid>
+//             );
+//           })}
+//         </Grid>
+//       </Grid>
+//       <MailingList />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// export default Project;
