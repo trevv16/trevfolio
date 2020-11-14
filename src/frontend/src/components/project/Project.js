@@ -182,7 +182,7 @@ export default function ProjectCard(props) {
         </Grid>
         <Grid item xs={2} className={classStyles.published}>
           <Typography variant='h5'>
-            {props.project.published && 'Active'}
+            {props.project.published ? 'Active' : 'Draft'}
           </Typography>
         </Grid>
         <Grid item xs={12}>
