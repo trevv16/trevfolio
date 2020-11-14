@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
-export default class Projects extends Component {
-  constructor(props) {
-    super(props);
+// export default class Projects extends Component {
+//   constructor(props) {
+//     super(props);
 
-    this.state = {};
-  }
-}
+//     this.state = {};
+//   }
+// }
