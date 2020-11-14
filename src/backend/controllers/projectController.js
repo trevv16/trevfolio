@@ -3,7 +3,7 @@ const Project = require('../models/project');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    const result = await dbService.findAll(Project);
+    const result = await dbService.findAllPopulate(Project, 'skills');
     res.setHeader('Content-Type', 'application/json');
     res.send(result);
   },
