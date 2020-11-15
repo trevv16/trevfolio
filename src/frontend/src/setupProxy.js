@@ -5,7 +5,7 @@ module.exports = function (app) {
     app.use(
       '/api',
       createProxyMiddleware({
-        target: 'http://prod-trevfolio.us-east-2.elasticbeanstalk.com/',
+        target: process.env.APP_DOMAIN,
         changeOrigin: true
       })
     );
