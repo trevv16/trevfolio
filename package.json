@@ -11,7 +11,7 @@
     "dev": "concurrently --names \"HTTP,CLIENT\" -c \"yellow.bold,green.bold\" \"npm run server:dev\" \"npm run client:dev\"",
     "server": "cd src/backend && npm ci && npm start",
     "server:dev": "cd src/backend && npm run dev",
-    "client": "cd src/frontend && npm ci && npm start'",
+    "client": "cd src/frontend && npm ci && npm start",
     "client:dev": "cd src/frontend && yarn start",
     "kill": "npx kill-port 3000"
   },
