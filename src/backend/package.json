@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "db": "node ./config/db_config",
-    "start": "node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www",
     "dev": "DEBUG=backend:* nodemon ./bin/www",
     "test": "jest",
     "test:watch": "jest --watch",
