@@ -28,19 +28,29 @@ function About() {
   const classes = useStyles();
   const images = [
     {
-      name: 'image1',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
+      name: 'about_gal_01',
+      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_01.png`,
+      description: 'With maasai village'
     },
     {
-      name: 'image2',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
+      name: 'about_gal_02',
+      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_02.png`,
+      description: 'With friends in Kenya'
     },
     {
-      name: 'image2',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
+      name: 'about_gal_03',
+      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_03.png`,
+      description: 'Raleigh'
+    },
+    {
+      name: 'about_gal_04',
+      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_04.png`,
+      description: 'Tyler Perry Studios, Atlanta, GA'
+    },
+    {
+      name: 'about_gal_05',
+      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_05.png`,
+      description: 'With Mom'
     }
   ];
 
