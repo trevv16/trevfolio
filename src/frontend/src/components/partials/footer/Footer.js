@@ -55,7 +55,7 @@ function Icons() {
         <Link href='https://github.com/trevv16'>
           <img
             className={classes.social_icons}
-            src='/github_icon.png'
+            src='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/github_icon.png'
             alt='github icon'
           />
         </Link>
@@ -65,17 +65,17 @@ function Icons() {
         <Link href='https://linkedin.com/in/trevornjeru'>
           <img
             className={classes.social_icons}
-            src='/linkedin_icon.png'
+            src='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/linkedin_icon.png'
             alt='linkedin icon'
           />
         </Link>
       </Grid>
       <Grid item xs={4}>
         {/* Instagram */}
-        <Link href='https://instagram.com/iamtrevvn'>
+        <Link href='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/trevva_'>
           <img
             className={classes.social_icons}
-            src='/instagram_icon.png'
+            src='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/instagram_icon.png'
             alt='instagram icon'
           />
         </Link>
