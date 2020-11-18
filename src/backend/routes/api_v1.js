@@ -15,6 +15,7 @@ const blogCon = require('../controllers/blogController');
 const postCon = require('../controllers/postController');
 const emailCon = require('../controllers/emailController');
 const mailingListCon = require('../controllers/mailingListController');
+const inquiryCon = require('../controllers/inquiryController');
 
 router.get('/users', checkAuth, userCon.getAll);
 router.get('/users/:userID', checkAuth, userCon.getById);
@@ -73,5 +74,11 @@ router.get('/emails/:emailID', checkAuth, emailCon.getById);
 router.post('/emails', checkAuth, emailCon.create);
 router.put('/emails/:emailID', checkAuth, emailCon.update);
 router.delete('/emails/:emailID', checkAuth, emailCon.remove);
+
+router.get('/inquries', checkAuth, inquiryCon.getAll);
+router.get('/inquries/:inquiryID', checkAuth, inquiryCon.getById);
+router.post('/inquries', inquiryCon.create);
+router.put('/inquries/:inquiryID', checkAuth, inquiryCon.update);
+router.delete('/inquries/:inquiryID', checkAuth, inquiryCon.remove);
 
 module.exports = router;
