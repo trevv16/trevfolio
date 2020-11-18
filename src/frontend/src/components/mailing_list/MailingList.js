@@ -28,11 +28,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(12)
   },
   subField: {
-    width: '50vw'
+    width: '50vw',
+    marginBottom: theme.spacing(12)
   },
   subButton: {
     marginLeft: '2vw',
-    height: '6vh'
+    height: '6vh',
+    marginBottom: theme.spacing(12)
   }
 }));
 
@@ -52,7 +54,7 @@ function MailingList() {
         className={classes.mailBox}
         boxShadow={4}
       >
-        <Typography align='center' variant='h5' component='h5'>
+        <Typography align='center' variant='h4'>
           Join the Newsletter
         </Typography>
         <Typography
@@ -64,29 +66,30 @@ function MailingList() {
           Subscribe to my newsletter if you would like to keep up with my
           projects, blog or any other updates.
         </Typography>
-
-        <Box className={classes.subscribe}>
-          <TextField
-            id='email-subscribe'
-            label='Email'
-            variant='outlined'
-            className={classes.subField}
-            placeholder='example@email.com'
-            type='email'
-            color='secondary'
-            autoComplete='email'
-          />
-          <Button
-            variant='contained'
-            color='secondary'
-            size='large'
-            href='#'
-            className={classes.subButton}
-            startIcon={<EmailIcon />}
-          >
-            Subscribe
-          </Button>
-        </Box>
+        <form method='POST' action='/api/v1/mailing_lists'>
+          <Box className={classes.subscribe}>
+            <TextField
+              id='email-subscribe'
+              label='Email'
+              variant='outlined'
+              className={classes.subField}
+              placeholder='example@email.com'
+              type='email'
+              color='secondary'
+              autoComplete='email'
+            />
+            <Button
+              variant='contained'
+              color='secondary'
+              size='large'
+              type='submit'
+              className={classes.subButton}
+              startIcon={<EmailIcon />}
+            >
+              Subscribe
+            </Button>
+          </Box>
+        </form>
       </Box>
     </div>
   );
