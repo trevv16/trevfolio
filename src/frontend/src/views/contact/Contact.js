@@ -79,76 +79,81 @@ function Contact() {
             reach out to me here.
           </Typography>
         </Grid>
-        <Grid container xs={12} spacing={2} className={classes.form}>
-          <Grid item xs={5}>
-            <TextField
-              id='first-name'
-              label='First Name'
-              variant='outlined'
-              className={classes.nameField}
-              placeholder='Elon'
-              type='text'
-              color='secondary'
-              autoComplete='name'
-            />
-          </Grid>
+        <form method='POST' action='/api/v1/inquiries'>
+          <Grid container spacing={2} className={classes.form}>
+            <Grid item xs={5}>
+              <TextField
+                id='first-name'
+                label='First Name'
+                variant='outlined'
+                name='first_name'
+                className={classes.nameField}
+                placeholder='Elon'
+                type='text'
+                color='secondary'
+                autoComplete='name'
+              />
+            </Grid>
 
-          <Grid item xs={5}>
-            <TextField
-              id='last-name'
-              label='Last Name'
-              variant='outlined'
-              className={classes.nameField}
-              placeholder='Musk'
-              type='text'
-              color='secondary'
-              autoComplete='family-name'
-            />
-          </Grid>
+            <Grid item xs={5}>
+              <TextField
+                id='last-name'
+                label='Last Name'
+                name='last_name'
+                variant='outlined'
+                className={classes.nameField}
+                placeholder='Musk'
+                type='text'
+                color='secondary'
+                autoComplete='family-name'
+              />
+            </Grid>
 
-          <Grid item xs={10}>
-            <TextField
-              id='email'
-              label='Email'
-              variant='outlined'
-              className={classes.emailField}
-              placeholder='example@email.com'
-              type='email'
-              color='secondary'
-              autoComplete='email'
-            />
-          </Grid>
+            <Grid item xs={10}>
+              <TextField
+                id='email'
+                label='Email'
+                variant='outlined'
+                name='email'
+                className={classes.emailField}
+                placeholder='example@email.com'
+                type='email'
+                color='secondary'
+                autoComplete='email'
+              />
+            </Grid>
 
-          <Grid item xs={10}>
-            <TextField
-              id='message'
-              label='Message'
-              variant='outlined'
-              multiline
-              rows={6}
-              className={classes.emailField}
-              placeholder='Your Message Here'
-              type='textarea'
-              color='secondary'
-              autoComplete='email'
-            />
-          </Grid>
+            <Grid item xs={10}>
+              <TextField
+                id='message'
+                label='Message'
+                variant='outlined'
+                name='message'
+                multiline
+                rows={6}
+                className={classes.emailField}
+                placeholder='Your Message Here'
+                type='textarea'
+                color='secondary'
+                autoComplete='email'
+              />
+            </Grid>
 
-          <Grid item xs={10}>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='large'
-              href='#'
-              className={classes.subButton}
-              startIcon={<EmailIcon />}
-            >
-              Submit
-            </Button>
+            <Grid item xs={10}>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                type='submit'
+                className={classes.subButton}
+                startIcon={<EmailIcon />}
+              >
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
+        </form>
       </Grid>
-
       <MailingList />
       <Footer />
     </div>
