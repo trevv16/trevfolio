@@ -7,7 +7,7 @@ import { basename } from 'path';
 config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
+  region: process.env.S3_AWS_REGION,
   s3ForcePathStyle: true
 });
 
@@ -39,7 +39,7 @@ module.exports = {
     const bucketParams = {
       Bucket: bucketName,
       CreateBucketConfiguration: {
-        LocationConstraint: process.env.AWS_REGION
+        LocationConstraint: process.env.S3_AWS_REGION
       }
     };
 

@@ -150,7 +150,7 @@ const addStyles = makeStyles((theme) => ({
 export default function ProjectCard(props) {
   const classStyles = addStyles();
   const skillList = props.project.skills;
-  const skillWidth = 12 / props.project.skills.length;
+  const skillWidth = 12 / props.project.skills.length || 3;
   const [hover, handleHover] = useState(false);
 
   const handleMouseOver = (ctx, skill) => {
