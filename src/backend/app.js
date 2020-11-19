@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const cors = require('cors');
 require('dotenv').config();
 const flash = require('express-flash');
 const session = require('express-session');
@@ -43,20 +42,14 @@ passConfig.initializePassport(
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cors());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({
-      url: `mongodb+srv://${process.env.MONOG_ATLAS_USER}:${process.env.MONGO_ATLAS_PW}@dev-rv8ag.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}?retryWrites=true&w=majority`,
-      collection: process.env.SESSION_STORE_COLLECTION,
-      autoRemove: 'disabled',
-      touchAfter: 90,
-      secret: process.env.SESSION_SECRET
-    }),
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
     cookie: {
+      secure: process.env.NODE_ENV == 'production' ? true : false,
       maxAge: 4 * 60 * 60 * 1000
     }
   })
@@ -67,15 +60,6 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', process.env.APP_DOMAIN); // update to match the domain you will make the request from
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
