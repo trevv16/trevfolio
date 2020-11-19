@@ -61,14 +61,9 @@ function About() {
         <title>About | Trevor's Portfolio</title>
       </Helmet>
       <Navigation />
-      <Grid container spacing={3} xs={12} className={classes.main}>
+      <Grid container spacing={3} className={classes.main}>
         <Grid item xs={10}>
-          <Typography
-            align='center'
-            variant='h1'
-            component='h1'
-            color='palette.primary.dark'
-          >
+          <Typography align='center' variant='h1' component='h1'>
             About Me
           </Typography>
         </Grid>
@@ -78,7 +73,6 @@ function About() {
             variant='h6'
             component='h6'
             className={classes.mailDesc}
-            color='primary.dark'
           >
             My name is Trevor Njeru, I am a Senior at{' '}
             <strong>University of North Carolina at Charlotte</strong>, studying{' '}
@@ -100,14 +94,9 @@ function About() {
           </Carousel>
         </Grid>
       </Grid>
-      <Grid container spacing={3} xs={12} className={classes.content}>
+      <Grid container spacing={3} className={classes.content}>
         <Grid item xs={10}>
-          <Typography
-            align='center'
-            variant='body1'
-            component='body1'
-            color='palette.primary.dark'
-          >
+          <Typography align='center' variant='body1'>
             I am Kenyan-American, I have lived in North Carolina basically my
             whole life, but I did experience living and going to school in Kenya
             for about 2 years and as a result, I now think on a global scale. My
@@ -117,12 +106,7 @@ function About() {
           </Typography>
         </Grid>
         <Grid item xs={10}>
-          <Typography
-            align='center'
-            variant='body1'
-            component='body1'
-            color='palette.primary.dark'
-          >
+          <Typography align='center' variant='body1'>
             I am very comfortable with object-oriented programming and have
             experience from school coding in Java, as well I have experience
             working in an Agile environment using dev tools like Git, AWS,
@@ -131,12 +115,7 @@ function About() {
           </Typography>
         </Grid>
         <Grid item xs={10}>
-          <Typography
-            align='center'
-            variant='body1'
-            component='body1'
-            color='palette.primary.dark'
-          >
+          <Typography align='center' variant='body1'>
             Pellentesque habitant morbi tristique senectus et netus et malesuada
             fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
             ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
