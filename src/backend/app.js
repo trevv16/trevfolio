@@ -26,12 +26,21 @@ const v1_adminRouter = require('./routes/admin_v1');
 
 const MongoStore = require('connect-mongo')(session);
 
-mongoConfig.initializeMongo(
-  mongoose,
-  process.env.MONGO_ATLAS_USER,
-  process.env.MONGO_ATLAS_PW,
-  process.env.MONGO_ATLAS_DB_NAME
-);
+if (process.env.NODE_ENV != 'production') {
+  mongoConfig.initializeMongo(
+    mongoose,
+    process.env.MONGO_DEV_USER,
+    process.env.MONGO_DEV_PW,
+    process.env.MONGO_DEV_DB_NAME
+  );
+} else {
+  mongoConfig.initializeMongo(
+    mongoose,
+    process.env.MONGO_PROD_USER,
+    process.env.MONGO_PROD_PW,
+    process.env.MONGO_PROD_DB_NAME
+  );
+}
 
 passConfig.initializePassport(
   passport,
