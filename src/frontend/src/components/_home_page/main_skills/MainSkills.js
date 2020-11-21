@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Box,
   CssBaseline,
   Link,
   Grid,
@@ -9,7 +8,10 @@ import {
   makeStyles,
   Button
 } from '@material-ui/core';
+import { InfoIcon } from '@material-ui/icons';
+import api from '../../../utils/api';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SkillGridList from './SkillGridList';
 
 const useStyles = makeStyles((theme) => ({
   jumboBox: {
@@ -23,94 +25,205 @@ const useStyles = makeStyles((theme) => ({
   },
   skill: {
     display: 'flex',
-    width: '100px',
-    height: '100px',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing(2)
   },
+  skillName: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   gridRoot: {
-    flexGrow: 1
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: theme.spacing(3, 0),
+    width: '100%'
   },
   skillButton: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: theme.spacing(4, 0)
+    margin: theme.spacing(6, 0)
   }
 }));
 
-function Skill(props) {
+function MainSkills(props) {
+  const [skills, setSkills] = useState([]);
   const classes = useStyles();
-  return (
-    <React.Fragment>
-      <Link component='a' href='#' variant='body2'>
-        <Paper elevation={3} className={classes.skill}>
-          <img src={props.imgSrc} alt={props.altText} />
-        </Paper>
-      </Link>
-    </React.Fragment>
-  );
-}
+  const skillData = [
+    {
+      img: 'https://source.unsplash.com/random/1080x1080',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/2080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    },
+    {
+      img: 'https://source.unsplash.com/random/1080x800',
+      title: 'Skill Name'
+    }
+  ];
 
-function GenGrid(props) {
-  var html = [];
-  for (let index = 0; index < props.size; index++) {
-    html.push(
-      <Grid item key={index}>
-        <Skill
-          imgSrc='https://source.unsplash.com/random/80x80'
-          altText='skill icon'
-        />
-      </Grid>
-    );
-  }
-  return html;
-}
+  const GenGrid = () => {
+    var html = [];
+    for (let index = 0; index < props.size; index++) {
+      html.push(
+        <Grid item key={index}>
+          <Link component='a' href='#' variant='body2'>
+            <Paper elevation={3} className={classes.skill}>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <img
+                    src={'https://source.unsplash.com/random/1080x800'}
+                    alt={'skill icon'}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    variant='h6'
+                    className={classes.skillName}
+                  >{`${props.altText}`}</Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Link>
+        </Grid>
+      );
+    }
+    return html;
+  };
 
-function MainSkills() {
-  const classes = useStyles();
+  const fetchSkills = () => {
+    api
+      .fetch('/v1/skills')
+      .then((response) => {
+        setSkills([response.data]);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  };
 
   return (
     <div>
       <CssBaseline />
-      <Box
-        component='div'
-        bgcolor='light.light'
-        height='auto'
-        minWidth='sm'
+      <Grid
+        container
+        spacing={2}
+        // bgcolor='light.light'
         className={classes.jumboBox}
       >
-        <Typography align='center' variant='h3' component='h3'>
-          Highlighted Skills
-        </Typography>
-        <Typography
-          align='center'
-          variant='h6'
-          component='h6'
-          className={classes.description}
-        >
-          This section details all my skills and serves as menu to navigate
-          through my different projects.
-        </Typography>
-        <Box minWidth='sm' className={classes.skillGrid}>
+        <Grid item xs={12}>
+          <Typography align='center' variant='h3' component='h3'>
+            Highlighted Skills
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography
+            align='center'
+            variant='h6'
+            component='h6'
+            className={classes.description}
+          >
+            This section details all my skills and serves as menu to navigate
+            through my different projects. Click a skill to navigate to relevant
+            projects.
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.skillGrid}>
           <Grid container className={classes.gridRoot} spacing={8}>
-            <GenGrid size={22} />
+            {/* <GenGrid size={22} /> */}
+            <SkillGridList tileData={skillData} />
           </Grid>
-        </Box>
-        <Box className={classes.skillButton}>
+        </Grid>
+        <Grid item xs={12} className={classes.skillButton}>
           <Button
             variant='contained'
             color='secondary'
             size='large'
-            href='#'
-            className={classes.skillButton}
+            href='/skills'
             endIcon={<ChevronRightIcon />}
           >
             View All
           </Button>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </div>
   );
 }
