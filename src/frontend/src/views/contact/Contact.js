@@ -91,9 +91,6 @@ function Contact() {
     },
     validate,
     onSubmit: (values) => {
-      console.log(values);
-      alert(JSON.stringify(values, null, 2));
-
       api
         .post('/v1/inquiries', values)
         .then((response) => {
