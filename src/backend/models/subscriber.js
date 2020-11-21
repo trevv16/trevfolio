@@ -30,7 +30,7 @@ const subscriberSchema = new mongoose.Schema({
     {
       subscribe_date: {
         type: Date,
-        default: Date.toISOString()
+        default: Date.now()
       },
       unsubscribe_date: {
         type: Date,
