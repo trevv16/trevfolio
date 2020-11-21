@@ -94,6 +94,7 @@ function Contact() {
       api
         .post('/v1/inquiries', values)
         .then((response) => {
+          formik.resetForm();
           setMsgStatus(true);
         })
         .catch((error) => {

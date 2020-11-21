@@ -104,7 +104,8 @@ function MailingList() {
       api
         .post('v1/subscribers', subscriber)
         .then((response) => {
-          // setMsgStatus(true);
+          formik.resetForm();
+          setMsgStatus(true);
         })
         .catch((error) => {
           setMsgStatus(false);
