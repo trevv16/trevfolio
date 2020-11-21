@@ -30,10 +30,6 @@ const inquirySchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 260,
     trim: true
-  },
-  created: {
-    type: Date,
-    default: Date.now()
   }
 });
 
