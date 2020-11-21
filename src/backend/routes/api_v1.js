@@ -75,10 +75,10 @@ router.post('/emails', checkAuth, emailCon.create);
 router.put('/emails/:emailID', checkAuth, emailCon.update);
 router.delete('/emails/:emailID', checkAuth, emailCon.remove);
 
-router.get('/inquries', checkAuth, inquiryCon.getAll);
-router.get('/inquries/:inquiryID', checkAuth, inquiryCon.getById);
-router.post('/inquries', inquiryCon.create);
-router.put('/inquries/:inquiryID', checkAuth, inquiryCon.update);
-router.delete('/inquries/:inquiryID', checkAuth, inquiryCon.remove);
+router.get('/inquiries', checkAuth, inquiryCon.getAll);
+router.get('/inquiries/:inquiryID', checkAuth, inquiryCon.getById);
+router.post('/inquiries', inquiryCon.create);
+router.put('/inquiries/:inquiryID', checkAuth, inquiryCon.update);
+router.delete('/inquiries/:inquiryID', checkAuth, inquiryCon.remove);
 
 module.exports = router;
