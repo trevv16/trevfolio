@@ -29,27 +29,27 @@ function About() {
   const images = [
     {
       name: 'about_gal_01',
-      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_01.png`,
+      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_01.png`,
       description: 'With maasai village'
     },
     {
       name: 'about_gal_02',
-      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_02.png`,
+      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_02.png`,
       description: 'With friends in Kenya'
     },
     {
       name: 'about_gal_03',
-      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_03.png`,
+      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_03.png`,
       description: 'Raleigh'
     },
     {
       name: 'about_gal_04',
-      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_04.png`,
+      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_04.png`,
       description: 'Tyler Perry Studios, Atlanta, GA'
     },
     {
       name: 'about_gal_05',
-      src: `${process.env.PUB_BUCKET_URL}/pages/about/gallery/about_gal_05.png`,
+      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_05.png`,
       description: 'With Mom'
     }
   ];
@@ -70,14 +70,14 @@ function About() {
         <Grid item xs={10}>
           <Typography
             align='center'
-            variant='h6'
-            component='h6'
+            variant='h3'
+            component='h3'
             className={classes.mailDesc}
           >
-            My name is Trevor Njeru, I am a Senior at{' '}
-            <strong>University of North Carolina at Charlotte</strong>, studying{' '}
-            <strong>Computer Science</strong> with a concentration in{' '}
-            <strong>Human Computer Interaction</strong>.
+            My Name is Trevor Njeru, I am a self-taught full stack developer and
+            senior Computer Science student with a concentration in
+            Human-Computer Interaction, and I am both a Kenyan and American
+            citizen.
           </Typography>
         </Grid>
         <Grid item xs={10}>
@@ -97,30 +97,38 @@ function About() {
       <Grid container spacing={3} className={classes.content}>
         <Grid item xs={10}>
           <Typography align='center' variant='body1'>
-            I am Kenyan-American, I have lived in North Carolina basically my
-            whole life, but I did experience living and going to school in Kenya
-            for about 2 years and as a result, I now think on a global scale. My
-            career objective is to become a well-sought after software engineer
-            in my field eventually utilizing my HCI skills in a senior software
-            architecture role to make a global social impact.
+            I have lived in North Carolina basically my whole life, but I did
+            experience living and going to school in Kenya for about 2 years. As
+            a result, I have a focus on learning skills for an international
+            marketplace.
           </Typography>
         </Grid>
         <Grid item xs={10}>
           <Typography align='center' variant='body1'>
-            I am very comfortable with object-oriented programming and have
-            experience from school coding in Java, as well I have experience
-            working in an Agile environment using dev tools like Git, AWS,
-            Heroku, UI tools, Adobe CC, as well I am familiar with conventions
-            and best practices.
+            I am very comfortable with core computer science concepts like
+            logic, data structures & algorithms, security fundamentals, and
+            software architecture.
           </Typography>
         </Grid>
         <Grid item xs={10}>
           <Typography align='center' variant='body1'>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo.
+            With my full stack skills, I have built projects using
+            Node/Express/React/MongoDB, as well as MySQL and Python, deployed to
+            AWS services with CI/CD.
+          </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Typography align='center' variant='body1'>
+            As well I have experience working in an Agile environment using dev
+            tools like Git, Github Actions, AWS, Heroku, and UI skills with
+            Figma, and multiple Adobe CC programs.
+          </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Typography align='center' variant='body1'>
+            My career objective is to become a well-sought after software
+            engineer in my field, utilizing my HCI skills in a software
+            architecture role to make a social impact.
           </Typography>
         </Grid>
       </Grid>
