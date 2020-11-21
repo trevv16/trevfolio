@@ -1,6 +1,8 @@
 export { default as Introduction } from '../components/_home_page/intro/Introduction';
 export { default as Jumbotron } from '../components/_home_page/jumbotron/Jumbotron';
 export { default as MainSkills } from '../components/_home_page/main_skills/MainSkills';
+export { default as SkillGridList } from '../components/_home_page/main_skills/SkillGridList';
+export { default as ProjectGridList } from '../components/project/ProjectGridList';
 export { default as ProjectCard } from '../components/project/Project';
 export { ProjectHighlight } from '../components/project/Project';
 
