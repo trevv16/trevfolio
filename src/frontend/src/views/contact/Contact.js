@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import {
   CssBaseline,
@@ -8,8 +8,10 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+import { useFormik } from 'formik';
 // import {} from '@material-ui/icons';
-// import api from '../../utils/api';
+import api from '../../utils/api';
 import { MailingList, Navigation, Footer } from '../../components/index';
 import EmailIcon from '@material-ui/icons/Email';
 
@@ -50,8 +52,85 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const validate = (values) => {
+  const errors = {};
+  if (!values.first_name) {
+    errors.first_name = 'Required';
+  } else if (values.first_name.length > 15) {
+    errors.first_name = 'Must be 15 characters or less';
+  }
+
+  if (!values.last_name) {
+    errors.last_name = 'Required';
+  } else if (values.last_name.length > 20) {
+    errors.last_name = 'Must be 20 characters or less';
+  }
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.message) {
+    errors.message = 'Required';
+  } else if (values.message.length > 240) {
+    errors.message = 'Must be 240 characters or less';
+  }
+
+  return errors;
+};
+
 function Contact() {
+  const formik = useFormik({
+    initialValues: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      message: ''
+    },
+    validate,
+    onSubmit: (values) => {
+      console.log(values);
+      alert(JSON.stringify(values, null, 2));
+
+      api
+        .post('/v1/inquiries', values)
+        .then((response) => {
+          setMsgStatus(true);
+        })
+        .catch((error) => {
+          setMsgStatus(false);
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
+    }
+  });
+  const [msgSuccess, setMsgStatus] = useState(false);
   const classes = useStyles();
+
+  const renderStatusAlert = (status) => {
+    if (status) {
+      return (
+        <Alert severity='success'>
+          Successful - Your message was received.
+        </Alert>
+      );
+    } else {
+      return (
+        <Alert severity='success'>
+          Error - There was a problem with your input
+        </Alert>
+      );
+    }
+  };
+
+  // const renderAlert = (status, msg) => {
+  //   return <Alert severity={`${status}`}>`${msg}`</Alert>;
+  // };
 
   return (
     <div className={classes.root}>
@@ -62,7 +141,7 @@ function Contact() {
       <CssBaseline />
       <Navigation />
 
-      <Grid container xs={12} spacing={1} className={classes.main}>
+      <Grid container spacing={1} className={classes.main}>
         <Grid item xs={10}>
           <Typography align='center' variant='h1' component='h1'>
             Send a Message
@@ -79,9 +158,15 @@ function Contact() {
             reach out to me here.
           </Typography>
         </Grid>
-        <form method='POST' action='/api/v1/inquiries'>
+        <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2} className={classes.form}>
+            <Grid item xs={12}>
+              {msgSuccess && renderStatusAlert(msgSuccess)}
+            </Grid>
             <Grid item xs={5}>
+              {formik.errors.first_name ? (
+                <div>{formik.errors.first_name}</div>
+              ) : null}
               <TextField
                 id='first-name'
                 label='First Name'
@@ -89,13 +174,17 @@ function Contact() {
                 name='first_name'
                 className={classes.nameField}
                 placeholder='Elon'
+                value={formik.values.first_name}
+                onChange={formik.handleChange}
                 type='text'
                 color='secondary'
                 autoComplete='name'
               />
             </Grid>
-
             <Grid item xs={5}>
+              {formik.errors.last_name ? (
+                <div>{formik.errors.last_name}</div>
+              ) : null}
               <TextField
                 id='last-name'
                 label='Last Name'
@@ -103,13 +192,15 @@ function Contact() {
                 variant='outlined'
                 className={classes.nameField}
                 placeholder='Musk'
+                value={formik.values.last_name}
+                onChange={formik.handleChange}
                 type='text'
                 color='secondary'
                 autoComplete='family-name'
               />
             </Grid>
-
             <Grid item xs={10}>
+              {formik.errors.email ? <div>{formik.errors.email}</div> : null}
               <TextField
                 id='email'
                 label='Email'
@@ -117,28 +208,33 @@ function Contact() {
                 name='email'
                 className={classes.emailField}
                 placeholder='example@email.com'
+                value={formik.values.email}
+                onChange={formik.handleChange}
                 type='email'
                 color='secondary'
                 autoComplete='email'
               />
             </Grid>
-
             <Grid item xs={10}>
+              {formik.errors.message ? (
+                <div>{formik.errors.message}</div>
+              ) : null}
               <TextField
                 id='message'
                 label='Message'
                 variant='outlined'
                 name='message'
                 multiline
-                rows={6}
+                rows={3}
                 className={classes.emailField}
                 placeholder='Your Message Here'
+                value={formik.values.message}
+                onChange={formik.handleChange}
                 type='textarea'
                 color='secondary'
                 autoComplete='email'
               />
             </Grid>
-
             <Grid item xs={10}>
               <Button
                 variant='contained'
