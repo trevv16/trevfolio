@@ -21,11 +21,16 @@ const subscriberSchema = new mongoose.Schema({
     set: (v) => v.toLowerCase(),
     trim: true
   },
+  main_newsletter: {
+    type: Boolean,
+    required: true,
+    default: true
+  },
   subscribed_to: [
     {
       subscribe_date: {
         type: Date,
-        default: null
+        default: Date.toISOString()
       },
       unsubscribe_date: {
         type: Date,
