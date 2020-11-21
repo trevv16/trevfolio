@@ -16,6 +16,7 @@ const postCon = require('../controllers/postController');
 const emailCon = require('../controllers/emailController');
 const mailingListCon = require('../controllers/mailingListController');
 const inquiryCon = require('../controllers/inquiryController');
+const subscriberCon = require('../controllers/subscriberController');
 
 router.get('/users', checkAuth, userCon.getAll);
 router.get('/users/:userID', checkAuth, userCon.getById);
@@ -80,5 +81,11 @@ router.get('/inquiries/:inquiryID', checkAuth, inquiryCon.getById);
 router.post('/inquiries', inquiryCon.create);
 router.put('/inquiries/:inquiryID', checkAuth, inquiryCon.update);
 router.delete('/inquiries/:inquiryID', checkAuth, inquiryCon.remove);
+
+router.get('/subscribers', checkAuth, subscriberCon.getAll);
+router.get('/subscribers/:subscriberID', checkAuth, subscriberCon.getById);
+router.post('/subscribers', subscriberCon.create);
+router.put('/subscribers/:subscriberID', checkAuth, subscriberCon.update);
+router.delete('/subscribers/:subscriberID', checkAuth, subscriberCon.remove);
 
 module.exports = router;
