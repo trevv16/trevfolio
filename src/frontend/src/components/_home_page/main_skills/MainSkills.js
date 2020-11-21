@@ -77,62 +77,6 @@ function MainSkills(props) {
     {
       img: 'https://source.unsplash.com/random/1080x800',
       title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
     }
   ];
 
