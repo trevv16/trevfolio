@@ -46,11 +46,6 @@ function About() {
       name: 'about_gal_04',
       src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_04.png`,
       description: 'Tyler Perry Studios, Atlanta, GA'
-    },
-    {
-      name: 'about_gal_05',
-      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_05.png`,
-      description: 'With Mom'
     }
   ];
 
