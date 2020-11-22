@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Link,
-  Grid,
   GridList,
   GridListTile,
   GridListTileBar,
-  ListSubheader,
   IconButton,
-  Paper,
-  Typography,
-  makeStyles,
-  Button
+  makeStyles
 } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import api from '../../../utils/api';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles((theme) => ({
   root: {
