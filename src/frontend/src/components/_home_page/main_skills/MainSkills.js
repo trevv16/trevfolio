@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   CssBaseline,
-  Link,
   Grid,
-  Paper,
   Typography,
   makeStyles,
   Button
 } from '@material-ui/core';
-import { InfoIcon } from '@material-ui/icons';
-import api from '../../../utils/api';
+// import api from '../../../utils/api';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SkillGridList from './SkillGridList';
 
@@ -51,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MainSkills(props) {
-  const [skills, setSkills] = useState([]);
+  // const [skills, setSkills] = useState([]);
   const classes = useStyles();
   const skillData = [
     {
@@ -80,49 +77,49 @@ function MainSkills(props) {
     }
   ];
 
-  const GenGrid = () => {
-    var html = [];
-    for (let index = 0; index < props.size; index++) {
-      html.push(
-        <Grid item key={index}>
-          <Link component='a' href='#' variant='body2'>
-            <Paper elevation={3} className={classes.skill}>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <img
-                    src={'https://source.unsplash.com/random/1080x800'}
-                    alt={'skill icon'}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography
-                    variant='h6'
-                    className={classes.skillName}
-                  >{`${props.altText}`}</Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Link>
-        </Grid>
-      );
-    }
-    return html;
-  };
+  // const GenGrid = () => {
+  //   var html = [];
+  //   for (let index = 0; index < props.size; index++) {
+  //     html.push(
+  //       <Grid item key={index}>
+  //         <Link component='a' href='#' variant='body2'>
+  //           <Paper elevation={3} className={classes.skill}>
+  //             <Grid container spacing={1}>
+  //               <Grid item xs={12}>
+  //                 <img
+  //                   src={'https://source.unsplash.com/random/1080x800'}
+  //                   alt={'skill icon'}
+  //                 />
+  //               </Grid>
+  //               <Grid item xs={12}>
+  //                 <Typography
+  //                   variant='h6'
+  //                   className={classes.skillName}
+  //                 >{`${props.altText}`}</Typography>
+  //               </Grid>
+  //             </Grid>
+  //           </Paper>
+  //         </Link>
+  //       </Grid>
+  //     );
+  //   }
+  //   return html;
+  // };
 
-  const fetchSkills = () => {
-    api
-      .fetch('/v1/skills')
-      .then((response) => {
-        setSkills([response.data]);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-  };
+  // const fetchSkills = () => {
+  //   api
+  //     .fetch('/v1/skills')
+  //     .then((response) => {
+  //       setSkills([response.data]);
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         console.log(error.response.data);
+  //         console.log(error.response.status);
+  //         console.log(error.response.headers);
+  //       }
+  //     });
+  // };
 
   return (
     <div>
