@@ -70,18 +70,20 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-});
-
 // Set Routes
 app.use('/auth', authRouter);
 app.use('/api/v1', v1_apiRouter);
 app.use('/admin/v1', v1_adminRouter);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
+if (process.env.NODE_ENV == 'production') {
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  });
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
