@@ -8,7 +8,7 @@ import {
   ThemeProvider,
   responsiveFontSizes
 } from '@material-ui/core';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 
 let theme = createMuiTheme({
   palette: {
