@@ -8,6 +8,7 @@ import {
   ThemeProvider,
   responsiveFontSizes
 } from '@material-ui/core';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 let theme = createMuiTheme({
   palette: {
@@ -110,7 +111,9 @@ theme = responsiveFontSizes(theme);
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { CssBaseline, Grid, makeStyles, Typography } from '@material-ui/core';
 import _ from 'underscore';
 import api from '../../utils/api';

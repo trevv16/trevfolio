@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Carousel from 'react-material-ui-carousel';
 // import {} from '@material-ui/icons';
