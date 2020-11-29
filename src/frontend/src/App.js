@@ -7,8 +7,6 @@ import {
   About,
   Resume,
   Contact,
-  SkillList,
-  Skill,
   ProjectDetail,
   Project
 } from './views/index';
