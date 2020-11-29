@@ -9,6 +9,7 @@ import {
   Contact,
   SkillList,
   Skill,
+  ProjectDetail,
   Project
 } from './views/index';
 
@@ -22,8 +23,8 @@ function App() {
           <Route exact path='/resume' component={Resume} />
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/projects' component={Project} />
-          {/* <Route exact path='/projects/projectID' component={Project} />
-          <Route exact path='/projects?skill=' component={Project} />
+          <Route exact path='/projects/:id' component={ProjectDetail} />
+          {/*<Route exact path='/projects?skill=' component={Project} />
           <Route path='/skills' component={SkillList} /> */}
 
           {/* <Route exact path='/signup' component={Project} />
