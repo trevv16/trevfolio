@@ -7,7 +7,7 @@ import {
   MailingList,
   Navigation,
   Footer,
-  ProjectCard
+  ProjectGridList
 } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,11 +35,14 @@ export default function Project(props) {
   };
   const classes = useStyles();
   const [projects, handleProjects] = useState([]);
-  // console.log('Projects: ', projectData);
 
   useEffect(() => {
     fetchProjects()
       .then((data) => {
+        data.filter((proj) => {
+          //Check if the project is published before storing
+          return proj.published != false;
+        });
         handleProjects([...data]);
       })
       .catch((err) => {
@@ -61,17 +64,11 @@ export default function Project(props) {
             Projects
           </Typography>
         </Grid>
-        <Grid container spacing={4} className={classes.main}>
-          {projects &&
-            projects.map((proj, i) => {
-              console.log('proj', proj);
-              return (
-                <Grid item xs={6} key={i}>
-                  <ProjectCard project={proj} />
-                </Grid>
-              );
-            })}
-        </Grid>
+        {projects && (
+          <Grid container spacing={4} className={classes.main}>
+            <ProjectGridList tileData={projects} />
+          </Grid>
+        )}
       </Grid>
       <MailingList />
       <Footer />
