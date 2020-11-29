@@ -150,7 +150,7 @@ const addStyles = makeStyles((theme) => ({
 export default function ProjectCard(props) {
   const classStyles = addStyles();
   const skillList = props.project.skills;
-  const skillWidth = 12 / props.project.skills.length || 3;
+  const skillWidth = 3; //12 / props.project.skills.length
   const [hover, handleHover] = useState(false);
 
   const handleMouseOver = (ctx, skill) => {
@@ -188,59 +188,64 @@ export default function ProjectCard(props) {
         <Grid item xs={12}>
           <Typography variant='body2'>{props.project.description}</Typography>
         </Grid>
-        <Grid item xs={12}>
-          <Typography component='h4' variant='h4'>
-            <strong>Skills Used</strong>
-          </Typography>
-        </Grid>
-        <Grid item xs={11} className={classStyles.skillList}>
-          {skillList.map((skill, i) => {
-            return (
-              <Grid
-                key={i}
-                item
-                xs={skillWidth > 3 ? skillWidth : 3}
-                className={classStyles.skill}
-              >
-                {/* TODO: Replace with Skill component pass props */}
-                {hover && (
-                  <div onMouseOut={(e) => handleMouseOut(e, skill)}>
-                    <Grid item xs={12} className={classStyles.skillImg}>
-                      <img
-                        src={skill.thumbnail} // change to thumbnail.hover only
-                        alt={`${skill.name} icon`}
-                        onMouseOver={(e) => handleMouseOver(e, skill)}
-                      />
+        {skillList && (
+          <React.Fragment>
+            <Grid item xs={12}>
+              <Typography component='h4' variant='h4'>
+                <strong>Skills Used</strong>
+              </Typography>
+            </Grid>
+            <Grid item xs={11} className={classStyles.skillList}>
+              {skillList &&
+                skillList.map((skill, i) => {
+                  return (
+                    <Grid
+                      key={i}
+                      item
+                      xs={skillWidth > 3 ? skillWidth : 3}
+                      className={classStyles.skill}
+                    >
+                      {/* TODO: Replace with Skill component pass props */}
+                      {hover && (
+                        <div onMouseOut={(e) => handleMouseOut(e, skill)}>
+                          <Grid item xs={12} className={classStyles.skillImg}>
+                            <img
+                              src={skill.thumbnail} // change to thumbnail.hover only
+                              alt={`${skill.name} icon`}
+                              onMouseOver={(e) => handleMouseOver(e, skill)}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              component='h6'
+                              variant='h6'
+                              className={classStyles.skillName}
+                            >
+                              {skill.name}
+                            </Typography>
+                          </Grid>
+                        </div>
+                      )}
+                      {!hover && (
+                        <Grid
+                          item
+                          xs={12}
+                          className={classStyles.skillImg}
+                          onMouseOut={(e) => handleMouseOut(e, skill)}
+                        >
+                          <img
+                            src={skill.thumbnail} // change to thumbnail.pre only
+                            alt={`${skill.name} icon`}
+                            onMouseOver={(e) => handleMouseOver(e, skill)}
+                          />
+                        </Grid>
+                      )}
                     </Grid>
-                    <Grid item xs={12}>
-                      <Typography
-                        component='h6'
-                        variant='h6'
-                        className={classStyles.skillName}
-                      >
-                        {skill.name}
-                      </Typography>
-                    </Grid>
-                  </div>
-                )}
-                {!hover && (
-                  <Grid
-                    item
-                    xs={12}
-                    className={classStyles.skillImg}
-                    onMouseOut={(e) => handleMouseOut(e, skill)}
-                  >
-                    <img
-                      src={skill.thumbnail} // change to thumbnail.pre only
-                      alt={`${skill.name} icon`}
-                      onMouseOver={(e) => handleMouseOver(e, skill)}
-                    />
-                  </Grid>
-                )}
-              </Grid>
-            );
-          })}
-        </Grid>
+                  );
+                })}
+            </Grid>
+          </React.Fragment>
+        )}
       </Grid>
     </div>
   );
