@@ -41,7 +41,7 @@ export default function Project(props) {
       .then((data) => {
         data.filter((proj) => {
           //Check if the project is published before storing
-          return proj.published != false;
+          return proj.published !== false;
         });
         handleProjects([...data]);
       })
