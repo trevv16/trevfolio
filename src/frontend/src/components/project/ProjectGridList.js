@@ -38,14 +38,15 @@ export default function ProjectGridList(props) {
       <GridList cellHeight={180} className={classes.gridList}>
         {props.tileData.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
-            <Link href='#'>
-              <img src={tile.img} alt={tile.title} />
+            {console.log(`tile ${i}`, tile)}
+            <Link href={`/projects/${tile._id}`}>
+              <img src={tile.thumbnail} alt={tile.title} />
               <GridListTileBar
                 title={tile.title}
                 subtitle={<span>Published: {tile.published}</span>}
                 actionIcon={
                   <IconButton
-                    aria-label={`info about ${tile.title}`}
+                    aria-label={`Info about ${tile.title}`}
                     className={classes.icon}
                   >
                     <InfoIcon />
