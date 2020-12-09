@@ -26,7 +26,7 @@ const v1_adminRouter = require('./routes/admin_v1');
 
 const MongoStore = require('connect-mongo')(session);
 
-if (process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV !== 'production') {
   mongoConfig.initializeMongo(
     mongoose,
     process.env.MONGO_DEV_USER,
@@ -58,7 +58,7 @@ app.use(
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     cookie: {
-      secure: process.env.NODE_ENV == 'production' ? true : false,
+      secure: process.env.NODE_ENV === 'production' ? true : false,
       maxAge: 4 * 60 * 60 * 1000
     }
   })
@@ -75,7 +75,7 @@ app.use('/auth', authRouter);
 app.use('/api/v1', v1_apiRouter);
 app.use('/admin/v1', v1_adminRouter);
 
-if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
   });

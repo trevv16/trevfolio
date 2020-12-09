@@ -45,14 +45,14 @@ export default function ProjectDetail(props) {
       .fetch(`v1/projects/${_id}`)
       .then((response) => {
         const data = response.data;
-        if (data !== [] || data[0] !== undefined) {
+        if (data !== [] || data[0]) {
           setBusy(false);
           handleProject(data[0]);
         } else {
           setBusy(true);
         }
 
-        if (data[0].gallery === [] || data[0] === undefined) {
+        if (data[0].gallery === [] || data[0]) {
           setHasGallery(false);
         } else {
           setHasGallery(true);

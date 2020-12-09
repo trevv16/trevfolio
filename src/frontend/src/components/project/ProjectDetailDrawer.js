@@ -35,7 +35,7 @@ export default function ProjectDetailDrawer(props) {
 
   useEffect(() => {
     const sortList = () => {
-      if (props.process !== undefined) {
+      if (props.process) {
         const sorted = props.process.sort((a, b) =>
           a.order > b.order ? 1 : -1
         );

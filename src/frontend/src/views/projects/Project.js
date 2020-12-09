@@ -45,7 +45,7 @@ export default function Project(props) {
           return proj.published !== false;
         });
 
-        if (proj !== [] && proj !== undefined) {
+        if (proj && proj !== []) {
           setBusy(false);
           handleProjects([...proj]);
         } else {

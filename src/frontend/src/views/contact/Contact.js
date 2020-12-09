@@ -80,6 +80,7 @@ const validate = (values) => {
 };
 
 function Contact() {
+  const [msgSuccess, setMsgStatus] = useState(false);
   const formik = useFormik({
     initialValues: {
       first_name: '',
@@ -105,7 +106,6 @@ function Contact() {
         });
     }
   });
-  const [msgSuccess, setMsgStatus] = useState(false);
   const classes = useStyles();
 
   const renderStatusAlert = (status) => {

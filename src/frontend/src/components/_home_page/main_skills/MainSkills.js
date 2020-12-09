@@ -71,7 +71,7 @@ function MainSkills(props) {
           return sk.published !== false;
         });
 
-        if (skill !== [] && skill !== undefined) {
+        if (skill && skill !== []) {
           setBusy(false);
           setSkills([...skill]);
         } else {
