@@ -80,9 +80,9 @@ function MainSkills(props) {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
         }
       });
   }, []);

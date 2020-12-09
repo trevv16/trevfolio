@@ -53,7 +53,7 @@ export default function Project(props) {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 

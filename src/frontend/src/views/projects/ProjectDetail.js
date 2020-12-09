@@ -59,7 +59,7 @@ export default function ProjectDetail(props) {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, [_id]);
 
