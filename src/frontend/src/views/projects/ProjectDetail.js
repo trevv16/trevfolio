@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   main: {
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(14),
     marginBottom: theme.spacing(2)
   },
   loading: {
@@ -38,8 +38,7 @@ export default function ProjectDetail(props) {
   const _id = props.match.params.id;
   const classes = useStyles();
   const [project, handleProject] = useState(null);
-  const hasGallery =
-    project === null || project.gallery.length === 0 ? false : true;
+  const [hasGallery, setHasGallery] = useState(false);
 
   const fetchProjects = () => {
     return Promise.resolve(
@@ -62,6 +61,12 @@ export default function ProjectDetail(props) {
           handleProject(data[0]);
         } else {
           setBusy(true);
+        }
+
+        if (data[0].gallery === [] || data[0] === undefined) {
+          setHasGallery(false);
+        } else {
+          setHasGallery(true);
         }
       })
       .catch((err) => {
