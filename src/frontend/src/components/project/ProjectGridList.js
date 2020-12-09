@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProjectGridList(props) {
-  // const [skills, setSkills] = useState([]);
   const classes = useStyles();
 
   return (

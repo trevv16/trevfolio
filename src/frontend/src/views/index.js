@@ -6,5 +6,3 @@ export { default as Skill } from '../components/skills/Skill';
 export { default as SkillList } from '../components/skills/Skill';
 export { default as Project } from '../views/projects/Project';
 export { default as ProjectDetail } from '../views/projects/ProjectDetail';
-
-// export { default as Contact } from '../views';

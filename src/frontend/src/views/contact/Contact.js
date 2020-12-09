@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useFormik } from 'formik';
-// import {} from '@material-ui/icons';
 import api from '../../utils/api';
 import { MailingList, Navigation, Footer } from '../../components/index';
 import EmailIcon from '@material-ui/icons/Email';
@@ -33,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(8, 0)
   },
   messageBox: {
-    // padding: theme.spacing(8),
     margin: theme.spacing(18)
   },
   messageDesc: {
@@ -125,10 +123,6 @@ function Contact() {
       );
     }
   };
-
-  // const renderAlert = (status, msg) => {
-  //   return <Alert severity={`${status}`}>`${msg}`</Alert>;
-  // };
 
   return (
     <div className={classes.root}>
