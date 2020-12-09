@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { CssBaseline, Grid, makeStyles } from '@material-ui/core';
-// import {} from '@material-ui/icons';
-// import api from '../../utils/api';
 import {
   Introduction,
   Jumbotron,

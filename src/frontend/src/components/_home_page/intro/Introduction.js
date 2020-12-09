@@ -95,9 +95,9 @@ function Introduction() {
           </Link>{' '}
           to an{' '}
           <Link href='/skill?skill=aws_ec2' color='secondary'>
-            AWS EC2
+            AWS
           </Link>{' '}
-          instance.
+          .
         </Typography>
         {/* <Typography
           align='center'

@@ -14,37 +14,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Gallery() {
+function Gallery(props) {
   const classes = useStyles();
-  const images = [
-    {
-      name: 'image1',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
-    },
-    {
-      name: 'image2',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
-    },
-    {
-      name: 'image2',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
-    }
-  ];
+  const normInterval = props.interval ? props.interval : 5500;
+  const normTimeout = props.timeout ? props.timeout : 800;
+  const normAnimation = props.animation ? props.animation : 'slide';
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Carousel
         navButtonsAlwaysVisible
-        animation='slide'
-        interval={5500}
-        timeout={800}
+        animation={normAnimation}
+        interval={normInterval}
+        timeout={normTimeout}
         className={classes.carousel}
       >
-        {images.map((img, i) => (
+        {props.images.map((img, i) => (
           <img key={i} src={img.src} alt={img.description} />
         ))}
       </Carousel>

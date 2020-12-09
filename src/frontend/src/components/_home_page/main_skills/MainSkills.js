@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Box,
   CssBaseline,
-  Link,
   Grid,
-  Paper,
   Typography,
   makeStyles,
-  Button
+  Button,
+  CircularProgress
 } from '@material-ui/core';
+import api from '../../../utils/api';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SkillGridList from './SkillGridList';
 
 const useStyles = makeStyles((theme) => ({
   jumboBox: {
@@ -23,94 +23,108 @@ const useStyles = makeStyles((theme) => ({
   },
   skill: {
     display: 'flex',
-    width: '100px',
-    height: '100px',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing(2)
   },
+  skillName: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   gridRoot: {
-    flexGrow: 1
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: theme.spacing(3, 0),
+    width: '100%'
   },
   skillButton: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: theme.spacing(4, 0)
+    margin: theme.spacing(6, 0)
   }
 }));
 
-function Skill(props) {
+function MainSkills(props) {
+  const [skills, setSkills] = useState([]);
+  const [isBusy, setBusy] = useState(true);
   const classes = useStyles();
-  return (
-    <React.Fragment>
-      <Link component='a' href='#' variant='body2'>
-        <Paper elevation={3} className={classes.skill}>
-          <img src={props.imgSrc} alt={props.altText} />
-        </Paper>
-      </Link>
-    </React.Fragment>
-  );
-}
 
-function GenGrid(props) {
-  var html = [];
-  for (let index = 0; index < props.size; index++) {
-    html.push(
-      <Grid item key={index}>
-        <Skill
-          imgSrc='https://source.unsplash.com/random/80x80'
-          altText='skill icon'
-        />
-      </Grid>
+  const Loading = () => {
+    return (
+      <React.Fragment>
+        <CircularProgress color='secondary' className={classes.loading} />
+      </React.Fragment>
     );
-  }
-  return html;
-}
+  };
 
-function MainSkills() {
-  const classes = useStyles();
+  useEffect(() => {
+    api
+      .fetch('/v1/skills')
+      .then((response) => {
+        const data = response.data;
+        const skill = data.filter((sk) => {
+          //Check if the skill is published before storing
+          return sk.published !== false;
+        });
+
+        if (skill && skill !== []) {
+          setBusy(false);
+          setSkills([...skill]);
+        } else {
+          setBusy(true);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
+        }
+      });
+  }, []);
 
   return (
     <div>
       <CssBaseline />
-      <Box
-        component='div'
-        bgcolor='light.light'
-        height='auto'
-        minWidth='sm'
-        className={classes.jumboBox}
-      >
-        <Typography align='center' variant='h3' component='h3'>
-          Highlighted Skills
-        </Typography>
-        <Typography
-          align='center'
-          variant='h6'
-          component='h6'
-          className={classes.description}
-        >
-          This section details all my skills and serves as menu to navigate
-          through my different projects.
-        </Typography>
-        <Box minWidth='sm' className={classes.skillGrid}>
+      <Grid container spacing={2} className={classes.jumboBox}>
+        <Grid item xs={12}>
+          <Typography align='center' variant='h3' component='h3'>
+            Highlighted Skills
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography
+            align='center'
+            variant='h6'
+            component='h6'
+            className={classes.description}
+          >
+            This section details all my skills and serves as menu to navigate
+            through my different projects. Click a skill to navigate to relevant
+            projects.
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.skillGrid}>
           <Grid container className={classes.gridRoot} spacing={8}>
-            <GenGrid size={22} />
+            {isBusy ? <Loading /> : <SkillGridList tileData={skills} />}
           </Grid>
-        </Box>
-        <Box className={classes.skillButton}>
+        </Grid>
+        <Grid item xs={12} className={classes.skillButton}>
           <Button
             variant='contained'
             color='secondary'
             size='large'
-            href='#'
-            className={classes.skillButton}
+            href='/skills'
             endIcon={<ChevronRightIcon />}
           >
             View All
           </Button>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </div>
   );
 }
