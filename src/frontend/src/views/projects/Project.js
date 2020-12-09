@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { CssBaseline, Grid, makeStyles, Typography } from '@material-ui/core';
+import {
+  CssBaseline,
+  Grid,
+  makeStyles,
+  Typography,
+  CircularProgress
+} from '@material-ui/core';
 import _ from 'underscore';
 import api from '../../utils/api';
 import {
@@ -17,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(18),
     marginBottom: theme.spacing(2)
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+    // marginTop: theme.spacing(10),
+    // marginBottom: theme.spacing(12)
   }
 }));
 
@@ -35,20 +48,47 @@ export default function Project(props) {
   };
   const classes = useStyles();
   const [projects, handleProjects] = useState([]);
+  const [isBusy, setBusy] = useState(true);
 
   useEffect(() => {
     fetchProjects()
       .then((data) => {
-        data.filter((proj) => {
+        const proj = data.filter((proj) => {
           //Check if the project is published before storing
           return proj.published !== false;
         });
-        handleProjects([...data]);
+
+        if (proj !== [] || proj !== undefined) {
+          setBusy(false);
+          handleProjects([...proj]);
+        } else {
+          setBusy(true);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const ProjectGrid = () => {
+    return (
+      <React.Fragment>
+        {projects && (
+          <Grid container spacing={4} className={classes.main}>
+            <ProjectGridList tileData={projects} />
+          </Grid>
+        )}
+      </React.Fragment>
+    );
+  };
+
+  const Loading = () => {
+    return (
+      <React.Fragment>
+        <CircularProgress color='secondary' className={classes.loading} />
+      </React.Fragment>
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -64,11 +104,7 @@ export default function Project(props) {
             Projects
           </Typography>
         </Grid>
-        {projects && (
-          <Grid container spacing={4} className={classes.main}>
-            <ProjectGridList tileData={projects} />
-          </Grid>
-        )}
+        {isBusy ? <Loading /> : <ProjectGrid />}
       </Grid>
       <MailingList />
       <Footer />
