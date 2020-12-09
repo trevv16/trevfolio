@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CssBaseline,
   Grid,
   Typography,
   makeStyles,
-  Button
+  Button,
+  CircularProgress
 } from '@material-ui/core';
-// import api from '../../../utils/api';
+import api from '../../../utils/api';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SkillGridList from './SkillGridList';
 
@@ -48,88 +49,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MainSkills(props) {
-  // const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [isBusy, setBusy] = useState(true);
   const classes = useStyles();
-  const skillData = [
-    {
-      img: 'https://source.unsplash.com/random/1080x1080',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/2080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    },
-    {
-      img: 'https://source.unsplash.com/random/1080x800',
-      title: 'Skill Name'
-    }
-  ];
 
-  // const GenGrid = () => {
-  //   var html = [];
-  //   for (let index = 0; index < props.size; index++) {
-  //     html.push(
-  //       <Grid item key={index}>
-  //         <Link component='a' href='#' variant='body2'>
-  //           <Paper elevation={3} className={classes.skill}>
-  //             <Grid container spacing={1}>
-  //               <Grid item xs={12}>
-  //                 <img
-  //                   src={'https://source.unsplash.com/random/1080x800'}
-  //                   alt={'skill icon'}
-  //                 />
-  //               </Grid>
-  //               <Grid item xs={12}>
-  //                 <Typography
-  //                   variant='h6'
-  //                   className={classes.skillName}
-  //                 >{`${props.altText}`}</Typography>
-  //               </Grid>
-  //             </Grid>
-  //           </Paper>
-  //         </Link>
-  //       </Grid>
-  //     );
-  //   }
-  //   return html;
-  // };
+  const Loading = () => {
+    return (
+      <React.Fragment>
+        <CircularProgress color='secondary' className={classes.loading} />
+      </React.Fragment>
+    );
+  };
 
-  // const fetchSkills = () => {
-  //   api
-  //     .fetch('/v1/skills')
-  //     .then((response) => {
-  //       setSkills([response.data]);
-  //     })
-  //     .catch((error) => {
-  //       if (error.response) {
-  //         console.log(error.response.data);
-  //         console.log(error.response.status);
-  //         console.log(error.response.headers);
-  //       }
-  //     });
-  // };
+  useEffect(() => {
+    api
+      .fetch('/v1/skills')
+      .then((response) => {
+        const data = response.data;
+        const skill = data.filter((sk) => {
+          //Check if the skill is published before storing
+          return sk.published !== false;
+        });
+
+        if (skill !== [] && skill !== undefined) {
+          setBusy(false);
+          setSkills([...skill]);
+        } else {
+          setBusy(true);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }, []);
 
   return (
     <div>
       <CssBaseline />
-      <Grid
-        container
-        spacing={2}
-        // bgcolor='light.light'
-        className={classes.jumboBox}
-      >
+      <Grid container spacing={2} className={classes.jumboBox}>
         <Grid item xs={12}>
           <Typography align='center' variant='h3' component='h3'>
             Highlighted Skills
@@ -149,8 +110,7 @@ function MainSkills(props) {
         </Grid>
         <Grid item xs={12} className={classes.skillGrid}>
           <Grid container className={classes.gridRoot} spacing={8}>
-            {/* <GenGrid size={22} /> */}
-            <SkillGridList tileData={skillData} />
+            {isBusy ? <Loading /> : <SkillGridList tileData={skills} />}
           </Grid>
         </Grid>
         <Grid item xs={12} className={classes.skillButton}>
