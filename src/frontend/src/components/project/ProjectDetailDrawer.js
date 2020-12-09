@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
-import { makeStyles, Typography, withStyles, Grid } from '@material-ui/core';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
+import {
+  makeStyles,
+  Typography,
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: '#FAFAFA'
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    // justifyContent: 'space-around',
+    // overflow: 'hidden',
+    // backgroundColor: '#FAFAFA'
   },
   gridList: {
     width: '80%',
@@ -30,53 +35,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Accordion = withStyles({
-  root: {
-    border: '1px solid rgba(0, 0, 0, .125)',
-    boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderBottom: 0
-    },
-    '&:before': {
-      display: 'none'
-    },
-    '&$expanded': {
-      margin: 'auto'
-    }
-  },
-  expanded: {}
-})(MuiAccordion);
-
-const AccordionSummary = withStyles({
-  root: {
-    backgroundColor: 'rgba(0, 0, 0, .03)',
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
-    marginBottom: -1,
-    minHeight: 56,
-    '&$expanded': {
-      minHeight: 56
-    }
-  },
-  content: {
-    '&$expanded': {
-      margin: '12px 0'
-    }
-  },
-  expanded: {}
-})(MuiAccordionSummary);
-
-const AccordionDetails = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2)
-  }
-}))(MuiAccordionDetails);
-
 export default function ProjectDetailDrawer(props) {
-  const [expanded, setExpanded] = React.useState('panel1');
+  // const [expanded, setExpanded] = React.useState('panel1');
   const [sortedList, updateProcessList] = React.useState([]);
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
+  // const handleChange = (panel) => (event, newExpanded) => {
+  //   setExpanded(newExpanded ? panel : false);
+  // };
   const classes = useStyles();
 
   const sortList = () => {
@@ -100,14 +64,11 @@ export default function ProjectDetailDrawer(props) {
           sortedList.map((process, i) => {
             return (
               <Grid item xs={8} key={i}>
-                <Accordion
-                  square
-                  expanded={expanded === `panel${i + 1}`}
-                  onChange={handleChange(`panel${i + 1}`)}
-                >
+                <Accordion>
                   <AccordionSummary
-                    aria-controls={`panel${i + 1}d-content`}
-                    id={`panel${i + 1}d-header`}
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls={`panel${i + 1}a-content`}
+                    id={`panel${i + 1}a-header`}
                   >
                     <Typography>{`${process.type}`}</Typography>
                   </AccordionSummary>
