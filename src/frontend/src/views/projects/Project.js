@@ -39,7 +39,7 @@ export default function Project(props) {
       api
         .fetch(`v1/projects`)
         .then((response) => {
-          return _.first(response.data, 4);
+          return response.data;
         })
         .catch((err) => {
           console.log(err);
@@ -58,7 +58,7 @@ export default function Project(props) {
           return proj.published !== false;
         });
 
-        if (proj !== [] || proj !== undefined) {
+        if (proj !== [] && proj !== undefined) {
           setBusy(false);
           handleProjects([...proj]);
         } else {
@@ -104,7 +104,9 @@ export default function Project(props) {
             Projects
           </Typography>
         </Grid>
-        {isBusy ? <Loading /> : <ProjectGrid />}
+        <Grid item xs={12}>
+          {isBusy ? <Loading /> : <ProjectGrid />}
+        </Grid>
       </Grid>
       <MailingList />
       <Footer />
