@@ -7,8 +7,6 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-// import {} from '@material-ui/icons';
-// import api from '../../utils/api';
 import { MailingList, Navigation, Footer } from '../../components/index';
 
 export default class Resume extends Component {
@@ -36,7 +34,6 @@ export default class Resume extends Component {
       margin: theme.spacing(8, 0)
     },
     messageBox: {
-      // padding: theme.spacing(8),
       margin: theme.spacing(18)
     },
     messageDesc: {
