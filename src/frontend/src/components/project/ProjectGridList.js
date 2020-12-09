@@ -13,9 +13,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: '#FAFAFA'
+    backgroundColor: '#FAFAFA',
+    width: '100%'
   },
   gridList: {
     width: '80%',
@@ -25,7 +26,12 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgba(255, 255, 255, 0.54)'
   },
   tile: {
-    minHeight: '450px'
+    width: '100%',
+    minHeight: '550px'
+  },
+  tileImg: {
+    width: '100%',
+    height: '100%'
   }
 }));
 
@@ -35,12 +41,15 @@ export default function ProjectGridList(props) {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
+      <GridList className={classes.gridList}>
         {props.tileData.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
-            {console.log(`tile ${i}`, tile)}
             <Link href={`/projects/${tile._id}`}>
-              <img src={tile.thumbnail} alt={tile.title} />
+              <img
+                src={tile.thumbnail}
+                alt={tile.title}
+                className={classes.tileImg}
+              />
               <GridListTileBar
                 title={tile.title}
                 subtitle={<span>Published: {tile.published}</span>}
