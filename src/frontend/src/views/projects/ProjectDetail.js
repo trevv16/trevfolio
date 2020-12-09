@@ -40,22 +40,11 @@ export default function ProjectDetail(props) {
   const [project, handleProject] = useState(null);
   const [hasGallery, setHasGallery] = useState(false);
 
-  const fetchProjects = () => {
-    return Promise.resolve(
-      api
-        .fetch(`v1/projects/${_id}`)
-        .then((response) => {
-          return response.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-  };
-
   useEffect(() => {
-    fetchProjects()
-      .then((data) => {
+    api
+      .fetch(`v1/projects/${_id}`)
+      .then((response) => {
+        const data = response.data;
         if (data !== [] || data[0] !== undefined) {
           setBusy(false);
           handleProject(data[0]);
@@ -72,7 +61,7 @@ export default function ProjectDetail(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [_id]);
 
   const DetailData = () => {
     return (

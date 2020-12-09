@@ -33,25 +33,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Project(props) {
-  const fetchProjects = () => {
-    return Promise.resolve(
-      api
-        .fetch(`v1/projects`)
-        .then((response) => {
-          return response.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-  };
   const classes = useStyles();
   const [projects, handleProjects] = useState([]);
   const [isBusy, setBusy] = useState(true);
 
   useEffect(() => {
-    fetchProjects()
-      .then((data) => {
+    api
+      .fetch(`v1/projects`)
+      .then((response) => {
+        const data = response.data;
         const proj = data.filter((proj) => {
           //Check if the project is published before storing
           return proj.published !== false;

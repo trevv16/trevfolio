@@ -10,13 +10,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
-    // justifyContent: 'space-around',
-    // overflow: 'hidden',
-    // backgroundColor: '#FAFAFA'
-  },
+  root: {},
   gridList: {
     width: '80%',
     height: 'auto'
@@ -36,26 +30,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProjectDetailDrawer(props) {
-  // const [expanded, setExpanded] = React.useState('panel1');
   const [sortedList, updateProcessList] = React.useState([]);
-  // const handleChange = (panel) => (event, newExpanded) => {
-  //   setExpanded(newExpanded ? panel : false);
-  // };
   const classes = useStyles();
 
-  const sortList = () => {
-    if (props.process !== undefined) {
-      const sorted = props.process.sort((a, b) => (a.order > b.order ? 1 : -1));
-      return sorted;
-    } else {
-      return null;
-    }
-  };
-
   useEffect(() => {
+    const sortList = () => {
+      if (props.process !== undefined) {
+        const sorted = props.process.sort((a, b) =>
+          a.order > b.order ? 1 : -1
+        );
+        return sorted;
+      } else {
+        return null;
+      }
+    };
+
     let sortedProcessList = sortList();
     updateProcessList(sortedProcessList);
-  }, []);
+  }, [props.process]);
 
   return (
     <div className={classes.root}>
