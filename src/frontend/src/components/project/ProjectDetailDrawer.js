@@ -82,7 +82,6 @@ export default function ProjectDetailDrawer(props) {
   const sortList = () => {
     if (props.process !== undefined) {
       const sorted = props.process.sort((a, b) => (a.order > b.order ? 1 : -1));
-      console.log(sorted);
       return sorted;
     } else {
       return null;
