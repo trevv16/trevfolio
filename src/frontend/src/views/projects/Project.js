@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import {
-  CssBaseline,
-  Grid,
-  makeStyles,
-  Typography,
-  CircularProgress
-} from '@material-ui/core';
+import { Helmet } from 'react-helmet';
+import { CssBaseline, Grid, makeStyles, Typography } from '@material-ui/core';
+import _ from 'underscore';
 import api from '../../utils/api';
 import {
   MailingList,
   Navigation,
   Footer,
-  ProjectGridList
+  ProjectCard
 } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,60 +17,35 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(18),
     marginBottom: theme.spacing(2)
-  },
-  loading: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 }));
 
 export default function Project(props) {
+  const fetchProjects = () => {
+    return Promise.resolve(
+      api
+        .fetch(`v1/projects`)
+        .then((response) => {
+          return _.first(response.data, 4);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  };
   const classes = useStyles();
   const [projects, handleProjects] = useState([]);
-  const [isBusy, setBusy] = useState(true);
+  // console.log('Projects: ', projectData);
 
   useEffect(() => {
-    api
-      .fetch(`v1/projects`)
-      .then((response) => {
-        const data = response.data;
-        const proj = data.filter((proj) => {
-          //Check if the project is published before storing
-          return proj.published !== false;
-        });
-
-        if (proj && proj !== []) {
-          setBusy(false);
-          handleProjects([...proj]);
-        } else {
-          setBusy(true);
-        }
+    fetchProjects()
+      .then((data) => {
+        handleProjects([...data]);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }, []);
-
-  const ProjectGrid = () => {
-    return (
-      <React.Fragment>
-        {projects && (
-          <Grid container spacing={4} className={classes.main}>
-            <ProjectGridList tileData={projects} />
-          </Grid>
-        )}
-      </React.Fragment>
-    );
-  };
-
-  const Loading = () => {
-    return (
-      <React.Fragment>
-        <CircularProgress color='secondary' className={classes.loading} />
-      </React.Fragment>
-    );
-  };
 
   return (
     <div className={classes.root}>
@@ -91,8 +61,16 @@ export default function Project(props) {
             Projects
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          {isBusy ? <Loading /> : <ProjectGrid />}
+        <Grid container spacing={4} className={classes.main}>
+          {projects &&
+            projects.map((proj, i) => {
+              console.log('proj', proj);
+              return (
+                <Grid item xs={6} key={i}>
+                  <ProjectCard project={proj} />
+                </Grid>
+              );
+            })}
         </Grid>
       </Grid>
       <MailingList />

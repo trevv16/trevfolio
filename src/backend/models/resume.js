@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 
+// Lean Queries
+
 const resumeSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   name: {

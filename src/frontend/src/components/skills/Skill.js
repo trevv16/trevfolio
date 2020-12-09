@@ -9,9 +9,11 @@ import {
 } from '@material-ui/core';
 // import {} from '@material-ui/icons';
 // import api from '../../utils/api';
-import { MailingList, Navigation, Footer } from '../../components/index';
+import { MailingList, Navigation, Footer } from '../index';
 
-export default class Resume extends Component {
+// const params = useParams();
+
+export class SkillList extends Component {
   constructor(props) {
     super(props);
 
@@ -59,9 +61,6 @@ export default class Resume extends Component {
     const classes = this.props;
     return (
       <div className={classes.root}>
-        <CssBaseline />
-        <Navigation />
-
         <Grid container xs={12} spacing={1} className={classes.main}>
           <Grid item xs={10}>
             <Typography align='center' variant='h1' component='h1'>
@@ -81,6 +80,35 @@ export default class Resume extends Component {
                 here
               </Link>
               .
+            </Typography>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
+}
+
+export default class Skill extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      skillName: null,
+      skillQuery: null
+    };
+  }
+
+  render() {
+    const classes = this.props;
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <Navigation />
+
+        <Grid container xs={12} spacing={1} className={classes.main}>
+          <Grid item xs={10}>
+            <Typography align='center' variant='h1' component='h1'>
+              Resume
             </Typography>
           </Grid>
         </Grid>

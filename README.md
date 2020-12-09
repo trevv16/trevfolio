@@ -9,23 +9,26 @@ v: alpha
 This is my portfolio hosting all information about me and my dev skills.
 The purpose of this project is to create a reliable system that is overkill for the purpose of a personal portfolio site, as an opportunity to learn and improve as well as demonstrate my skills.
 
-Demo:[Trevor's Portfolio](#https://www.trevornjeru.com)
+Demo:[Trevor's Portfolio](#https://dev.trevornjeru.com)
+
+## Tech Stack
 
 ### Features
 
 - Single Page App
 - Data Caching
-- Authentication
 - Responsiveness
-- CDN
-- CI/CD
-
-## Tech Stack
+- CDN (S3)
+- FaaS (Lambda)
+- CI/CD (Github Actions)
+- Unit Tests (Jest)
+- Browser Compatibility (Babel)
 
 ### Front-End
 
 - React
 - Material UI
+- SCSS
 
 ### Back-End
 
@@ -38,4 +41,24 @@ Demo:[Trevor's Portfolio](#https://www.trevornjeru.com)
 - Docker
 - AWS EC2
 - AWS S3
-- Github Actions
+- AWS Redis
+- AWS Lambda
+
+### To-Do
+
+- [ ] #6 Public pages (In Progress)
+- [ ] #7 gallery components
+- [ ] #8 blog pages
+- [ ] #9 static resume
+- [ ] #10 skills sections
+- [ ] #11 authentication
+- [ ] #12 authentication settings
+- [ ] #13 mailing list subscribe
+- [ ] #14 admin dashboard
+- [ ] #15 admin send mailing list messages
+- [ ] #16 admin post to blogs
+- [ ] #32 admin can read message from /contact
+- [ ] #20 Setup docker & create images for frontend/backend
+- [ ] #26 Tests & Coverage report with github actions
+- [ ] #24 Implement caching with redis
+- [ ] #23 Implement FaaS with Lambda
