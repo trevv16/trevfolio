@@ -11,7 +11,7 @@
     "test:coverage": "jest --coverage",
     "test:staged": "jest --findRelatedTests"
   },
-  "homepage": "",
+  "homepage": ".",
   "dependencies": {
     "aws-sdk": "^2.746.0",
     "bcrypt": "^5.0.0",

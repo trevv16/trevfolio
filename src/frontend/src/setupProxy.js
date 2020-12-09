@@ -1,11 +1,11 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
-  if (process.env.NODE_ENV == 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     app.use(
       '/api',
       createProxyMiddleware({
-        target: process.env.APP_DOMAIN,
+        target: 'http://localhost:5000',
         changeOrigin: true
       })
     );
@@ -13,7 +13,7 @@ module.exports = function (app) {
     app.use(
       '/api',
       createProxyMiddleware({
-        target: 'http://localhost:5000',
+        target: process.env.APP_DOMAIN,
         changeOrigin: true
       })
     );
