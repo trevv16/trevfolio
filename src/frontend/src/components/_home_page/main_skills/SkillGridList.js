@@ -13,9 +13,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: '#FAFAFA'
+    backgroundColor: '#FAFAFA',
+    width: '100%'
   },
   gridList: {
     width: '80%',
@@ -25,26 +26,34 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgba(255, 255, 255, 0.54)'
   },
   tile: {
-    minHeight: '450px'
+    width: '100%',
+    minHeight: '550px'
+  },
+  tileImg: {
+    width: '100%',
+    height: '100%'
   }
 }));
 
 export default function SkillGridList(props) {
-  // const [skills, setSkills] = useState([]);
   const classes = useStyles();
-
+  console.log(props.tileData);
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         {props.tileData.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
-            <Link href='#'>
-              <img src={tile.img} alt={tile.title} />
+            <Link href={`/project?skill=${tile.name}`}>
+              <img
+                src={tile.thumbnail}
+                alt={tile.name}
+                className={classes.tileImg}
+              />
               <GridListTileBar
-                title={tile.title}
+                title={tile.name}
                 actionIcon={
                   <IconButton
-                    aria-label={`info about ${tile.title}`}
+                    aria-label={`info about ${tile.name}`}
                     className={classes.icon}
                   >
                     <InfoIcon />
