@@ -7,7 +7,6 @@ import {
   Typography,
   CircularProgress
 } from '@material-ui/core';
-import _ from 'underscore';
 import api from '../../utils/api';
 import {
   MailingList,
