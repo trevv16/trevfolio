@@ -38,23 +38,6 @@ export default function ProjectDetail(props) {
   const _id = props.match.params.id;
   const classes = useStyles();
   const [project, handleProject] = useState(null);
-  const imgList = [
-    {
-      name: 'image1',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
-    },
-    {
-      name: 'image2',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
-    },
-    {
-      name: 'image2',
-      src: 'https://source.unsplash.com/random/1600x600',
-      description: 'Trev'
-    }
-  ];
   const hasGallery =
     project === null || project.gallery.length === 0 ? false : true;
 
@@ -91,14 +74,6 @@ export default function ProjectDetail(props) {
       <React.Fragment>
         {project && (
           <Grid container spacing={1} className={classes.main}>
-            <Grid item xs={12}>
-              <Gallery
-                animation={'slide'}
-                interval={5500}
-                timeout={800}
-                images={imgList}
-              />
-            </Grid>
             <Grid item xs={12}>
               <Typography align='center' variant='h2'>
                 {`${project.title}`}
