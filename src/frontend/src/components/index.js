@@ -4,8 +4,7 @@ export { default as MainSkills } from '../components/_home_page/main_skills/Main
 export { default as SkillGridList } from '../components/_home_page/main_skills/SkillGridList';
 export { default as ProjectGridList } from '../components/project/ProjectGridList';
 export { default as ProjectDetailDrawer } from '../components/project/ProjectDetailDrawer';
-export { default as ProjectCard } from '../components/project/Project';
-export { ProjectHighlight } from '../components/project/Project';
+export { default as ProjectHighlight } from '../components/project/ProjectHighlight';
 
 export { default as CareerStats } from '../components/_resume_page/career_stats/CareerStats';
 export { default as Education } from '../components/_resume_page/education_history/EducationHistory';
