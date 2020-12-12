@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(3)
+  },
+  galleryImg: {
+    width: '100%',
+    height: '100%'
   }
 }));
 
@@ -82,7 +86,12 @@ function About() {
             className={classes.carousel}
           >
             {images.map((img, i) => (
-              <img key={i} src={img.src} alt={img.description} />
+              <img
+                className={classes.galleryImg}
+                key={i}
+                src={img.src}
+                alt={img.description}
+              />
             ))}
           </Carousel>
         </Grid>
