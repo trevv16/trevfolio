@@ -80,20 +80,20 @@ userSchema.methods = {
    * their current saved password
    * @param  {String} inputPassword
    */
-  checkPassword: async function (inputPassword) {
+  checkPassword: async (inputPassword) => {
     return bcrypt.compareSync(inputPassword, this.password);
   },
   /**
    * Called when first saving users password to the db
    * @param  {String} plainTextPassword
    */
-  hashPassword: async function (plainTextPassword) {
+  hashPassword: async (plainTextPassword) => {
     return bcrypt.hashSync(plainTextPassword, 10);
   },
   /**
    * @returns  {String} email from MongoDB
    */
-  privateEmail: async function () {
+  privateEmail: async () => {
     return obfuscate(this.email);
   }
 };
@@ -106,7 +106,7 @@ userSchema.methods = {
  *
  * @param  {function} next
  */
-userSchema.pre('save', function (next) {
+userSchema.pre('save', (next) => {
   if (!this.password) {
     console.log('models/user.js =======NO PASSWORD PROVIDED=======');
     next();
