@@ -86,6 +86,7 @@ const validate = (values) => {
 };
 
 function MailingList() {
+  const [msgSuccess, setMsgStatus] = useState(false);
   const formik = useFormik({
     initialValues: {
       first_name: '',
@@ -117,7 +118,6 @@ function MailingList() {
         });
     }
   });
-  const [msgSuccess, setMsgStatus] = useState(false);
   const classes = useStyles();
 
   const renderStatusAlert = (status) => {
