@@ -5,14 +5,14 @@ module.exports = {
     const job = new CronJob(
       '* * * * * *',
       () => {
-        console.log('You will see this message every second');
+        // You will see this message every second
       },
       null,
       true,
-      'America/Los_Angeles',
+      'America/Los_Angeles'
     );
     job.start();
   },
   job2: () => {},
-  job3: () => {},
+  job3: () => {}
 };
