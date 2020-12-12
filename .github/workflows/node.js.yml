@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master, staging, dev, release/*, feature/*, hotfix/* ]
+    branches: [ master, staging, dev, release/*, feature/*, hotfix/*, debug_* ]
   pull_request:
-    branches: [ master, staging, dev, release/*, feature/*, hotfix/* ]
+    branches: [ master, staging, dev, release/*, feature/*, hotfix/*, debug_*  ]
   schedule:
     - cron: '0 0 * * 0' # weekly
 
