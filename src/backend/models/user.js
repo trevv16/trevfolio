@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const timestamps = require('mongoose-timestamp');
 
 const userSchema = new mongoose.Schema({
@@ -46,6 +47,32 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(timestamps);
 
 const User = mongoose.model('User', userSchema, 'users');
+
+/**
+ ******************* Defined Functions
+ */
+
+/**
+ *
+ * @param {String} email raw value in MongoDB `email`
+ * @return {String} privateEmail format -- '**@gmail.com'
+ */
+async function obfuscate(email) {
+  const separatorIndex = email.indexOf('@');
+  if (separatorIndex < 3) {
+    // 'ab@gmail.com' -> '**@gmail.com'
+    return (
+      email.slice(0, separatorIndex).replace(/./g, '*') +
+      email.slice(separatorIndex)
+    );
+  }
+  // 'test42@gmail.com' -> 'te****@gmail.com'
+  return (
+    email.slice(0, 2) +
+    email.slice(2, separatorIndex).replace(/./g, '*') +
+    email.slice(separatorIndex)
+  );
+}
 
 /**
  ******************* Virtuals
@@ -108,39 +135,12 @@ userSchema.methods = {
  */
 userSchema.pre('save', (next) => {
   if (!this.password) {
-    console.log('models/user.js =======NO PASSWORD PROVIDED=======');
+    console.error('User: No password provided');
     next();
   } else {
-    console.log('models/user.js hashPassword in pre save');
     this.password = this.hashPassword(this.password);
     next();
   }
 });
-
-/**
- ******************* Defined Functions
- */
-
-/**
- *
- * @param {String} email raw value in MongoDB `email`
- * @return {String} privateEmail format -- '**@gmail.com'
- */
-async function obfuscate(email) {
-  const separatorIndex = email.indexOf('@');
-  if (separatorIndex < 3) {
-    // 'ab@gmail.com' -> '**@gmail.com'
-    return (
-      email.slice(0, separatorIndex).replace(/./g, '*') +
-      email.slice(separatorIndex)
-    );
-  }
-  // 'test42@gmail.com' -> 'te****@gmail.com'
-  return (
-    email.slice(0, 2) +
-    email.slice(2, separatorIndex).replace(/./g, '*') +
-    email.slice(separatorIndex)
-  );
-}
 
 module.exports = User;
