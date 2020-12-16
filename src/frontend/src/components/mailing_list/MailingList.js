@@ -159,7 +159,11 @@ function MailingList() {
         <Grid item xs={12}>
           {msgSuccess && renderStatusAlert(msgSuccess)}
         </Grid>
-        <form onSubmit={formik.handleSubmit} className={classes.form}>
+        <form
+          onSubmit={formik.handleSubmit}
+          className={classes.form}
+          id='default-mailing-list'
+        >
           <Grid item xs={12} className={classes.topFormRow}>
             <Grid item xs={6} className={'mb-2 mr-2'}>
               {formik.errors.first_name ? (
