@@ -36,6 +36,6 @@ Demo:[Trevor's Portfolio](#https://www.trevornjeru.com)
 ### Cloud Deployment
 
 - Docker
-- AWS EC2
+- Heroku
 - AWS S3
 - Github Actions

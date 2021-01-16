@@ -93,11 +93,14 @@ function Introduction() {
           <Link href='/skill?skill=github_actions' color='secondary'>
             Github Actions
           </Link>{' '}
-          to an{' '}
-          <Link href='/skill?skill=aws_ec2' color='secondary'>
-            AWS
+          to{' '}
+          <Link href='/skill?skill=heroku' color='secondary'>
+            Heroku
           </Link>{' '}
           .
+          {/* <Link href='/skill?skill=aws_ec2' color='secondary'>
+            AWS
+          </Link>{' '}. */}
         </Typography>
         {/* <Typography
           align='center'
