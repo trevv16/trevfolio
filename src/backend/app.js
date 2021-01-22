@@ -70,7 +70,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Set Routes
 app.use('/auth', authRouter);
@@ -79,9 +79,7 @@ app.use('/admin/v1', v1_adminRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', function (req, res) {
-    res.sendFile('index.html', {
-      root: path.join(__dirname, '../frontend/build')
-    });
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 }
 
