@@ -68,7 +68,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static('src/frontend/build'));
 
 // Set Routes
 app.use('/auth', authRouter);
