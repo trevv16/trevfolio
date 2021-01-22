@@ -63,7 +63,7 @@ function Home() {
           <MainSkills />
         </Grid>
         <Grid item xs={12}>
-          <ProjectHighlight projects={projectData} />
+          {/* <ProjectHighlight projects={projectData} /> */}
         </Grid>
       </Grid>
       <MailingList />
