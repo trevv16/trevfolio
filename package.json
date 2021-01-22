@@ -7,7 +7,7 @@
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix",
     "build": "npm run server:install && npm run client:install",
-    "start": "concurrently --names \"HTTP,CLIENT\" -c \"yellow.bold,green.bold\" \"npm run server\" \"npm run client\"",
+    "start": "npm run server",
     "dev": "concurrently --names \"HTTP,CLIENT\" -c \"yellow.bold,green.bold\" \"npm run server:dev\" \"npm run client:dev\"",
     "server": "cd src/backend && npm start",
     "server:install": "cd src/backend && npm ci",
