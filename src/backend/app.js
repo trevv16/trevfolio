@@ -78,8 +78,16 @@ app.use('/api/v1', v1_apiRouter);
 app.use('/admin/v1', v1_adminRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  app.get('/*', function (req, res, next) {
+    res.sendFile(
+      'index.html',
+      { root: path.join(__dirname, '../frontend/build') },
+      function (err) {
+        if (err) {
+          next(err);
+        }
+      }
+    );
   });
 }
 
