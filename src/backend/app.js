@@ -77,11 +77,17 @@ app.use('/admin/v1', v1_adminRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+    res.sendFile(
+      'index.html',
+      path.join(__dirname, '../frontend/build', 'index.html')
+    );
   });
 
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+    res.sendFile(
+      'index.html',
+      path.join(__dirname, '../frontend/build/index.html')
+    );
   });
 }
 
