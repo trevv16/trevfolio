@@ -9,6 +9,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
 const methodOverride = require('method-override');
+const cors = require('cors');
 
 // Configs
 const mongoConfig = require('./config/db_config');
@@ -48,6 +49,7 @@ passConfig.initializePassport(
   (id) => dbService.getUserById(id)
 );
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -68,7 +70,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
 // Set Routes
 app.use('/auth', authRouter);
@@ -76,12 +78,8 @@ app.use('/api/v1', v1_apiRouter);
 app.use('/admin/v1', v1_adminRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
-
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  app.get('/*', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
   });
 }
 
