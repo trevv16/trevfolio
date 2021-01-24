@@ -63,7 +63,7 @@ function MainSkills(props) {
 
   useEffect(() => {
     api
-      .fetch('/v1/skills')
+      .fetch('v1/skills')
       .then((response) => {
         const data = response.data;
         const skill = data.filter((sk) => {
