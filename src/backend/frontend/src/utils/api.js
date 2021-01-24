@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = '/api';
+const API = `${process.env.REACT_APP_BACKEND_HOST}`;
 
 function headers() {
   const token = localStorage.getItem('token');

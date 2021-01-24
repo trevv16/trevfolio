@@ -91,7 +91,7 @@ function Contact() {
     validate,
     onSubmit: (values) => {
       api
-        .post('/v1/inquiries', values)
+        .post('v1/inquiries', values)
         .then((response) => {
           formik.resetForm();
           setMsgStatus(true);
