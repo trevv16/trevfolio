@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
   social_icons: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '2vw',
-    height: 'auto',
     opacity: '.4'
   }
 }));
@@ -52,7 +50,7 @@ function Icons() {
     <Grid container spacing={1}>
       <Grid item xs={4}>
         {/* Github */}
-        <Link href='https://github.com/trevv16'>
+        <Link href='https://github.com/trevv16' target='_blank'>
           <img
             className={classes.social_icons}
             src='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/github_icon.png'
@@ -62,7 +60,7 @@ function Icons() {
       </Grid>
       <Grid item xs={4}>
         {/* LinkedIn */}
-        <Link href='https://linkedin.com/in/trevornjeru'>
+        <Link href='https://linkedin.com/in/trevornjeru' target='_blank'>
           <img
             className={classes.social_icons}
             src='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/linkedin_icon.png'
@@ -72,7 +70,7 @@ function Icons() {
       </Grid>
       <Grid item xs={4}>
         {/* Instagram */}
-        <Link href='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/trevva_'>
+        <Link href='https://instagram.com/trevva_' target='_blank'>
           <img
             className={classes.social_icons}
             src='https://trevfolio-pub.s3.us-east-2.amazonaws.com/assets/instagram_icon.png'
