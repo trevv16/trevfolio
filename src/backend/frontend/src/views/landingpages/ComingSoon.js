@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: theme.spacing(18),
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(35)
   },
   form: {
     flexDirection: 'row',
