@@ -7,7 +7,8 @@ import {
   Resume,
   Contact,
   ProjectDetail,
-  Project
+  Project,
+  ComingSoon
 } from './views/index';
 
 function App() {
@@ -15,12 +16,14 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={ComingSoon} />
+          {/* <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
           <Route exact path='/resume' component={Resume} />
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/projects' component={Project} />
-          <Route exact path='/projects/:id' component={ProjectDetail} />
+          <Route exact path='/projects/:id' component={ProjectDetail} /> */}
+
           {/*<Route exact path='/projects?skill=' component={Project} />
           <Route path='/skills' component={SkillList} /> */}
 
