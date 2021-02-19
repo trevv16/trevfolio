@@ -27,6 +27,12 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Provide a password'],
     select: false
   },
+  resetPasswordToken: {
+    type: String
+  },
+  resetPassowrdExpire: {
+    type: Date
+  },
   social_links: [
     {
       title: {
