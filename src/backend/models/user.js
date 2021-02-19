@@ -24,7 +24,8 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Provide a password']
+    required: [true, 'Provide a password'],
+    select: false
   },
   social_links: [
     {
