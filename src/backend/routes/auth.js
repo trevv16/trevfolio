@@ -9,17 +9,17 @@ const authCon = require('../controllers/authController');
 const { checkAuth, checkNotAuth } = require('../middlewares/authControl');
 
 /* POST sign up page. */
-router.post('/auth/signup', checkNotAuth, authCon.signUp);
+router.post('/signup', checkNotAuth, authCon.signUp);
 
 /* POST sign in page. */
-router.post('/auth/signin', checkNotAuth, authCon.signIn);
+router.post('/signin', checkNotAuth, authCon.signIn);
 
 /* POST sign out page. */
-router.delete('/auth/signout', checkAuth, authCon.signOut);
+router.post('/signout', checkAuth, authCon.signOut);
 
 /* POST forgot page. */
-router.post('/auth/forgot', checkNotAuth, authCon.forgot);
+router.post('/forgot', checkNotAuth, authCon.forgot);
 
-router.post('/auth/reset/:resetToken', checkNotAuth, authCon.reset);
+router.put('/reset/:resetToken', checkNotAuth, authCon.reset);
 
 module.exports = router;
