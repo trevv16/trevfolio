@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const ErrorResponse = require('../utils/errorResponse');
 
 module.exports = {
   signUp: async (req, res, next) => {
@@ -13,39 +14,27 @@ module.exports = {
         user: genUser
       })
     } catch (err) {
-      res.status(500).json({
-        success: false,
-        error: err.message
-      })
+      next(err);
     }
   },
   signIn: async (req, res, next) => {
     const {email, password} = req.body;
 
     if(!email || !password) {
-      res.status(400).json({
-        success: false,
-        error: "Please provide an email and password"
-      });
+      return next(new ErrorResponse("Please provide an email and password", 400));
     }
 
     try {
       const user = await User.findOne({email}).select("+password");
 
       if(!user) {
-        res.status(404).json({
-          success: false,
-          error: "Invalid credentials"
-        });
+        return next(new ErrorResponse("Invalid Credentials", 401));
       }
 
       const isMatch = await user.comparePasswords(password);
 
       if(!isMatch) {
-        res.status(404).json({
-          success: false,
-          error: "Invalid credentials"
-        });
+        return next(new ErrorResponse("Invalid Credentials", 401));
       }
 
       res.status(201).json({
@@ -55,10 +44,7 @@ module.exports = {
       })
 
     } catch (err) {
-      res.status(500).json({
-        success: false,
-        error: err.message
-      });
+      next(err);
     }
   },
   signOut: async (req, res, next) => {
