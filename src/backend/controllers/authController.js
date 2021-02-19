@@ -1,13 +1,21 @@
 const bcrypt = require('bcrypt');
 
 module.exports = {
-  signUp: (req, res, next) => {},
-  signIn: (passport) => {
+  signUp: (req, res, next) => {
+    res.send("Sign Up");
   },
-  signOut: (req, res) => {
+  signIn: (req, res, next) => {
+    res.send("Sign In");
   },
-  forgot: (req, res, next) => {},
-  reset: (req, res, next) => {}
+  signOut: (req, res, next) => {
+    res.send("Sign Out");
+  },
+  forgot: (req, res, next) => {
+    res.send("Forgot");
+  },
+  reset: (req, res, next) => {
+    res.send("Reset");
+  }
 };
 
 async function hashing(pwd) {
