@@ -6,7 +6,7 @@ const router = express.Router();
 const authCon = require('../controllers/authController');
 
 // Middlewares
-const { checkAuth } = require('../middlewares/authControl');
+const { checkAuth, checkNotAuth } = require('../middlewares/authControl');
 
 /* POST sign up page. */
 router.post('/auth/signup', checkNotAuth, authCon.signUp);
