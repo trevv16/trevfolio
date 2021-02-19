@@ -9,6 +9,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const cors = require('cors');
 const MongoStore = require('connect-mongo')(session);
+const errorHandler = require("./middlewares/error");
 
 // Configs
 const mongoConfig = require('./config/db_config');
@@ -67,20 +68,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404)); // eslint-disable-line no-undef
-});
-
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.send(err);
-});
+//Should be last
+app.use(errorHandler);
 
 module.exports = app;
