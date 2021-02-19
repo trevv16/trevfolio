@@ -7,12 +7,15 @@ module.exports = {
     const {first_name, last_name, email, password} = req.body;
     const _id = mongoose.Types.ObjectId();
     try {
-      const genUser = await User.create({_id, first_name, last_name, email, password});
+      const findUser = await User.findOne({email}).select("+password");
 
-      res.status(201).json({
-        success: true,
-        user: genUser
-      })
+      if(findUser) {
+        return next(new ErrorResponse("User already exists", 401));
+      }
+
+      const user = await User.create({_id, first_name, last_name, email, password});
+
+      sendToken(user, 201, res);
     } catch (err) {
       next(err);
     }
@@ -36,13 +39,7 @@ module.exports = {
       if(!isMatch) {
         return next(new ErrorResponse("Invalid Credentials", 401));
       }
-
-      res.status(201).json({
-        success: true,
-        token: "afdaklb3nl243trwl4en",
-        user: user
-      })
-
+      sendToken(user, 200, res);
     } catch (err) {
       next(err);
     }
@@ -56,4 +53,10 @@ module.exports = {
   reset: async (req, res, next) => {
     res.send("Reset");
   }
+};
+
+
+const sendToken = (user, statusCode, res) => {
+  const token = user.getSignedToken();
+  res.status(statusCode).json({success: true, token});
 };

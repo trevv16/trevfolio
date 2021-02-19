@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const timestamps = require('mongoose-timestamp');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -68,6 +69,14 @@ async function hashing(pwd) {
 userSchema.methods.comparePasswords = async function(pwd) {
   return await bcrypt.compare(pwd, this.password);
 }
+
+userSchema.methods.getSignedToken = function() {
+  return jwt.sign(
+    {id: this._id}, 
+    process.env.JWT_SECRET_KEY, 
+    {expiresIn: process.env.JWT_EXPIRE}
+    );
+};
 
 userSchema.plugin(timestamps);
 
