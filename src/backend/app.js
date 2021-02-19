@@ -7,24 +7,23 @@ const logger = require('morgan');
 require('dotenv').config();
 const flash = require('express-flash');
 const session = require('express-session');
-const passport = require('passport');
 const cors = require('cors');
+const MongoStore = require('connect-mongo')(session);
 
 // Configs
 const mongoConfig = require('./config/db_config');
-const passConfig = require('./config/passport_config');
 
-const app = express();
+// Middlewares
+const { checkAuth, checkNotAuth } = require('../middlewares/authControl');
 
-// Services
-const dbService = require('./services/dbService');
+// Controllers
+const authCon = require('../controllers/authController');
 
 // Routes
-const authRouter = require('./routes/auth');
 const v1_apiRouter = require('./routes/api_v1');
 const v1_adminRouter = require('./routes/admin_v1');
 
-const MongoStore = require('connect-mongo')(session);
+const app = express();
 
 if (process.env.NODE_ENV !== 'production') {
   mongoConfig.initializeMongo(
@@ -41,12 +40,6 @@ if (process.env.NODE_ENV !== 'production') {
     process.env.MONGO_PROD_DB_NAME
   );
 }
-
-passConfig.initializePassport(
-  passport,
-  (email) => dbService.getUserByEmail(email),
-  (id) => dbService.getUserById(id)
-);
 
 app.use(cors());
 app.use(logger('dev'));
@@ -65,13 +58,25 @@ app.use(
   })
 );
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
+/* POST sign up page. */
+router.post('/auth/signup', checkNotAuth, authCon.signUp);
+
+/* POST sign in page. */
+router.post('/auth/signin', checkNotAuth, authCon.signIn);
+
+/* POST sign out page. */
+router.delete('/auth/signout', checkAuth, authCon.signOut);
+
+/* POST forgot page. */
+router.post('/auth/forgot', checkNotAuth, authCon.forgot);
+
+router.post('/auth/reset', checkNotAuth, authCon.reset);
+
 // Set Routes
-app.use('/auth', authRouter);
+// app.use('/auth', authRouter);
 app.use('/api/v1', v1_apiRouter);
 app.use('/admin/v1', v1_adminRouter);
 
