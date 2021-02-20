@@ -1,25 +1,21 @@
 const express = require('express');
-
 const router = express.Router();
 
 // Controllers
 const authCon = require('../controllers/authController');
 
-// Middlewares
-const { checkAuth, checkNotAuth } = require('../middlewares/authControl');
-
 /* POST sign up page. */
-router.post('/signup', checkNotAuth, authCon.signUp);
+router.post('/signup', authCon.signUp);
 
 /* POST sign in page. */
-router.post('/signin', checkNotAuth, authCon.signIn);
+router.post('/signin', authCon.signIn);
 
 /* POST sign out page. */
-router.post('/signout', checkAuth, authCon.signOut);
+router.post('/signout', authCon.signOut);
 
 /* POST forgot page. */
-router.post('/forgot', checkNotAuth, authCon.forgot);
+router.post('/forgot', authCon.forgot);
 
-router.put('/reset/:resetToken', checkNotAuth, authCon.reset);
+router.put('/reset/:resetToken', authCon.reset);
 
 module.exports = router;
