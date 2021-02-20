@@ -40,8 +40,8 @@ function App() {
     <div>
       <Router>
         <Switch>
-          {/* <Route exact path='/' component={ComingSoon} /> */}
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' component={ComingSoon} />
+          <Route exact path='/home' component={HomePage} />
           <Route exact path='/about' component={AboutPage} />
           <Route exact path='/resume' component={ResumePage} />
           <Route exact path='/contact' component={ContactPage} />

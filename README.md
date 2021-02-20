@@ -15,7 +15,7 @@ Demo:[Trevor's Portfolio](#https://www.trevornjeru.com)
 
 - Single Page App
 - Data Caching
-- Authentication
+- Authentication & Authorization
 - Responsiveness
 - CDN
 - CI/CD
