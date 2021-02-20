@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
   CssBaseline,
@@ -14,6 +15,7 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import axios from 'axios';
 import { Navigation, Footer } from '../../components/index';
+import Auth from '../../Auth';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -77,9 +79,8 @@ export default function SignUp(props) {
         config
       );
 
-      localStorage.setItem('authToken', data.token);
-
-      props.history.push('/');
+      Auth.authenticateUser(data.token);
+      return <Redirect to='/admin' />;
     } catch (err) {
       setError(err.response.data.error);
       setTimeout(() => {
