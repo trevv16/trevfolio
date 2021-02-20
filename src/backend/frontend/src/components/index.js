@@ -18,3 +18,12 @@ export { default as Gallery } from '../components/gallery/Gallery';
 export { default as MailingList } from '../components/mailing_list/MailingList';
 export { default as Navigation } from '../components/partials/navigation/Navigation';
 export { default as Footer } from '../components/partials/footer/Footer';
+
+// ADMIN COMPONENTS
+export { default as AdminFooter } from '../components/partials/footer/AdminFooter';
+export { default as AdminNavigation } from '../components/partials/navigation/AdminNavigation';
+export { default as KPICard } from '../components/admin/KPICard';
+export { default as AdminTable } from './admin/AdminTable';
+export { default as AdminActionHeader } from './admin/AdminActionHeader';
+export { default as AdminMainPage } from './admin/AdminMainPage';
+export { default as CRUDResumeForm } from './admin/CRUDResumeForm';
