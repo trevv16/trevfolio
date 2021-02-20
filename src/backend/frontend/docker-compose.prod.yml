@@ -1,0 +1,41 @@
+version: '3'
+services:
+  client:
+    build:
+      context: src/frontend
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    image: trevva/trevfolio-client:0.0.0
+    container_name: trevfolio-client
+    stdin_open: true
+    volumes:
+      - ./src/frontend:/usr/app
+      - ./src/frontend/node_modules:/usr/app/node_modules
+    networks:
+      - app-network
+  server:
+    build:
+      context: src/backend
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    image: trevva/trevfolio-server:0.0.0
+    container_name: trevfolio-server
+    volumes:
+      - ./src/backend:/usr/app
+      - ./src/backend/node_modules:/usr/app/node_modules
+    depends_on: 
+      - client
+    ports:
+      - "5000:5000"
+    env_file: src/backend/.env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  web-root:
+    driver: local 
