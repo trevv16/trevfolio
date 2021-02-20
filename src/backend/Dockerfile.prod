@@ -1,0 +1,17 @@
+# Dockerfile for Node Server (Production)
+
+FROM node:14.5.0
+
+WORKDIR /usr/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+EXPOSE 5000
+
+CMD [ "npm", "start" ]
+
+# docker build -f Dockerfile.prod -t trevva/server:0.0.0 . 
