@@ -95,7 +95,7 @@ export default function SignUp(props) {
         <title>Sign Up | Trevor's Portfolio</title>
       </Helmet>
 
-      <Navigation public={true} />
+      <Navigation />
       <Container
         component='main'
         maxWidth='sm'

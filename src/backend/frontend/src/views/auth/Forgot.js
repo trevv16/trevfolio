@@ -85,7 +85,7 @@ export default function Forgot(props) {
         <title>Forgot Password | Trevor's Portfolio</title>
       </Helmet>
 
-      <Navigation public={true} />
+      <Navigation />
       <Container
         component='main'
         maxWidth='sm'

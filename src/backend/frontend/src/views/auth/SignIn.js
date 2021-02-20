@@ -90,7 +90,7 @@ export default function SignIn(props) {
         <title>Sign In | Trevor's Portfolio</title>
       </Helmet>
 
-      <Navigation public={true} />
+      <Navigation />
       <Container
         component='main'
         maxWidth='sm'
