@@ -10,9 +10,6 @@ router.post('/signup', authCon.signUp);
 /* POST sign in page. */
 router.post('/signin', authCon.signIn);
 
-/* POST sign out page. */
-router.post('/signout', authCon.signOut);
-
 /* POST forgot page. */
 router.post('/forgot', authCon.forgot);
 

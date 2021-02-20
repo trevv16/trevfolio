@@ -54,9 +54,6 @@ module.exports = {
       next(err);
     }
   },
-  signOut: async (req, res, next) => {
-    res.send('Sign Out');
-  },
   forgot: async (req, res, next) => {
     const { email } = req.body;
 
