@@ -70,7 +70,7 @@ function ComingSoon() {
     validate,
     onSubmit: (values) => {
       api
-        .post('v1/inquiries', values)
+        .post('v1/subscribers', values)
         .then((response) => {
           formik.resetForm();
           setMsgStatus(true);
