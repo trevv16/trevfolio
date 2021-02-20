@@ -147,12 +147,12 @@ export default function SignIn(props) {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Link href='/forgot' variant='body2'>
                   Forgot password?
                 </Link>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Link href='/signup' variant='body2'>
                   {"Don't have an account? Sign Up"}
                 </Link>

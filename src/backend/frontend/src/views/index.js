@@ -9,3 +9,7 @@ export { default as SignUp } from '../views/auth/SignUp';
 export { default as SignIn } from '../views/auth/SignIn';
 export { default as Forgot } from '../views/auth/Forgot';
 export { default as Reset } from '../views/auth/Reset';
+
+// Admin Pages
+
+export { default as Dashboard } from '../views/admin/Dashboard';
