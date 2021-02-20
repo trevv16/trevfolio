@@ -63,7 +63,7 @@ userSchema.pre('save', async function (next) {
 });
 
 async function hashing(pwd) {
-  const salt = await bcrypt.genSalt(process.env.BCRYPT_SALT);
+  const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(pwd, salt);
 }
 
