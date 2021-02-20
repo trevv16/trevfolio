@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // Middlewares
-const { checkAuth } = require('../middlewares/authControl');
+const { protect } = require('../middlewares/auth');
 
 // Controllers
 const userCon = require('../controllers/userController');
@@ -18,74 +18,74 @@ const mailingListCon = require('../controllers/mailingListController');
 const inquiryCon = require('../controllers/inquiryController');
 const subscriberCon = require('../controllers/subscriberController');
 
-router.get('/users', checkAuth, userCon.getAll);
-router.get('/users/:userID', checkAuth, userCon.getById);
-router.post('/users', checkAuth, userCon.create);
-router.put('/users/:userID', checkAuth, userCon.update);
-router.delete('/users/:userID', checkAuth, userCon.remove);
+router.get('/users', protect, userCon.getAll);
+router.get('/users/:userID', protect, userCon.getById);
+router.post('/users', protect, userCon.create);
+router.put('/users/:userID', protect, userCon.update);
+router.delete('/users/:userID', protect, userCon.remove);
 
-router.get('/projects', checkAuth, projectCon.getAll);
-router.get('/projects/:projectID', checkAuth, projectCon.getById);
-router.post('/projects', checkAuth, projectCon.create);
-router.put('/projects/:projectID', checkAuth, projectCon.update);
-router.delete('/projects/:projectID', checkAuth, projectCon.remove);
+router.get('/projects', protect, projectCon.getAll);
+router.get('/projects/:projectID', protect, projectCon.getById);
+router.post('/projects', protect, projectCon.create);
+router.put('/projects/:projectID', protect, projectCon.update);
+router.delete('/projects/:projectID', protect, projectCon.remove);
 
-router.get('/galleries', checkAuth, galleryCon.getAll);
-router.get('/galleries/:galleryID', checkAuth, galleryCon.getById);
-router.post('/galleries', checkAuth, galleryCon.create);
-router.put('/galleries/:galleryID', checkAuth, galleryCon.update);
-router.delete('/galleries/:galleryID', checkAuth, galleryCon.remove);
+router.get('/galleries', protect, galleryCon.getAll);
+router.get('/galleries/:galleryID', protect, galleryCon.getById);
+router.post('/galleries', protect, galleryCon.create);
+router.put('/galleries/:galleryID', protect, galleryCon.update);
+router.delete('/galleries/:galleryID', protect, galleryCon.remove);
 
-router.get('/skills', checkAuth, skillCon.getAll);
-router.get('/skills/:skillID', checkAuth, skillCon.getById);
-router.post('/skills', checkAuth, skillCon.create);
-router.put('/skills/:skillID', checkAuth, skillCon.update);
-router.delete('/skills/:skillID', checkAuth, skillCon.remove);
+router.get('/skills', protect, skillCon.getAll);
+router.get('/skills/:skillID', protect, skillCon.getById);
+router.post('/skills', protect, skillCon.create);
+router.put('/skills/:skillID', protect, skillCon.update);
+router.delete('/skills/:skillID', protect, skillCon.remove);
 
-router.get('/resumes', checkAuth, resumeCon.getAll);
-router.get('/resumes/:resumeID', checkAuth, resumeCon.getById);
-router.post('/resumes', checkAuth, resumeCon.create);
-router.put('/resumes/:resumeID', checkAuth, resumeCon.update);
-router.delete('/resumes/:resumeID', checkAuth, resumeCon.remove);
+router.get('/resumes', protect, resumeCon.getAll);
+router.get('/resumes/:resumeID', protect, resumeCon.getById);
+router.post('/resumes', protect, resumeCon.create);
+router.put('/resumes/:resumeID', protect, resumeCon.update);
+router.delete('/resumes/:resumeID', protect, resumeCon.remove);
 
-router.get('/blogs', checkAuth, blogCon.getAll);
-router.get('/blogs/:blogID', checkAuth, blogCon.getById);
-router.post('/blogs', checkAuth, blogCon.create);
-router.put('/blogs/:blogID', checkAuth, blogCon.update);
-router.delete('/blogs/:blogID', checkAuth, blogCon.remove);
+router.get('/blogs', protect, blogCon.getAll);
+router.get('/blogs/:blogID', protect, blogCon.getById);
+router.post('/blogs', protect, blogCon.create);
+router.put('/blogs/:blogID', protect, blogCon.update);
+router.delete('/blogs/:blogID', protect, blogCon.remove);
 
-router.get('/posts', checkAuth, postCon.getAll);
-router.get('/posts/:postID', checkAuth, postCon.getById);
-router.post('/posts', checkAuth, postCon.create);
-router.put('/posts/:postID', checkAuth, postCon.update);
-router.delete('/posts/:postID', checkAuth, postCon.remove);
+router.get('/posts', protect, postCon.getAll);
+router.get('/posts/:postID', protect, postCon.getById);
+router.post('/posts', protect, postCon.create);
+router.put('/posts/:postID', protect, postCon.update);
+router.delete('/posts/:postID', protect, postCon.remove);
 
-router.get('/mailing_lists', checkAuth, mailingListCon.getAll);
-router.get('/mailing_lists/:mailingListID', checkAuth, mailingListCon.getById);
-router.post('/mailing_lists', checkAuth, mailingListCon.create);
-router.put('/mailing_lists/:mailingListID', checkAuth, mailingListCon.update);
+router.get('/mailing_lists', protect, mailingListCon.getAll);
+router.get('/mailing_lists/:mailingListID', protect, mailingListCon.getById);
+router.post('/mailing_lists', protect, mailingListCon.create);
+router.put('/mailing_lists/:mailingListID', protect, mailingListCon.update);
 router.delete(
   '/mailing_lists/:mailingListID',
-  checkAuth,
+  protect,
   mailingListCon.remove
 );
 
-router.get('/emails', checkAuth, emailCon.getAll);
-router.get('/emails/:emailID', checkAuth, emailCon.getById);
-router.post('/emails', checkAuth, emailCon.create);
-router.put('/emails/:emailID', checkAuth, emailCon.update);
-router.delete('/emails/:emailID', checkAuth, emailCon.remove);
+router.get('/emails', protect, emailCon.getAll);
+router.get('/emails/:emailID', protect, emailCon.getById);
+router.post('/emails', protect, emailCon.create);
+router.put('/emails/:emailID', protect, emailCon.update);
+router.delete('/emails/:emailID', protect, emailCon.remove);
 
-router.get('/inquiries', checkAuth, inquiryCon.getAll);
-router.get('/inquiries/:inquiryID', checkAuth, inquiryCon.getById);
+router.get('/inquiries', protect, inquiryCon.getAll);
+router.get('/inquiries/:inquiryID', protect, inquiryCon.getById);
 router.post('/inquiries', inquiryCon.create);
-router.put('/inquiries/:inquiryID', checkAuth, inquiryCon.update);
-router.delete('/inquiries/:inquiryID', checkAuth, inquiryCon.remove);
+router.put('/inquiries/:inquiryID', protect, inquiryCon.update);
+router.delete('/inquiries/:inquiryID', protect, inquiryCon.remove);
 
-router.get('/subscribers', checkAuth, subscriberCon.getAll);
-router.get('/subscribers/:subscriberID', checkAuth, subscriberCon.getById);
+router.get('/subscribers', protect, subscriberCon.getAll);
+router.get('/subscribers/:subscriberID', protect, subscriberCon.getById);
 router.post('/subscribers', subscriberCon.create);
-router.put('/subscribers/:subscriberID', checkAuth, subscriberCon.update);
-router.delete('/subscribers/:subscriberID', checkAuth, subscriberCon.remove);
+router.put('/subscribers/:subscriberID', protect, subscriberCon.update);
+router.delete('/subscribers/:subscriberID', protect, subscriberCon.remove);
 
 module.exports = router;

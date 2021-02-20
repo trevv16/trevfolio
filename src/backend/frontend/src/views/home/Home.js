@@ -5,7 +5,6 @@ import {
   Introduction,
   Jumbotron,
   MainSkills,
-  ProjectHighlight,
   MailingList,
   Navigation,
   Footer
@@ -20,30 +19,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   }
 }));
-
-const projectData = [
-  {
-    _id: '1',
-    title: 'Calculator',
-    description: 'This is a website showing some basic js and design skills.',
-    thumbnail: 'https://source.unsplash.com/random/550x500',
-    published: 'Apr 30 2019'
-  },
-  {
-    _id: '2',
-    title: 'Clock',
-    description: 'This is a website showing some basic js and design skills.',
-    thumbnail: 'https://source.unsplash.com/random/550x500',
-    published: 'May 04 2019'
-  },
-  {
-    _id: '3',
-    title: 'Weather',
-    description: 'This is a website showing some basic js and design skills.',
-    thumbnail: 'https://source.unsplash.com/random/550x500',
-    published: 'Sep 01 2019'
-  }
-];
 
 function Home() {
   const classes = useStyles();
@@ -61,9 +36,6 @@ function Home() {
         </Grid>
         <Grid item xs={12}>
           <MainSkills />
-        </Grid>
-        <Grid item xs={12}>
-          {/* <ProjectHighlight projects={projectData} /> */}
         </Grid>
       </Grid>
       <MailingList />

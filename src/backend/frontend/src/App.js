@@ -1,15 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+// Home,
+// About,
+// Resume,
+// Contact,
+// ProjectDetail,
+// Project,
+
 import {
-  Home,
-  About,
-  Resume,
-  Contact,
-  ProjectDetail,
-  Project,
-  ComingSoon
+  SignUp,
+  SignIn,
+  Forgot,
+  Reset,
+  ComingSoon,
+  Dashboard
 } from './views/index';
+import AuthRoute from './AuthRoute';
 
 function App() {
   return (
@@ -27,10 +34,10 @@ function App() {
           {/*<Route exact path='/projects?skill=' component={Project} />
           <Route path='/skills' component={SkillList} /> */}
 
-          {/* <Route exact path='/signup' component={Project} />
-          <Route exact path='/signin' component={Project} />
-          <Route exact path='/forgot' component={Project} />
-          <Route exact path='/reset' component={Project} /> */}
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/signin' component={SignIn} />
+          <Route exact path='/forgot' component={Forgot} />
+          <Route exact path='/resetpassword/:resetToken' component={Reset} />
 
           {/* <Route exact path='/blogs' component={Project} />
           <Route exact path='/blogs?' component={Project} />
@@ -39,8 +46,8 @@ function App() {
           <Route exact path='/blogs/blogID/posts/postID' component={Project} /> */}
 
           {/* ADMIN ROUTES */}
-          {/* <Route exact path='/admin' component={Project} />
-          <Route exact path='/admin/settings' component={Project} /> */}
+          <AuthRoute exact path='/admin' component={Dashboard} />
+          {/* <Route exact path='/admin/settings' component={Project} /> */}
 
           {/* <Route exact path='/admin/blogs' component={Project} />
           <Route exact path='/admin/blogs/blogID' component={Project} />

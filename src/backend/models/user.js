@@ -1,6 +1,8 @@
+const crypto = require('crypto');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const timestamps = require('mongoose-timestamp');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -24,7 +26,14 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Provide a password']
+    required: [true, 'Provide a password'],
+    select: false
+  },
+  resetPasswordToken: {
+    type: String
+  },
+  resetPasswordExpire: {
+    type: Date
   },
   social_links: [
     {
@@ -44,103 +53,45 @@ const userSchema = new mongoose.Schema({
   ]
 });
 
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+
+  this.password = await hashing(this.password);
+  next();
+});
+
+async function hashing(pwd) {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(pwd, salt);
+}
+
+userSchema.methods.comparePasswords = async function (pwd) {
+  return await bcrypt.compare(pwd, this.password);
+};
+
+userSchema.methods.getSignedToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRE
+  });
+};
+
+userSchema.methods.getResetPasswordToken = function () {
+  const resetToken = crypto.randomBytes(20).toString('hex');
+
+  this.resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
+
+  return resetToken;
+};
+
 userSchema.plugin(timestamps);
 
 const User = mongoose.model('User', userSchema, 'users');
-
-/**
- ******************* Defined Functions
- */
-
-/**
- *
- * @param {String} email raw value in MongoDB `email`
- * @return {String} privateEmail format -- '**@gmail.com'
- */
-async function obfuscate(email) {
-  const separatorIndex = email.indexOf('@');
-  if (separatorIndex < 3) {
-    // 'ab@gmail.com' -> '**@gmail.com'
-    return (
-      email.slice(0, separatorIndex).replace(/./g, '*') +
-      email.slice(separatorIndex)
-    );
-  }
-  // 'test42@gmail.com' -> 'te****@gmail.com'
-  return (
-    email.slice(0, 2) +
-    email.slice(2, separatorIndex).replace(/./g, '*') +
-    email.slice(separatorIndex)
-  );
-}
-
-/**
- ******************* Virtuals
- */
-
-/**
- * Virtual for user's full name
- */
-userSchema
-  .virtual('name')
-  .get(function () {
-    // To avoid errors in cases where an author does not have either a last name or first name
-    // We want to make sure we handle the exception by returning an empty string for that case
-    return this.first_name && this.last_name
-      ? `${this.first_name} ${this.last_name}`
-      : '';
-  })
-  .set(function (v) {
-    // `v` is the value being set, so use the value to set
-    // `firstName` and `lastName`.
-    const first_name = v.substring(0, v.indexOf(' '));
-    const last_name = v.substring(v.indexOf(' ') + 1);
-    this.set({ first_name, last_name });
-  });
-
-/**
- ******************* Methods
- */
-userSchema.methods = {
-  /**
-   * Called when checking if user input matches
-   * their current saved password
-   * @param  {String} inputPassword
-   */
-  checkPassword: async (inputPassword) => {
-    return bcrypt.compareSync(inputPassword, this.password);
-  },
-  /**
-   * Called when first saving users password to the db
-   * @param  {String} plainTextPassword
-   */
-  hashPassword: async (plainTextPassword) => {
-    return bcrypt.hashSync(plainTextPassword, 10);
-  },
-  /**
-   * @returns  {String} email from MongoDB
-   */
-  privateEmail: async () => {
-    return obfuscate(this.email);
-  }
-};
-
-/**
- ******************* Hooks
- */
-
-/**
- *
- * @param  {function} next
- */
-userSchema.pre('save', (next) => {
-  if (!this.password) {
-    console.error('User: No password provided');
-    next();
-  } else {
-    this.password = this.hashPassword(this.password);
-    next();
-  }
-});
 
 module.exports = User;

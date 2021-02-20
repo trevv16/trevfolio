@@ -11,7 +11,7 @@ import {
 import { Alert } from '@material-ui/lab';
 import { useFormik } from 'formik';
 import api from '../../utils/api';
-import { MailingList, Navigation, Footer } from '../../components/index';
+import { Footer } from '../../components/index';
 import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +70,7 @@ function ComingSoon() {
     validate,
     onSubmit: (values) => {
       api
-        .post('v1/inquiries', values)
+        .post('v1/subscribers', values)
         .then((response) => {
           formik.resetForm();
           setMsgStatus(true);
