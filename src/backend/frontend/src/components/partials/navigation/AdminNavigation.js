@@ -5,13 +5,10 @@ import {
   CssBaseline,
   Link,
   Toolbar,
-  useScrollTrigger,
-  Slide,
   makeStyles,
   useTheme,
   Drawer,
-  List,
-  Typography
+  List
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -101,17 +98,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3)
   }
 }));
-
-function HideOnScroll(props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({ target: window ? window() : undefined });
-
-  return (
-    <Slide appear={false} direction='down' in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
 
 function AdminNavigation(props) {
   const classes = useStyles();

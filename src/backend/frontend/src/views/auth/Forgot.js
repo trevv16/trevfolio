@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
   CssBaseline,
@@ -69,7 +68,7 @@ export default function Forgot(props) {
       setEmail('');
     } catch (err) {
       console.log(err);
-      setError(error.response.data.error);
+      setError(err.response.data.error);
       setEmail('');
       setTimeout(() => {
         setError('');

@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  Grid,
-  Typography,
-  makeStyles,
-  CircularProgress
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import {
   AdminNavigation,
   AdminFooter,
-  AdminSidebar,
   AdminMainPage,
   AdminTable
 } from '../../../components/index';
