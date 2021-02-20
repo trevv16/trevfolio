@@ -13,6 +13,12 @@ module.exports = {
     res.setHeader('Content-Type', 'application/json');
     res.send(result);
   },
+  getBlogPosts: async (req, res, next) => {
+    const blogID = req.params.blogID;
+    const result = await dbService.findPopulate(Blog, { _id: blogID }, 'posts');
+    res.setHeader('Content-Type', 'application/json');
+    res.send(result);
+  },
   getById: async (req, res, next) => {
     const blogID = req.params.blogID;
     const result = await dbService.find(Blog, { _id: blogID });
