@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import clsx from 'clsx';
 import {
   AppBar,
@@ -8,7 +9,9 @@ import {
   makeStyles,
   useTheme,
   Drawer,
-  List
+  List,
+  Menu,
+  MenuItem
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -27,6 +30,7 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import ForumIcon from '@material-ui/icons/Forum';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import Auth from '../../../Auth';
 
 const drawerWidth = 240;
 
@@ -103,6 +107,12 @@ function AdminNavigation(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [authEl, setAuthEl] = useState(null);
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    setIsAuth(Auth.isUserAuthenticated());
+  }, []);
 
   const navText = [
     'Blogs',
@@ -129,6 +139,19 @@ function AdminNavigation(props) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleClick = (event) => {
+    setAuthEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAuthEl(null);
+  };
+
+  const signOutHandler = () => {
+    Auth.deauthenticateUser();
+    return <Redirect to='/signin' />;
   };
 
   return (
@@ -171,9 +194,35 @@ function AdminNavigation(props) {
           >
             Dashboard
           </Link>
-          <Link component='a' href='#' variant='h6' className={classes.link}>
+          <Link
+            component='a'
+            href='#'
+            variant='h6'
+            className={classes.link}
+            aria-controls='auth-menu'
+            aria-haspopup='true'
+            onClick={handleClick}
+          >
             Account
           </Link>
+          <Menu
+            id='auth-menu'
+            anchorEl={authEl}
+            keepMounted
+            open={Boolean(authEl)}
+            onClose={handleClose}
+          >
+            <Link href='/profile'>
+              <MenuItem onClick={handleClose} className={classes.menuItem}>
+                Profile
+              </MenuItem>
+            </Link>
+            <Link href='#'>
+              <MenuItem onClick={signOutHandler} className={classes.menuItem}>
+                Sign Out
+              </MenuItem>
+            </Link>
+          </Menu>
         </Toolbar>
       </AppBar>
       <Drawer
