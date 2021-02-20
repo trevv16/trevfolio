@@ -6,13 +6,11 @@ const subscriberSchema = new mongoose.Schema({
   first_name: {
     type: String,
     minlength: 1,
-    required: [true, 'Provide a first name'],
     trim: true
   },
   last_name: {
     type: String,
     minlength: 1,
-    required: [true, 'Provide a last name'],
     trim: true
   },
   email: {
@@ -23,7 +21,6 @@ const subscriberSchema = new mongoose.Schema({
   },
   main_newsletter: {
     type: Boolean,
-    required: true,
     default: true
   },
   subscribed_to: [

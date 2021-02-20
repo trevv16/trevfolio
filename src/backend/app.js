@@ -7,24 +7,19 @@ const logger = require('morgan');
 require('dotenv').config();
 const flash = require('express-flash');
 const session = require('express-session');
-const passport = require('passport');
 const cors = require('cors');
+const MongoStore = require('connect-mongo')(session);
+const errorHandler = require("./middlewares/error");
 
 // Configs
 const mongoConfig = require('./config/db_config');
-const passConfig = require('./config/passport_config');
-
-const app = express();
-
-// Services
-const dbService = require('./services/dbService');
 
 // Routes
 const authRouter = require('./routes/auth');
 const v1_apiRouter = require('./routes/api_v1');
 const v1_adminRouter = require('./routes/admin_v1');
 
-const MongoStore = require('connect-mongo')(session);
+const app = express();
 
 if (process.env.NODE_ENV !== 'production') {
   mongoConfig.initializeMongo(
@@ -41,12 +36,6 @@ if (process.env.NODE_ENV !== 'production') {
     process.env.MONGO_PROD_DB_NAME
   );
 }
-
-passConfig.initializePassport(
-  passport,
-  (email) => dbService.getUserByEmail(email),
-  (id) => dbService.getUserById(id)
-);
 
 app.use(cors());
 app.use(logger('dev'));
@@ -65,13 +54,11 @@ app.use(
   })
 );
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
 // Set Routes
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/v1', v1_apiRouter);
 app.use('/admin/v1', v1_adminRouter);
 
@@ -81,20 +68,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404)); // eslint-disable-line no-undef
-});
-
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.send(err);
-});
+// Should be last
+app.use(errorHandler);
 
 module.exports = app;

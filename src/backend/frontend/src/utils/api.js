@@ -1,9 +1,10 @@
 import axios from 'axios';
+import Auth from '../Auth';
 
 const API = `${process.env.REACT_APP_BACKEND_HOST}`;
 
 function headers() {
-  const token = localStorage.getItem('token');
+  const token = Auth.getToken();
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',

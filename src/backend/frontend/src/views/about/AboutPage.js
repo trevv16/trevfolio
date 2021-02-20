@@ -34,21 +34,21 @@ function About() {
       src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_01.png`,
       description: 'With maasai village'
     },
-    {
-      name: 'about_gal_02',
-      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_02.png`,
-      description: 'With friends in Kenya'
-    },
+    // {
+    //   name: 'about_gal_02',
+    //   src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_02.png`,
+    //   description: 'With friends in Kenya'
+    // },
     {
       name: 'about_gal_03',
       src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_03.png`,
       description: 'Raleigh'
-    },
-    {
-      name: 'about_gal_04',
-      src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_04.png`,
-      description: 'Tyler Perry Studios, Atlanta, GA'
     }
+    // {
+    //   name: 'about_gal_04',
+    //   src: `https://trevfolio-pub.s3.us-east-2.amazonaws.com/pages/about/gallery/about_gal_04.png`,
+    //   description: 'Tyler Perry Studios, Atlanta, GA'
+    // }
   ];
 
   return (
