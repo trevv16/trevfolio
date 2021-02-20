@@ -81,19 +81,7 @@ function Introduction() {
           <Link href='/skill?skill=mongodb' color='secondary'>
             MongoDB
           </Link>
-          . It is unit tested with{' '}
-          <Link href='/skill?skill=jest' color='secondary'>
-            Jest
-          </Link>
-          , deployed with{' '}
-          <Link href='/skill?skill=docker' color='secondary'>
-            Docker
-          </Link>
-          , and{' '}
-          <Link href='/skill?skill=github_actions' color='secondary'>
-            Github Actions
-          </Link>{' '}
-          to{' '}
+          . Deployed to{' '}
           <Link href='/skill?skill=aws_ec2' color='secondary'>
             AWS.
           </Link>{' '}
@@ -110,7 +98,7 @@ function Introduction() {
         </Typography> */}
 
         <Box className={classes.options}>
-          <Box className={classes.introOption}>
+          {/* <Box className={classes.introOption}>
             <Button
               variant='outlined'
               color='secondary'
@@ -121,13 +109,13 @@ function Introduction() {
             >
               View Design Projects
             </Button>
-          </Box>
+          </Box> */}
           <Box className={classes.introOption}>
             <Button
               variant='outlined'
               color='secondary'
               size='large'
-              href='#'
+              href='/projects'
               className={classes.skillButton}
               endIcon={<CodeIcon />}
             >

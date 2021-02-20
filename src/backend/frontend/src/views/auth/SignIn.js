@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
   CssBaseline,
@@ -55,7 +54,7 @@ export default function SignIn(props) {
     if (Auth.getToken()) {
       props.history.push('/');
     }
-  }, []);
+  }, [props.history]);
 
   const signInHandler = async (e) => {
     e.preventDefault();

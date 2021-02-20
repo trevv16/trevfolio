@@ -24,7 +24,7 @@ router.post('/users', protect, userCon.create);
 router.put('/users/:userID', protect, userCon.update);
 router.delete('/users/:userID', protect, userCon.remove);
 
-router.get('/projects', protect, projectCon.getAll);
+router.get('/projects', projectCon.getAll);
 router.get('/projects/:projectID', protect, projectCon.getById);
 router.post('/projects', protect, projectCon.create);
 router.put('/projects/:projectID', protect, projectCon.update);
@@ -36,7 +36,7 @@ router.post('/galleries', protect, galleryCon.create);
 router.put('/galleries/:galleryID', protect, galleryCon.update);
 router.delete('/galleries/:galleryID', protect, galleryCon.remove);
 
-router.get('/skills', protect, skillCon.getAll);
+router.get('/skills', skillCon.getAll);
 router.get('/skills/:skillID', protect, skillCon.getById);
 router.post('/skills', protect, skillCon.create);
 router.put('/skills/:skillID', protect, skillCon.update);
@@ -50,6 +50,7 @@ router.delete('/resumes/:resumeID', protect, resumeCon.remove);
 
 router.get('/blogs', protect, blogCon.getAll);
 router.get('/blogs/:blogID', protect, blogCon.getById);
+router.get('/blogs/:blogID/posts', protect, blogCon.getBlogPosts);
 router.post('/blogs', protect, blogCon.create);
 router.put('/blogs/:blogID', protect, blogCon.update);
 router.delete('/blogs/:blogID', protect, blogCon.remove);
@@ -64,11 +65,7 @@ router.get('/mailing_lists', protect, mailingListCon.getAll);
 router.get('/mailing_lists/:mailingListID', protect, mailingListCon.getById);
 router.post('/mailing_lists', protect, mailingListCon.create);
 router.put('/mailing_lists/:mailingListID', protect, mailingListCon.update);
-router.delete(
-  '/mailing_lists/:mailingListID',
-  protect,
-  mailingListCon.remove
-);
+router.delete('/mailing_lists/:mailingListID', protect, mailingListCon.remove);
 
 router.get('/emails', protect, emailCon.getAll);
 router.get('/emails/:emailID', protect, emailCon.getById);

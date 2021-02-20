@@ -1,20 +1,37 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-// Home,
-// About,
-// Resume,
-// Contact,
-// ProjectDetail,
-// Project,
-
 import {
   SignUp,
   SignIn,
   Forgot,
   Reset,
   ComingSoon,
-  Dashboard
+  Dashboard,
+  HomePage,
+  AboutPage,
+  ResumePage,
+  ContactPage,
+  ProjectDetailPage,
+  ProjectPage,
+  DashboardPage,
+  SettingsPage,
+  AdminBlogPage,
+  AdminBlogDetailPage,
+  AdminBlogPostPage,
+  AdminCreateBlogPostPage,
+  AdminProjectPage,
+  AdminProjectDetailPage,
+  AdminResumePage,
+  AdminResumeDetailPage,
+  AdminSkillPage,
+  AdminSkillDetailPage,
+  AdminGalleryPage,
+  AdminGalleryDetailPage,
+  AdminMessagePage,
+  AdminMessageDetailPage,
+  AdminMailingListPage,
+  AdminMailingListDetailPage
 } from './views/index';
 import AuthRoute from './AuthRoute';
 
@@ -24,17 +41,16 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={ComingSoon} />
-          {/* <Route exact path='/' component={Home} />
-          <Route exact path='/about' component={About} />
-          <Route exact path='/resume' component={Resume} />
-          <Route exact path='/contact' component={Contact} />
-          <Route exact path='/projects' component={Project} />
-          <Route exact path='/projects/:id' component={ProjectDetail} /> */}
-
+          <Route exact path='/home' component={HomePage} />
+          <Route exact path='/about' component={AboutPage} />
+          <Route exact path='/resume' component={ResumePage} />
+          <Route exact path='/contact' component={ContactPage} />
+          <Route exact path='/projects' component={ProjectPage} />
+          <Route exact path='/projects/:id' component={ProjectDetailPage} />
           {/*<Route exact path='/projects?skill=' component={Project} />
           <Route path='/skills' component={SkillList} /> */}
 
-          <Route exact path='/signup' component={SignUp} />
+          {/* <Route exact path='/signup' component={SignUp} /> */}
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/forgot' component={Forgot} />
           <Route exact path='/resetpassword/:resetToken' component={Reset} />
@@ -46,38 +62,107 @@ function App() {
           <Route exact path='/blogs/blogID/posts/postID' component={Project} /> */}
 
           {/* ADMIN ROUTES */}
-          <AuthRoute exact path='/admin' component={Dashboard} />
-          {/* <Route exact path='/admin/settings' component={Project} /> */}
+          <AuthRoute exact path='/admin' component={DashboardPage} />
+          <AuthRoute exact path='/admin/settings' component={SettingsPage} />
 
-          {/* <Route exact path='/admin/blogs' component={Project} />
-          <Route exact path='/admin/blogs/blogID' component={Project} />
-          <Route exact path='/admin/blogs/blogID/edit' component={Project} />
-          <Route exact path='/admin/blogs/blogID/posts' component={Project} />
-          <Route exact path='/admin/blogs/blogID/posts/postID' component={Project} />
-          <Route exact path='/admin/blogs/blogID/posts/postID/edit' component={Project} /> */}
+          <AuthRoute exact path='/admin/blogs' component={AdminBlogPage} />
+          <AuthRoute
+            exact
+            path='/admin/blogs/:blogID'
+            component={AdminBlogDetailPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/blogs/:blogID/posts/:postID'
+            component={AdminBlogPostPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/blogs/posts/create'
+            component={AdminCreateBlogPostPage}
+          />
 
-          {/* <Route exact path='/admin/projects' component={Project} />
-          <Route exact path='/admin/projects/projectID' component={Project} />
-          <Route exact path='/admin/projects/projectID/edit' component={Project} /> */}
+          <AuthRoute exact path='/admin/resumes' component={AdminResumePage} />
+          <AuthRoute
+            exact
+            path='/admin/resumes/:resumeID'
+            component={AdminResumeDetailPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/resumes/:resumeID/create'
+            component={AdminResumeDetailPage}
+          />
 
-          {/* <Route exact path='/admin/mailing_lists' component={Project} />
-          <Route exact path='/admin/mailing_lists/listID' component={Project} />
-          <Route exact path='/admin/mailing_lists/listID/sent' component={Project} />
-          <Route exact path='/admin/mailing_lists/listID/sent/sentID' component={Project} />
-          <Route exact path='/admin/mailing_lists/listID/drafts' component={Project} />
-          <Route exact path='/admin/mailing_lists/listID/drafts/draftID' component={Project} /> */}
+          <AuthRoute
+            exact
+            path='/admin/projects'
+            component={AdminProjectPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/projects/:projectID'
+            component={AdminProjectDetailPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/projects/:projectID/create'
+            component={AdminProjectDetailPage}
+          />
 
-          {/* <Route exact path='/admin/messages' component={Project} />
-          <Route exact path='/admin/messages/messageID' component={Project} />
-          <Route exact path='/admin/messages/messageID/draft' component={Project} /> */}
+          <AuthRoute exact path='/admin/skills' component={AdminSkillPage} />
+          <AuthRoute
+            exact
+            path='/admin/skills/:skillID'
+            component={AdminSkillDetailPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/skills/:skillID/create'
+            component={AdminSkillDetailPage}
+          />
 
-          {/* <Route exact path='/admin/skills' component={Project} />
-          <Route exact path='/admin/skills/skillID' component={Project} />
-          <Route exact path='/admin/skills/skillID/edit' component={Project} /> */}
+          <AuthRoute
+            exact
+            path='/admin/galleries'
+            component={AdminGalleryPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/galleries/:blogID'
+            component={AdminGalleryDetailPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/galleries/create'
+            component={AdminGalleryDetailPage}
+          />
 
-          {/* <Route exact path='/admin/pages' component={Project} />
-          <Route exact path='/admin/pages/pageID' component={Project} />
-          <Route exact path='/admin/pages/pageID/edit' component={Project} /> */}
+          <AuthRoute
+            exact
+            path='/admin/messages'
+            component={AdminMessagePage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/messages/:messageID'
+            component={AdminMessageDetailPage}
+          />
+
+          <AuthRoute
+            exact
+            path='/admin/mailing_lists'
+            component={AdminMailingListPage}
+          />
+          <AuthRoute
+            exact
+            path='/admin/mailing_lists/:listID'
+            component={AdminMailingListDetailPage}
+          />
+
+          {/* <AuthRoute exact path='/admin/pages' component={Project} />
+          <AuthRoute exact path='/admin/pages/pageID' component={Project} />
+          <AuthRoute exact path='/admin/pages/pageID/edit' component={Project} /> */}
         </Switch>
       </Router>
     </div>

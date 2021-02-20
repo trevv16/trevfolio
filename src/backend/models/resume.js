@@ -94,6 +94,13 @@ const resumeSchema = new mongoose.Schema({
         required: [true, 'Provide a company name for work history'],
         trim: true
       },
+      location: {
+        type: String,
+        minlength: 1,
+        maxlength: 160,
+        required: [true, 'Provide a company location for work history'],
+        trim: true
+      },
       history: [
         {
           title: {

@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Reset(props) {
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const classes = useStyles();
@@ -82,7 +81,6 @@ export default function Reset(props) {
       setSuccess(data.data);
       props.history.push('/signin');
     } catch (err) {
-      console.log(err);
       setError(err.response.data.error);
       setTimeout(() => {
         setError('');
