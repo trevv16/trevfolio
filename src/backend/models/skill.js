@@ -18,13 +18,7 @@ const skillSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  url: {
-    type: String,
-    required: true,
-    trim: true
-  },
   projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
-  recent_proj: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
   published: {
     type: Boolean,
     required: true
