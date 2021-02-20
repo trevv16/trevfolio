@@ -68,7 +68,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-//Should be last
+// Should be last
 app.use(errorHandler);
 
 module.exports = app;
