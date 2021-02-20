@@ -22,7 +22,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     if (!Auth.getToken()) {
-      return <Redirect to='/' />;
+      props.history.push('/admin');
     }
 
     const fetchPrivateData = async () => {

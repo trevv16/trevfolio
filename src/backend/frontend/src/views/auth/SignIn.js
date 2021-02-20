@@ -53,7 +53,7 @@ export default function SignIn(props) {
 
   useEffect(() => {
     if (Auth.getToken()) {
-      return <Redirect to='/' />;
+      props.history.push('/');
     }
   }, []);
 
@@ -74,7 +74,7 @@ export default function SignIn(props) {
       );
 
       Auth.authenticateUser(data.token);
-      return <Redirect to='/admin' />;
+      props.history.push('/admin');
     } catch (err) {
       setError(err.response.data.error);
       setTimeout(() => {

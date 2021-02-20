@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
   CssBaseline,
@@ -80,7 +79,7 @@ export default function SignUp(props) {
       );
 
       Auth.authenticateUser(data.token);
-      return <Redirect to='/admin' />;
+      props.history.push('/admin');
     } catch (err) {
       setError(err.response.data.error);
       setTimeout(() => {
@@ -112,7 +111,7 @@ export default function SignUp(props) {
           </Typography>
           <form className={classes.form} onSubmit={signUpHandler}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 {error && <span className={classes.errorMsg}>{error}</span>}
               </Grid>
               <Grid item xs={12} sm={6}>
