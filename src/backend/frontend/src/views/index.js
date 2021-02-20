@@ -5,3 +5,7 @@ export { default as Contact } from '../views/contact/Contact';
 export { default as Project } from '../views/projects/Project';
 export { default as ProjectDetail } from '../views/projects/ProjectDetail';
 export { default as ComingSoon } from '../views/landingpages/ComingSoon';
+export { default as SignUp } from '../views/auth/SignUp';
+export { default as SignIn } from '../views/auth/SignIn';
+export { default as Forgot } from '../views/auth/Forgot';
+export { default as Reset } from '../views/auth/Reset';
