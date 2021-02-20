@@ -24,7 +24,7 @@ router.post('/users', protect, userCon.create);
 router.put('/users/:userID', protect, userCon.update);
 router.delete('/users/:userID', protect, userCon.remove);
 
-router.get('/projects', protect, projectCon.getAll);
+router.get('/projects', projectCon.getAll);
 router.get('/projects/:projectID', protect, projectCon.getById);
 router.post('/projects', protect, projectCon.create);
 router.put('/projects/:projectID', protect, projectCon.update);
@@ -36,7 +36,7 @@ router.post('/galleries', protect, galleryCon.create);
 router.put('/galleries/:galleryID', protect, galleryCon.update);
 router.delete('/galleries/:galleryID', protect, galleryCon.remove);
 
-router.get('/skills', protect, skillCon.getAll);
+router.get('/skills', skillCon.getAll);
 router.get('/skills/:skillID', protect, skillCon.getById);
 router.post('/skills', protect, skillCon.create);
 router.put('/skills/:skillID', protect, skillCon.update);
