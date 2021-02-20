@@ -50,7 +50,7 @@ function App() {
           {/*<Route exact path='/projects?skill=' component={Project} />
           <Route path='/skills' component={SkillList} /> */}
 
-          <Route exact path='/signup' component={SignUp} />
+          {/* <Route exact path='/signup' component={SignUp} /> */}
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/forgot' component={Forgot} />
           <Route exact path='/resetpassword/:resetToken' component={Reset} />
