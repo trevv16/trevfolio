@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   resetPasswordToken: {
     type: String
   },
-  resetPassowrdExpire: {
+  resetPasswordExpire: {
     type: Date
   },
   social_links: [
@@ -85,7 +85,7 @@ userSchema.methods.getResetPasswordToken = function () {
     .update(resetToken)
     .digest('hex');
 
-  this.resetPassowrdExpire = Date.now() + 10 * (60 * 1000);
+  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
 
   return resetToken;
 };
