@@ -81,7 +81,6 @@ export default function Reset(props) {
       setSuccess(data.data);
       props.history.push('/signin');
     } catch (err) {
-      console.log(err);
       setError(err.response.data.error);
       setTimeout(() => {
         setError('');

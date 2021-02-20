@@ -45,7 +45,6 @@ function AdminTable(props) {
 
   return (
     <div className={classes.root}>
-      {console.log(props.rows)}
       {props.rows !== [] && (
         <Grid container spacing={1} className={classes.table}>
           <TableContainer component={Paper}>

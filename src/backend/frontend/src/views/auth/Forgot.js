@@ -67,7 +67,6 @@ export default function Forgot(props) {
       setSuccess(data.data);
       setEmail('');
     } catch (err) {
-      console.log(err);
       setError(err.response.data.error);
       setEmail('');
       setTimeout(() => {
