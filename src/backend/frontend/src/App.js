@@ -1,18 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+// Home,
+// About,
+// Resume,
+// Contact,
+// ProjectDetail,
+// Project,
+
 import {
-  Home,
-  About,
-  Resume,
-  Contact,
-  ProjectDetail,
   SignUp,
   SignIn,
   Forgot,
   Reset,
-  Project,
-  ComingSoon
+  ComingSoon,
+  Dashboard
 } from './views/index';
 import AuthRoute from './AuthRoute';
 
@@ -44,7 +46,7 @@ function App() {
           <Route exact path='/blogs/blogID/posts/postID' component={Project} /> */}
 
           {/* ADMIN ROUTES */}
-          <AuthRoute exact path='/admin' component={Project} />
+          <AuthRoute exact path='/admin' component={Dashboard} />
           {/* <Route exact path='/admin/settings' component={Project} /> */}
 
           {/* <Route exact path='/admin/blogs' component={Project} />
