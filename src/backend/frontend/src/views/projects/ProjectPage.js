@@ -27,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  gridRoot: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: theme.spacing(3, 0),
+    width: '100%'
   }
 }));
 
@@ -91,7 +98,7 @@ export default function Project(props) {
             Projects
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid container className={classes.gridRoot} spacing={8}>
           {isBusy ? <Loading /> : <ProjectGrid />}
         </Grid>
       </Grid>
