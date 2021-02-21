@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    backgroundColor: theme.palette.gray.dark
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -179,7 +180,7 @@ function AdminNavigation(props) {
             component='a'
             href='/'
             variant='h4'
-            color='secondary'
+            color='primary'
             className={classes.headline}
             underline='hover'
           >
