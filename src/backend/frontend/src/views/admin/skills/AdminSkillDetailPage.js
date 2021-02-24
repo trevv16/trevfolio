@@ -14,7 +14,8 @@ import api from '../../../utils/api';
 import {
   AdminNavigation,
   AdminFooter,
-  Toggle
+  Toggle,
+  ResourceSearchBar
 } from '../../../components/index';
 
 const validate = (values) => {
@@ -122,14 +123,6 @@ function AdminSkillDetailPage(props) {
     }
   };
 
-  const handleSave = () => {
-    console.log('Save');
-  };
-
-  const handleSaveDraft = () => {
-    console.log('Save Draft');
-  };
-
   return (
     <div className={classes.root}>
       <Helmet>
@@ -148,7 +141,7 @@ function AdminSkillDetailPage(props) {
             <Grid item xs={12}>
               {msgSuccess && renderStatusAlert(msgSuccess)}
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={6}>
               {formik.errors.name ? <div>{formik.errors.name}</div> : null}
               <TextField
                 id='name'
@@ -163,18 +156,7 @@ function AdminSkillDetailPage(props) {
                 color='secondary'
               />
             </Grid>
-            <Grid item xs={5}>
-              {formik.errors.published ? (
-                <div>{formik.errors.published}</div>
-              ) : null}
-              <Toggle
-                value={formik.values.published}
-                onClick={() =>
-                  props.setFieldValue('published', !formik.values.published)
-                }
-              />
-            </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={6}>
               {formik.errors.thumbnail ? (
                 <div>{formik.errors.thumbnail}</div>
               ) : null}
@@ -191,22 +173,7 @@ function AdminSkillDetailPage(props) {
                 color='secondary'
               />
             </Grid>
-            <Grid item xs={5}>
-              {formik.errors.file ? <div>{formik.errors.file}</div> : null}
-              <TextField
-                id='file'
-                label='Resume File'
-                variant='outlined'
-                name='file'
-                className={classes.emailField}
-                placeholder='Resume File'
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                type='text'
-                color='secondary'
-              />
-            </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={6}>
               {formik.errors.description ? (
                 <div>{formik.errors.description}</div>
               ) : null}
@@ -222,6 +189,20 @@ function AdminSkillDetailPage(props) {
                 onChange={formik.handleChange}
                 type='textarea'
                 color='secondary'
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <ResourceSearchBar api='v1/projects/search' dataKey='title' />
+            </Grid>
+            <Grid item xs={6}>
+              {formik.errors.published ? (
+                <div>{formik.errors.published}</div>
+              ) : null}
+              <Toggle
+                value={formik.values.published}
+                onClick={() =>
+                  props.setFieldValue('published', !formik.values.published)
+                }
               />
             </Grid>
             <Grid item xs={10}>
