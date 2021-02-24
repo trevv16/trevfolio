@@ -72,7 +72,7 @@ function AdminMessagePage() {
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Settings | Portfolio Admin</title>
+        <title>Messages | Portfolio Admin</title>
       </Helmet>
       <AdminNavigation />
       <AdminMainPage

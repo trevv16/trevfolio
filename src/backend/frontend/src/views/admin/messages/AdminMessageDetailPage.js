@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Grid, Typography, makeStyles, Button } from '@material-ui/core';
+import { Grid, Typography, makeStyles, Button, Link } from '@material-ui/core';
 import { AdminNavigation, AdminFooter } from '../../../components/index';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import api from '../../../utils/api';
@@ -48,6 +48,8 @@ function AdminMessageDetailPage(props) {
       });
   }, []);
 
+  const emailLink = message.email ? `mailto:${message.email}` : '#';
+
   return (
     <div className={classes.root}>
       <Helmet>
@@ -74,9 +76,11 @@ function AdminMessageDetailPage(props) {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography align='center' variant='h5' component='h5'>
-            {message.email}
-          </Typography>
+          <Link href={emailLink}>
+            <Typography align='center' variant='h5' component='h5'>
+              {message.email}
+            </Typography>
+          </Link>
         </Grid>
         <Grid item xs={12}>
           <Typography align='center' variant='body1' className={classes.msg}>
