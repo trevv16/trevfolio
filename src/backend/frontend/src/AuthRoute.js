@@ -10,7 +10,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
         return Auth.getToken() ? (
           <Component {...props} />
         ) : (
-          <Redirect to='signin' />
+          <Redirect to='/signin' />
         );
       }}
     />

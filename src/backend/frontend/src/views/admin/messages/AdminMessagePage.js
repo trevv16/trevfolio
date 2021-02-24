@@ -72,15 +72,15 @@ function AdminMessagePage() {
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Settings | Portfolio Admin</title>
+        <title>Messages | Portfolio Admin</title>
       </Helmet>
       <AdminNavigation />
       <AdminMainPage
         title='Messages'
-        primaryTxt='Create New'
-        primaryUrl={'/admin/messages/create'}
-        secondaryTxt={'Drafts'}
-        secondaryUrl={'#'}
+        // primaryTxt='Create New'
+        // primaryUrl={'/admin/messages/create'}
+        // secondaryTxt={'Drafts'}
+        // secondaryUrl={'#'}
         table={<CompiledTable />}
       />
       <AdminFooter />
