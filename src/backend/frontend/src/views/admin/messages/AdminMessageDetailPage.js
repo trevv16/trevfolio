@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Grid, Typography, makeStyles } from '@material-ui/core';
+import { Grid, Typography, makeStyles, Button } from '@material-ui/core';
 import { AdminNavigation, AdminFooter } from '../../../components/index';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import api from '../../../utils/api';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +56,18 @@ function AdminMessageDetailPage(props) {
       </Helmet>
       <AdminNavigation />
       <Grid container spacing={3} className={classes.main}>
+        <Grid item xs={10}>
+          <Button
+            variant='contained'
+            color='primary'
+            size='large'
+            href='/admin/messages'
+            // className={classes.skillButton}
+            startIcon={<ChevronLeftIcon />}
+          >
+            Back
+          </Button>
+        </Grid>
         <Grid item xs={10}>
           <Typography align='center' variant='h3' component='h1'>
             Message from,{message.name}
