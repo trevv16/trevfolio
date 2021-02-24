@@ -1,58 +1,36 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import {
-  Grid,
-  Typography,
-  makeStyles,
-  TextField,
-  Button
-} from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Grid, makeStyles, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import SaveIcon from '@material-ui/icons/Save';
-import { useFormik } from 'formik';
-import api from '../../../utils/api';
-import {
-  AdminNavigation,
-  AdminFooter,
-  Toggle
-} from '../../../components/index';
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.search) {
-    errors.search = 'Required';
-  } else if (values.search.length > 65) {
-    errors.search = 'Must be 65 characters or less';
-  }
-
-  return errors;
-};
+import api from '../../utils/api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    justifyContent: 'center'
+    // marginTop: theme.spacing(18),
+    // marginBottom: theme.spacing(8)
   },
-  main: {
-    justifyContent: 'center',
-    marginTop: theme.spacing(18),
-    marginBottom: theme.spacing(8)
-  }
+  searchField: {}
 }));
 
 function ResourchSearchBar(props) {
   const classes = useStyles();
+  const [search, setSearch] = useState('');
+  const [searchResponse, setSearchResponse] = useState([]);
   const [msgSuccess, setMsgStatus] = useState(false);
-  const formik = useFormik({
-    initialValues: {
-      search: ''
-    },
-    validate,
-    onSubmit: (values) => {
+  const normApi = props.api ? props.api : 'v1/projects/search';
+  const normDataKey = props.dataKey ? props.dataKey : 'title';
+
+  useEffect(() => {
+    const handleSearch = (search) => {
+      let query = {};
+      query[normDataKey] = search;
+
       api
-        .get('/v1/projects', values)
+        .fetch(normApi, query)
         .then((response) => {
-          formik.resetForm();
           setMsgStatus(true);
+          setSearchResponse(response.data);
+          console.log(response);
         })
         .catch((error) => {
           setMsgStatus(false);
@@ -62,48 +40,28 @@ function ResourchSearchBar(props) {
             console.error(error.response.headers);
           }
         });
-    }
-  });
+    };
 
-  const renderStatusAlert = (status) => {
-    if (status) {
-      return (
-        <Alert severity='success'>
-          Successful - Your message was received.
-        </Alert>
-      );
-    } else {
-      return (
-        <Alert severity='success'>
-          Error - There was a problem with your input
-        </Alert>
-      );
-    }
-  };
+    handleSearch(search);
+  }, [search]);
 
   return (
     <div className={classes.root}>
-      <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={2} className={classes.form}>
-          <Grid item xs={12}>
-            {msgSuccess && renderStatusAlert(msgSuccess)}
-          </Grid>
-          <Grid item xs={5}>
-            {formik.errors.search ? <div>{formik.errors.search}</div> : null}
-            <TextField
-              id='search'
-              label='Search'
-              variant='outlined'
-              name='search'
-              className={classes.nameField}
-              value={formik.values.search}
-              onChange={formik.handleChange}
-              type='text'
-              color='secondary'
-            />
-          </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TextField
+            id='search'
+            label='Search'
+            variant='outlined'
+            name='search'
+            className={classes.searchField}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type='text'
+            color='secondary'
+          />
         </Grid>
-      </form>
+      </Grid>
     </div>
   );
 }
