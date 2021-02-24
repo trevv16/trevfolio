@@ -22,9 +22,7 @@ module.exports = {
     obj._id = new mongoose.Types.ObjectId();
     obj
       .save()
-      .then(function (response) {
-        return response;
-      })
+      .then((response) => response)
       .catch((e) => {
         console.error('DB Create Error:', e);
       });
