@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, makeStyles, TextField, List, ListItem } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import { Grid, makeStyles, TextField } from '@material-ui/core';
 import api from '../../utils/api';
 import { ListDropdown } from '../../components/index';
 
@@ -17,24 +16,23 @@ function ResourchSearchBar(props) {
   const classes = useStyles();
   const [search, setSearch] = useState('');
   const [searchResponse, setSearchResponse] = useState([]);
-  const [msgSuccess, setMsgStatus] = useState(false);
+  const [selectedProjects, setSelectedProjects] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const normApi = props.api ? props.api : 'v1/projects/search';
   const normDataKey = props.dataKey ? props.dataKey : 'title';
 
   useEffect(() => {
     const handleSearch = (search) => {
-      if (search != '') {
+      if (search !== '') {
         let query = {};
         query[normDataKey] = { $regex: search, $options: 'i' };
 
         api
           .post(normApi, query)
           .then((response) => {
-            setMsgStatus(true);
             setSearchResponse(response.data.data);
           })
           .catch((error) => {
-            setMsgStatus(false);
             if (error.response) {
               console.error(error.response.data);
               console.error(error.response.status);
@@ -46,6 +44,17 @@ function ResourchSearchBar(props) {
 
     handleSearch(search);
   }, [search]);
+
+  const handleItemClick = (id) => {
+    console.log(selectedProjects);
+    console.log('Clicked', id);
+    setSelectedProjects((selectedProjects) => [...selectedProjects, id]);
+
+    const results = searchResponse.filter(
+      (listItem) => !selectedProjects.includes(listItem)
+    );
+    setSearchResults(results);
+  };
 
   return (
     <div className={classes.root}>
@@ -64,9 +73,12 @@ function ResourchSearchBar(props) {
             autoComplete='off'
           />
         </Grid>
-        {searchResponse != [] && (
+        {searchResponse !== [] && (
           <Grid item xs={12}>
-            <ListDropdown listData={searchResponse} />
+            <ListDropdown
+              listData={searchResults}
+              handleItemClick={(id) => handleItemClick(id)}
+            />
           </Grid>
         )}
       </Grid>
