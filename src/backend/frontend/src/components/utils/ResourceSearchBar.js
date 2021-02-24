@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, makeStyles, TextField } from '@material-ui/core';
+import { Grid, makeStyles, TextField, List, ListItem } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import api from '../../utils/api';
+import { ListDropdown } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,24 +23,25 @@ function ResourchSearchBar(props) {
 
   useEffect(() => {
     const handleSearch = (search) => {
-      let query = {};
-      query[normDataKey] = search;
+      if (search != '') {
+        let query = {};
+        query[normDataKey] = { $regex: search, $options: 'i' };
 
-      api
-        .fetch(normApi, query)
-        .then((response) => {
-          setMsgStatus(true);
-          setSearchResponse(response.data);
-          console.log(response);
-        })
-        .catch((error) => {
-          setMsgStatus(false);
-          if (error.response) {
-            console.error(error.response.data);
-            console.error(error.response.status);
-            console.error(error.response.headers);
-          }
-        });
+        api
+          .post(normApi, query)
+          .then((response) => {
+            setMsgStatus(true);
+            setSearchResponse(response.data.data);
+          })
+          .catch((error) => {
+            setMsgStatus(false);
+            if (error.response) {
+              console.error(error.response.data);
+              console.error(error.response.status);
+              console.error(error.response.headers);
+            }
+          });
+      }
     };
 
     handleSearch(search);
@@ -59,8 +61,14 @@ function ResourchSearchBar(props) {
             onChange={(e) => setSearch(e.target.value)}
             type='text'
             color='secondary'
+            autoComplete='off'
           />
         </Grid>
+        {searchResponse != [] && (
+          <Grid item xs={12}>
+            <ListDropdown listData={searchResponse} />
+          </Grid>
+        )}
       </Grid>
     </div>
   );

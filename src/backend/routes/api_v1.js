@@ -25,7 +25,7 @@ router.put('/users/:userID', protect, userCon.update);
 router.delete('/users/:userID', protect, userCon.remove);
 
 router.get('/projects', projectCon.getAll);
-router.get('/projects/search', projectCon.get);
+router.post('/projects/search', projectCon.get);
 router.get('/projects/:projectID', protect, projectCon.getById);
 router.post('/projects', protect, projectCon.create);
 router.put('/projects/:projectID', protect, projectCon.update);
