@@ -23,7 +23,7 @@ module.exports = {
       const result = await dbService.find(Project, query);
 
       if (!result) {
-        return next(new ErrorResponse('No Blog found', 404));
+        return next(new ErrorResponse('No project found', 404));
       }
 
       res.setHeader('Content-Type', 'application/json');
