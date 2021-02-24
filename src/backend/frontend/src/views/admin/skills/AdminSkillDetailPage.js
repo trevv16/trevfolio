@@ -149,9 +149,7 @@ function AdminSkillDetailPage(props) {
               {msgSuccess && renderStatusAlert(msgSuccess)}
             </Grid>
             <Grid item xs={5}>
-              {formik.errors.company ? (
-                <div>{formik.errors.company}</div>
-              ) : null}
+              {formik.errors.name ? <div>{formik.errors.name}</div> : null}
               <TextField
                 id='name'
                 label='Skill Name'
