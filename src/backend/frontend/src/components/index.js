@@ -19,6 +19,8 @@ export { default as MailingList } from '../components/mailing_list/MailingList';
 export { default as Navigation } from '../components/partials/navigation/Navigation';
 export { default as Footer } from '../components/partials/footer/Footer';
 
+export { default as Toggle } from '../components/utils/Toggle';
+
 // ADMIN COMPONENTS
 export { default as AdminFooter } from '../components/partials/footer/AdminFooter';
 export { default as AdminNavigation } from '../components/partials/navigation/AdminNavigation';
