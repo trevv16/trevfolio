@@ -77,10 +77,10 @@ function AdminMessagePage() {
       <AdminNavigation />
       <AdminMainPage
         title='Messages'
-        primaryTxt='Create New'
-        primaryUrl={'/admin/messages/create'}
-        secondaryTxt={'Drafts'}
-        secondaryUrl={'#'}
+        // primaryTxt='Create New'
+        // primaryUrl={'/admin/messages/create'}
+        // secondaryTxt={'Drafts'}
+        // secondaryUrl={'#'}
         table={<CompiledTable />}
       />
       <AdminFooter />
