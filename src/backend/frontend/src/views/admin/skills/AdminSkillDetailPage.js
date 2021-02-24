@@ -167,7 +167,6 @@ function AdminSkillDetailPage(props) {
               {formik.errors.published ? (
                 <div>{formik.errors.published}</div>
               ) : null}
-              {console.log(props)}
               <Toggle
                 value={formik.values.published}
                 onClick={() =>
