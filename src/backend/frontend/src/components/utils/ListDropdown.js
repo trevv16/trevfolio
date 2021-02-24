@@ -23,8 +23,12 @@ export default function ListDropdown(props) {
   return (
     <div className={classes.root}>
       <List component='nav'>
-        {normListData.map((item) => (
-          <ListItem button>
+        {normListData.map((item, i) => (
+          <ListItem
+            key={i}
+            button
+            onClick={() => props.handleItemClick(item._id)}
+          >
             <ListItemText primary={item.title} />
           </ListItem>
         ))}
