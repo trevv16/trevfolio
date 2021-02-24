@@ -1,48 +1,96 @@
 const dbService = require('../services/dbService');
 const Inquiry = require('../models/inquiry');
+const ErrorResponse = require('../utils/errorResponse');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    const result = await dbService.findAll(Inquiry);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const result = await dbService.findAll(Inquiry);
+
+      if (!result) {
+        return next(new ErrorResponse('No inquiries found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   get: async (req, res, next) => {
-    const query = req.body;
-    const result = await dbService.find(Inquiry, query);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const query = req.body;
+      const result = await dbService.find(Inquiry, query);
+
+      if (!result) {
+        return next(new ErrorResponse('No Blog found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   getById: async (req, res, next) => {
-    const inquiryID = req.params.inquiryID;
-    const result = await dbService.find(Inquiry, { _id: inquiryID });
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const { inquiryID } = req.params;
+      const result = await dbService.find(Inquiry, { _id: inquiryID });
+
+      if (!result) {
+        return next(new ErrorResponse('No inquiry found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   create: async (req, res, next) => {
-    const genInquiry = req.body;
-    const result = await dbService.create(Inquiry, genInquiry);
+    try {
+      const genInquiry = req.body;
+      const result = await dbService.create(Inquiry, genInquiry);
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   update: async (req, res, next) => {
-    const inquiryID = req.params.inquiryID;
-    const updateInquiry = req.body;
-    const result = await dbService.update(
-      Inquiry,
-      { _id: inquiryID },
-      updateInquiry
-    );
+    try {
+      const { inquiryID } = req.params;
+      const updateInquiry = req.body;
+      const result = await dbService.update(
+        Inquiry,
+        { _id: inquiryID },
+        updateInquiry
+      );
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No inquiry found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   remove: async (req, res, next) => {
-    const inquiryID = req.params.inquiryID;
-    const result = await dbService.remove(Inquiry, { _id: inquiryID });
+    try {
+      const { inquiryID } = req.params;
+      const result = await dbService.remove(Inquiry, { _id: inquiryID });
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No inquiry found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   }
 };

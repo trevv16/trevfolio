@@ -4,9 +4,14 @@ const User = require('../models/user');
 const ErrorResponse = require('../utils/errorResponse');
 const sendEmail = require('../utils/sendEmail');
 
+const sendToken = (user, statusCode, res) => {
+  const token = user.getSignedToken();
+  res.status(statusCode).json({ success: true, token });
+};
+
 module.exports = {
   signUp: async (req, res, next) => {
-    const { first_name, last_name, email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
     const _id = mongoose.Types.ObjectId();
     try {
       const findUser = await User.findOne({ email }).select('+password');
@@ -17,8 +22,8 @@ module.exports = {
 
       const user = await User.create({
         _id,
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         email,
         password
       });
@@ -128,9 +133,4 @@ module.exports = {
       next(err);
     }
   }
-};
-
-const sendToken = (user, statusCode, res) => {
-  const token = user.getSignedToken();
-  res.status(statusCode).json({ success: true, token });
 };

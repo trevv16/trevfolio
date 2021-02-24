@@ -1,48 +1,98 @@
 const dbService = require('../services/dbService');
 const MailingList = require('../models/mailing_list');
+const ErrorResponse = require('../utils/errorResponse');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    const result = await dbService.findAll(MailingList);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const result = await dbService.findAll(MailingList);
+
+      if (!result) {
+        return next(new ErrorResponse('No mailing lists found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   get: async (req, res, next) => {
-    const query = req.body;
-    const result = await dbService.find(MailingList, query);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const query = req.body;
+      const result = await dbService.find(MailingList, query);
+
+      if (!result) {
+        return next(new ErrorResponse('No Blog found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   getById: async (req, res, next) => {
-    const mailingListID = req.params.mailingListID;
-    const result = await dbService.find(MailingList, { _id: mailingListID });
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const { mailingListID } = req.params;
+      const result = await dbService.find(MailingList, { _id: mailingListID });
+
+      if (!result) {
+        return next(new ErrorResponse('No mailing list found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   create: async (req, res, next) => {
-    const genMailingList = req.body;
-    const result = await dbService.create(MailingList, genMailingList);
+    try {
+      const genMailingList = req.body;
+      const result = await dbService.create(MailingList, genMailingList);
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   update: async (req, res, next) => {
-    const mailingListID = req.params.mailingListID;
-    const updateMailingList = req.body;
-    const result = await dbService.update(
-      MailingList,
-      { _id: mailingListID },
-      updateMailingList
-    );
+    try {
+      const { mailingListID } = req.params;
+      const updateMailingList = req.body;
+      const result = await dbService.update(
+        MailingList,
+        { _id: mailingListID },
+        updateMailingList
+      );
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No mailing list found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   remove: async (req, res, next) => {
-    const mailingListID = req.params.mailingListID;
-    const result = await dbService.remove(MailingList, { _id: mailingListID });
+    try {
+      const { mailingListID } = req.params;
+      const result = await dbService.remove(MailingList, {
+        _id: mailingListID
+      });
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No mailing list found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   }
 };
