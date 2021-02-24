@@ -29,6 +29,7 @@ const projectSchema = new mongoose.Schema({
     {
       type: String,
       match:
+        // eslint-disable-next-line max-len
         '/(https?://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/',
       required: [true, 'Provide thumbnail url'],
       trim: true,

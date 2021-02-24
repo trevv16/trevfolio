@@ -1,6 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
 const User = require('../models/user');
-const _ = require('underscore');
 
 module.exports = {
   getUserById: (id) => {
@@ -12,13 +12,13 @@ module.exports = {
   },
   getUserByEmail: (email) => {
     try {
-      return User.find({ email: email }).exec();
+      return User.find({ email }).exec();
     } catch (e) {
       console.error('DB Find Error', e.message);
     }
   },
-  create: async (Model, genObj) => {
-    var obj = new Model(genObj);
+  create: (Model, genObj) => {
+    const obj = new Model(genObj);
     obj._id = new mongoose.Types.ObjectId();
     obj
       .save()
@@ -40,7 +40,7 @@ module.exports = {
     try {
       return Model.find().exec();
     } catch (e) {
-      console.error('DB FindById Error', e.message);
+      console.error('DB FindAll Error', e.message);
     }
   },
   findAllPopulate: (Model, query, pop) => {
@@ -89,7 +89,7 @@ module.exports = {
       console.error('DB Find-Replace Error', e.message);
     }
   },
-  update: async (Model, query, obj) => {
+  update: (Model, query, obj) => {
     try {
       return Model.findOneAndUpdate(query, obj, {
         new: true,
@@ -100,7 +100,7 @@ module.exports = {
       console.error('DB Update Error', e.message);
     }
   },
-  remove: async (Model, query) => {
+  remove: (Model, query) => {
     try {
       return Model.findOneAndRemove(query).exec();
     } catch (e) {
