@@ -85,12 +85,12 @@ function App() {
           <AuthRoute exact path='/admin/resumes' component={AdminResumePage} />
           <AuthRoute
             exact
-            path='/admin/resumes/:resumeID'
+            path='/admin/resumes/create'
             component={AdminResumeDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/resumes/:resumeID/create'
+            path='/admin/resumes/:resumeID'
             component={AdminResumeDetailPage}
           />
 
@@ -101,24 +101,24 @@ function App() {
           />
           <AuthRoute
             exact
-            path='/admin/projects/:projectID'
+            path='/admin/projects/create'
             component={AdminProjectDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/projects/:projectID/create'
+            path='/admin/projects/:projectID'
             component={AdminProjectDetailPage}
           />
 
           <AuthRoute exact path='/admin/skills' component={AdminSkillPage} />
           <AuthRoute
             exact
-            path='/admin/skills/:skillID'
+            path='/admin/skills/create'
             component={AdminSkillDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/skills/:skillID/create'
+            path='/admin/skills/:skillID'
             component={AdminSkillDetailPage}
           />
 
@@ -129,12 +129,12 @@ function App() {
           />
           <AuthRoute
             exact
-            path='/admin/galleries/:blogID'
+            path='/admin/galleries/create'
             component={AdminGalleryDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/galleries/create'
+            path='/admin/galleries/:blogID'
             component={AdminGalleryDetailPage}
           />
 
