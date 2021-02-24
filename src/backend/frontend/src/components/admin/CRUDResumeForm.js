@@ -93,8 +93,8 @@ function CRUDResumeForm(props) {
   const [msgSuccess, setMsgStatus] = useState(false);
   const formik = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       message: ''
     },
@@ -189,7 +189,7 @@ function CRUDResumeForm(props) {
                 variant='outlined'
                 className={classes.nameField}
                 placeholder='Position Title'
-                value={formik.values.last_name}
+                value={formik.values.lastName}
                 onChange={formik.handleChange}
                 type='text'
                 color='secondary'

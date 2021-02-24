@@ -44,7 +44,7 @@ function AdminMessagePage() {
           let messageIds = [];
           response.data.map((message) => {
             let created = message.createdAt ? message.createdAt : 'Unknown';
-            let name = message.first_name + ' ' + message.last_name;
+            let name = message.firstName + ' ' + message.lastName;
             messageRows.push([message.message, name, message.email, created]);
             messageIds.push(message._id);
           });

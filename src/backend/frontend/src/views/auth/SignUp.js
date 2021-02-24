@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp(props) {
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
@@ -74,7 +74,7 @@ export default function SignUp(props) {
     try {
       const { data } = await axios.post(
         '/api/auth/signup',
-        { first_name, last_name, email, password },
+        { firstName, lastName, email, password },
         config
       );
 
@@ -117,13 +117,13 @@ export default function SignUp(props) {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete='fname'
-                  name='first_name'
+                  name='firstName'
                   variant='outlined'
                   required
                   fullWidth
-                  id='first_name'
+                  id='firstName'
                   label='First Name'
-                  value={first_name}
+                  value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   autoFocus
                   tabIndex={1}
@@ -134,10 +134,10 @@ export default function SignUp(props) {
                   variant='outlined'
                   required
                   fullWidth
-                  id='last_name'
+                  id='lastName'
                   label='Last Name'
-                  name='last_name'
-                  value={last_name}
+                  name='lastName'
+                  value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   autoComplete='lname'
                   tabIndex={2}
