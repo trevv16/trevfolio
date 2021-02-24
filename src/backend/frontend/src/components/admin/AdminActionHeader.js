@@ -37,29 +37,31 @@ function AdminActionHeader(props) {
             {props.title}
           </Typography>
         </Grid>
-        <Grid item xs={6} className={classes.actions}>
-          <ButtonGroup>
-            <Button
-              variant='outlined'
-              size='large'
-              color='primary'
-              href={secondUrl}
-              onClick={handleSecondary}
-            >
-              {props.secondaryTxt}
-            </Button>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='large'
-              href={firstUrl}
-              onClick={handlePrimary}
-              endIcon={<KeyboardArrowDownOutlinedIcon />}
-            >
-              {props.primaryTxt}
-            </Button>
-          </ButtonGroup>
-        </Grid>
+        {props.primaryUrl && props.secondaryUrl && (
+          <Grid item xs={6} className={classes.actions}>
+            <ButtonGroup>
+              <Button
+                variant='outlined'
+                size='large'
+                color='primary'
+                href={secondUrl}
+                onClick={handleSecondary}
+              >
+                {props.secondaryTxt}
+              </Button>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                href={firstUrl}
+                onClick={handlePrimary}
+                endIcon={<KeyboardArrowDownOutlinedIcon />}
+              >
+                {props.primaryTxt}
+              </Button>
+            </ButtonGroup>
+          </Grid>
+        )}
       </Grid>
     </div>
   );
