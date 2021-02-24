@@ -1,4 +1,3 @@
-const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -9,15 +8,15 @@ const flash = require('express-flash');
 const session = require('express-session');
 const cors = require('cors');
 const MongoStore = require('connect-mongo')(session);
-const errorHandler = require("./middlewares/error");
+const errorHandler = require('./middlewares/error');
 
 // Configs
 const mongoConfig = require('./config/db_config');
 
 // Routes
 const authRouter = require('./routes/auth');
-const v1_apiRouter = require('./routes/api_v1');
-const v1_adminRouter = require('./routes/admin_v1');
+const v1ApiRouter = require('./routes/api_v1');
+const v1AdminRouter = require('./routes/admin_v1');
 
 const app = express();
 
@@ -48,7 +47,7 @@ app.use(
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     cookie: {
-      secure: process.env.NODE_ENV === 'production' ? true : false,
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 4 * 60 * 60 * 1000
     }
   })
@@ -59,11 +58,11 @@ app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
 // Set Routes
 app.use('/api/auth', authRouter);
-app.use('/api/v1', v1_apiRouter);
-app.use('/admin/v1', v1_adminRouter);
+app.use('/api/v1', v1ApiRouter);
+app.use('/admin/v1', v1AdminRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.get('/*', function (req, res, next) {
+  app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
   });
 }

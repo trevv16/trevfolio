@@ -1,44 +1,96 @@
 const dbService = require('../services/dbService');
 const Skill = require('../models/skill');
+const ErrorResponse = require('../utils/errorResponse');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    const result = await dbService.findAll(Skill);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const result = await dbService.findAll(Skill);
+
+      if (!result) {
+        return next(new ErrorResponse('No galleries found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   get: async (req, res, next) => {
-    const query = req.body;
-    const result = await dbService.find(Skill, query);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const query = req.body;
+      const result = await dbService.find(Skill, query);
+
+      if (!result) {
+        return next(new ErrorResponse('No Blog found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   getById: async (req, res, next) => {
-    const skillID = req.params.skillID;
-    const result = await dbService.find(Skill, { _id: skillID });
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const { skillID } = req.params;
+      const result = await dbService.find(Skill, { _id: skillID });
+
+      if (!result) {
+        return next(new ErrorResponse('No skill found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   create: async (req, res, next) => {
-    const genSkill = req.body;
-    const result = await dbService.create(Skill, genSkill);
+    try {
+      const genSkill = req.body;
+      const result = await dbService.create(Skill, genSkill);
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   update: async (req, res, next) => {
-    const skillID = req.params.skillID;
-    const updateSkill = req.body;
-    const result = await dbService.update(Skill, { _id: skillID }, updateSkill);
+    try {
+      const { skillID } = req.params;
+      const updateSkill = req.body;
+      const result = await dbService.update(
+        Skill,
+        { _id: skillID },
+        updateSkill
+      );
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No skill found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   remove: async (req, res, next) => {
-    const skillID = req.params.skillID;
-    const result = await dbService.remove(Skill, { _id: skillID });
+    try {
+      const { skillID } = req.params;
+      const result = await dbService.remove(Skill, { _id: skillID });
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No skill found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   }
 };

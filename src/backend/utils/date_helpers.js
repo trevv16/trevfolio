@@ -55,6 +55,7 @@ export const isDateValid = (dateString) => {
 };
 
 export const getYearFromString = (dateString) =>
+  // eslint-disable-next-line implicit-arrow-linebreak
   String(dateString.split('-', 1));
 
 export const momentToDateTime = (m) => {

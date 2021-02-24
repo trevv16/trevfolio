@@ -52,16 +52,16 @@ const useStyles = makeStyles((theme) => ({
 
 const validate = (values) => {
   const errors = {};
-  if (!values.first_name) {
-    errors.first_name = 'Required';
-  } else if (values.first_name.length > 15) {
-    errors.first_name = 'Must be 15 characters or less';
+  if (!values.firstName) {
+    errors.firstName = 'Required';
+  } else if (values.firstName.length > 15) {
+    errors.firstName = 'Must be 15 characters or less';
   }
 
-  if (!values.last_name) {
-    errors.last_name = 'Required';
-  } else if (values.last_name.length > 20) {
-    errors.last_name = 'Must be 20 characters or less';
+  if (!values.lastName) {
+    errors.lastName = 'Required';
+  } else if (values.lastName.length > 20) {
+    errors.lastName = 'Must be 20 characters or less';
   }
 
   if (!values.email) {
@@ -83,8 +83,8 @@ function Contact() {
   const [msgSuccess, setMsgStatus] = useState(false);
   const formik = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       message: ''
     },
@@ -156,17 +156,17 @@ function Contact() {
               {msgSuccess && renderStatusAlert(msgSuccess)}
             </Grid>
             <Grid item xs={5}>
-              {formik.errors.first_name ? (
-                <div>{formik.errors.first_name}</div>
+              {formik.errors.firstName ? (
+                <div>{formik.errors.firstName}</div>
               ) : null}
               <TextField
                 id='first-name'
                 label='First Name'
                 variant='outlined'
-                name='first_name'
+                name='firstName'
                 className={classes.nameField}
                 placeholder='Elon'
-                value={formik.values.first_name}
+                value={formik.values.firstName}
                 onChange={formik.handleChange}
                 type='text'
                 color='secondary'
@@ -174,17 +174,17 @@ function Contact() {
               />
             </Grid>
             <Grid item xs={5}>
-              {formik.errors.last_name ? (
-                <div>{formik.errors.last_name}</div>
+              {formik.errors.lastName ? (
+                <div>{formik.errors.lastName}</div>
               ) : null}
               <TextField
                 id='last-name'
                 label='Last Name'
-                name='last_name'
+                name='lastName'
                 variant='outlined'
                 className={classes.nameField}
                 placeholder='Musk'
-                value={formik.values.last_name}
+                value={formik.values.lastName}
                 onChange={formik.handleChange}
                 type='text'
                 color='secondary'
