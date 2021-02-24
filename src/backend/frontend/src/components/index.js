@@ -20,6 +20,7 @@ export { default as Navigation } from '../components/partials/navigation/Navigat
 export { default as Footer } from '../components/partials/footer/Footer';
 
 export { default as Toggle } from '../components/utils/Toggle';
+export { default as ListDropdown } from '../components/utils/ListDropdown';
 export { default as ResourceSearchBar } from '../components/utils/ResourceSearchBar';
 
 // ADMIN COMPONENTS
