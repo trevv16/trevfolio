@@ -9,29 +9,47 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper
+  },
+  selectedItem: {
+    backgroundColor: theme.palette.gray.main
   }
 }));
-
-function ListItemLink(props) {
-  return <ListItem button component='a' {...props} />;
-}
 
 export default function ListDropdown(props) {
   const classes = useStyles();
   const normListData = props.listData ? props.listData : [];
+  const normSelectedData = props.selected ? props.selected : [];
 
   return (
     <div className={classes.root}>
       <List component='nav'>
-        {normListData.map((item, i) => (
-          <ListItem
-            key={i}
-            button
-            onClick={() => props.handleItemClick(item._id)}
-          >
-            <ListItemText primary={item.title} />
-          </ListItem>
-        ))}
+        {normListData.map((item, i) => {
+          if (normSelectedData.includes(item._id)) {
+            return (
+              // Selected Item
+              <React.Fragment key={i}>
+                <ListItem
+                  className={classes.selectedItem}
+                  button
+                  onClick={() => props.handleItemClick(item._id)}
+                >
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              </React.Fragment>
+            );
+          } else {
+            return (
+              <React.Fragment key={i}>
+                <ListItem
+                  button
+                  onClick={() => props.handleItemClick(item._id)}
+                >
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              </React.Fragment>
+            );
+          }
+        })}
       </List>
     </div>
   );
