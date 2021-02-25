@@ -31,6 +31,7 @@ function ResourchSearchBar(props) {
           .post(normApi, query)
           .then((response) => {
             setSearchResponse(response.data.data);
+            setSearchResults(response.data.data);
           })
           .catch((error) => {
             if (error.response) {
@@ -46,14 +47,18 @@ function ResourchSearchBar(props) {
   }, [search]);
 
   const handleItemClick = (id) => {
-    console.log(selectedProjects);
-    console.log('Clicked', id);
-    setSelectedProjects((selectedProjects) => [...selectedProjects, id]);
-
-    const results = searchResponse.filter(
-      (listItem) => !selectedProjects.includes(listItem)
-    );
-    setSearchResults(results);
+    if (!selectedProjects.includes(id)) {
+      setSelectedProjects([...selectedProjects, id]);
+    } else {
+      let removeIndex = searchResponse.findIndex(
+        (listItem) => listItem._id === id
+      );
+      if (removeIndex != -1) {
+        let updated = selectedProjects.splice(removeIndex, 1);
+        setSelectedProjects(updated);
+      }
+    }
+    setSearchResults([]);
   };
 
   return (
@@ -77,6 +82,7 @@ function ResourchSearchBar(props) {
           <Grid item xs={12}>
             <ListDropdown
               listData={searchResults}
+              selected={selectedProjects}
               handleItemClick={(id) => handleItemClick(id)}
             />
           </Grid>
