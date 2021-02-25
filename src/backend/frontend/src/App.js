@@ -2,18 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import {
+  ComingSoon,
   SignUp,
   SignIn,
   Forgot,
   Reset,
-  ComingSoon,
-  Dashboard,
   HomePage,
   AboutPage,
   ResumePage,
   ContactPage,
   ProjectDetailPage,
   ProjectPage,
+  SkillsPage,
+  Dashboard,
   DashboardPage,
   SettingsPage,
   AdminBlogPage,
@@ -47,8 +48,8 @@ function App() {
           <Route exact path='/contact' component={ContactPage} />
           <Route exact path='/projects' component={ProjectPage} />
           <Route exact path='/projects/:id' component={ProjectDetailPage} />
-          {/*<Route exact path='/projects?skill=' component={Project} />
-          <Route path='/skills' component={SkillList} /> */}
+          <Route exact path='/projects?skill=' component={SkillsPage} />
+          <Route path='/skills' component={SkillsPage} />
 
           {/* <Route exact path='/signup' component={SignUp} /> */}
           <Route exact path='/signin' component={SignIn} />

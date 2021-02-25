@@ -11,6 +11,8 @@ export { default as ContactPage } from './contact/ContactPage';
 export { default as ProjectPage } from './projects/ProjectPage';
 export { default as ProjectDetailPage } from './projects/ProjectDetailPage';
 
+export { default as SkillsPage } from './skills/SkillsPage';
+
 // ADMIN ROUTES
 export { default as SettingsPage } from '../views/admin/SettingsPage';
 export { default as DashboardPage } from '../views/admin/DashboardPage';
