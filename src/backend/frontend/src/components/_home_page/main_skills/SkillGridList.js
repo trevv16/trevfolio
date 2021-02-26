@@ -42,7 +42,7 @@ export default function SkillGridList(props) {
       <GridList cellHeight={180} className={classes.gridList}>
         {props.tileData.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
-            <Link href={`/skills/${tile._id}`}>
+            <Link href={`/skills/${tile._id}/projects`}>
               <img
                 src={tile.thumbnail}
                 alt={tile.name}
