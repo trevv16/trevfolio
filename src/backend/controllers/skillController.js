@@ -47,6 +47,25 @@ module.exports = {
       next(err);
     }
   },
+  getSkillProjects: async (req, res, next) => {
+    try {
+      const { skillID } = req.params;
+      const result = await dbService.findPopulate(
+        Skill,
+        { _id: skillID },
+        'projects'
+      );
+
+      if (!result) {
+        return next(new ErrorResponse('Skill projects not found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
+  },
   create: async (req, res, next) => {
     try {
       const genSkill = req.body;

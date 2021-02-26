@@ -12,7 +12,7 @@ import {
   MailingList,
   Navigation,
   Footer,
-  ProjectGridList
+  SkillGridList
 } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,24 +30,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Project(props) {
+export default function SkillsPage(props) {
   const classes = useStyles();
-  const [projects, handleProjects] = useState([]);
+  const [skills, handleSkills] = useState([]);
   const [isBusy, setBusy] = useState(true);
 
   useEffect(() => {
     api
-      .fetch(`v1/projects`)
+      .fetch(`v1/skills`)
       .then((response) => {
         const data = response.data.data;
-        const proj = data.filter((proj) => {
+        const skill = data.filter((skill) => {
           //Check if the project is published before storing
-          return proj.published !== false;
+          return skill.published !== false;
         });
 
-        if (proj && proj !== []) {
+        if (skill && skill !== []) {
           setBusy(false);
-          handleProjects([...proj]);
+          handleSkills([...skill]);
         } else {
           setBusy(true);
         }
@@ -57,12 +57,12 @@ export default function Project(props) {
       });
   }, []);
 
-  const ProjectGrid = () => {
+  const SkillGrid = () => {
     return (
       <React.Fragment>
-        {projects && (
+        {skills && (
           <Grid container spacing={4} className={classes.main}>
-            <ProjectGridList tileData={projects} />
+            <SkillGridList tileData={skills} />
           </Grid>
         )}
       </React.Fragment>
@@ -81,18 +81,18 @@ export default function Project(props) {
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Projects | Trevor's Portfolio</title>
+        <title>Skills | Trevor's Portfolio</title>
       </Helmet>
       <CssBaseline />
       <Navigation />
       <Grid container spacing={1} className={classes.main}>
         <Grid item xs={12}>
           <Typography align='center' variant='h1'>
-            Projects
+            Skills
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          {isBusy ? <Loading /> : <ProjectGrid />}
+          {isBusy ? <Loading /> : <SkillGrid />}
         </Grid>
       </Grid>
       <MailingList />

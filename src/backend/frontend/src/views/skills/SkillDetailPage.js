@@ -12,8 +12,7 @@ import {
   MailingList,
   Navigation,
   Footer,
-  Gallery,
-  ProjectDetailDrawer
+  ProjectGridList
 } from '../../components/index';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,32 +29,46 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(12)
+  },
+  imageRow: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  image: {
+    minWidth: '20%',
+    width: '30%',
+    height: 'auto'
+  },
+  relevantProjects: {
+    marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(2)
   }
 }));
 
 export default function ProjectDetail(props) {
   const [isBusy, setBusy] = useState(true);
-  const _id = props.match.params.id;
+  const _id = props.match.params.skillID;
   const classes = useStyles();
-  const [project, handleProject] = useState(null);
+  const [skill, handleSkill] = useState({});
   const [hasGallery, setHasGallery] = useState(false);
 
   useEffect(() => {
     api
-      .fetch(`v1/projects/${_id}`)
+      .fetch(`v1/skills/${_id}/projects`)
       .then((response) => {
         const data = response.data.data;
         if (data !== [] || data[0]) {
           setBusy(false);
-          handleProject(data[0]);
+          handleSkill(data[0]);
         } else {
           setBusy(true);
         }
+        console.log(response);
 
-        if (data[0].gallery === [] || data[0]) {
-          setHasGallery(false);
-        } else {
+        if (data[0].thumbnail !== '' || data[0]) {
           setHasGallery(true);
+        } else {
+          setHasGallery(false);
         }
       })
       .catch((err) => {
@@ -64,42 +77,39 @@ export default function ProjectDetail(props) {
   }, [_id]);
 
   const DetailData = () => {
+    let projects = skill.projects;
+    const hasProjects = typeof projects !== 'undefined' && projects.length > 0;
+    console.log('projects', projects);
+    console.log(
+      'hasProjects',
+      typeof projects !== 'undefined' && projects.length > 0
+    );
+
     return (
       <React.Fragment>
-        {project && (
+        {skill && (
           <Grid container spacing={1} className={classes.main}>
-            <Grid item xs={12}>
-              <Typography align='center' variant='h2'>
-                {`${project.title}`}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography align='center' variant='body1'>
-                {`${project.description}`}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography align='center' variant='h5'>
-                {`Demo: ${project.demo_url}`}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography align='center' variant='h5'>
-                {`Github: ${project.github_url}`}
-              </Typography>
-            </Grid>
             {hasGallery && (
-              <Grid item xs={12}>
-                <Gallery
-                  animation={'slide'}
-                  interval={5500}
-                  timeout={800}
-                  images={project.gallery}
+              <Grid item xs={12} className={classes.imageRow}>
+                <img
+                  src={skill.thumbnail}
+                  alt={skill.name}
+                  className={classes.image}
                 />
               </Grid>
             )}
             <Grid item xs={12}>
-              <ProjectDetailDrawer process={project.process} />
+              <Typography align='center' variant='h2'>
+                {`${skill.name}`}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography align='center' variant='body1'>
+                {`${skill.description}`}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              {hasProjects && <ProjectGrid />}
             </Grid>
           </Grid>
         )}
@@ -115,11 +125,32 @@ export default function ProjectDetail(props) {
     );
   };
 
+  const ProjectGrid = () => {
+    return (
+      <React.Fragment>
+        <Grid container spacing={4} className={classes.main}>
+          <Grid item xs={12}>
+            <Typography
+              align='center'
+              variant='h3'
+              className={classes.relevantProjects}
+            >
+              Relevant Projects
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <ProjectGridList tileData={skill.projects} />
+          </Grid>
+        </Grid>
+      </React.Fragment>
+    );
+  };
+
   return (
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Projects | Trevor's Portfolio</title>
+        <title>Skills | Trevor's Portfolio</title>
       </Helmet>
       <CssBaseline />
       <Navigation />
