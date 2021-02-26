@@ -12,6 +12,7 @@ export { default as ProjectPage } from './projects/ProjectPage';
 export { default as ProjectDetailPage } from './projects/ProjectDetailPage';
 
 export { default as SkillsPage } from './skills/SkillsPage';
+export { default as SkillDetailPage } from './skills/SkillDetailPage';
 
 // ADMIN ROUTES
 export { default as SettingsPage } from '../views/admin/SettingsPage';

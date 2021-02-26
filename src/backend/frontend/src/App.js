@@ -14,6 +14,7 @@ import {
   ProjectDetailPage,
   ProjectPage,
   SkillsPage,
+  SkillDetailPage,
   Dashboard,
   DashboardPage,
   SettingsPage,
@@ -49,6 +50,7 @@ function App() {
           <Route exact path='/projects' component={ProjectPage} />
           <Route exact path='/projects/:id' component={ProjectDetailPage} />
           <Route exact path='/projects?skill=' component={SkillsPage} />
+          <Route path='/skills/:skillID' component={SkillDetailPage} />
           <Route path='/skills' component={SkillsPage} />
 
           {/* <Route exact path='/signup' component={SignUp} /> */}
