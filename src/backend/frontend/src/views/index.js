@@ -13,6 +13,7 @@ export { default as ProjectDetailPage } from './projects/ProjectDetailPage';
 
 export { default as SkillsPage } from './skills/SkillsPage';
 export { default as SkillDetailPage } from './skills/SkillDetailPage';
+export { default as SkillsProjectListPage } from './skills/SkillsProjectListPage';
 
 // ADMIN ROUTES
 export { default as SettingsPage } from '../views/admin/SettingsPage';
