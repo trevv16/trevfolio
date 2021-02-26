@@ -39,7 +39,7 @@ export default function Project(props) {
     api
       .fetch(`v1/projects`)
       .then((response) => {
-        const data = response.data;
+        const data = response.data.data;
         const proj = data.filter((proj) => {
           //Check if the project is published before storing
           return proj.published !== false;

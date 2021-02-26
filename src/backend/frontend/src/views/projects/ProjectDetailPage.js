@@ -44,7 +44,7 @@ export default function ProjectDetail(props) {
     api
       .fetch(`v1/projects/${_id}`)
       .then((response) => {
-        const data = response.data;
+        const data = response.data.data;
         if (data !== [] || data[0]) {
           setBusy(false);
           handleProject(data[0]);
