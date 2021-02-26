@@ -55,7 +55,6 @@ export default function ProjectDetail(props) {
   useEffect(() => {
     api
       .fetch(`v1/skills/${_id}/projects`)
-
       .then((response) => {
         const data = response.data.data;
         if (data !== [] || data[0]) {
@@ -79,8 +78,12 @@ export default function ProjectDetail(props) {
 
   const DetailData = () => {
     let projects = skill.projects;
+    const hasProjects = typeof projects !== 'undefined' && projects.length > 0;
     console.log('projects', projects);
-    // console.log('projects.length', projects.length);
+    console.log(
+      'hasProjects',
+      typeof projects !== 'undefined' && projects.length > 0
+    );
 
     return (
       <React.Fragment>
@@ -106,7 +109,7 @@ export default function ProjectDetail(props) {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              {skill.projects && skill.projects != [] && <ProjectGrid />}
+              {hasProjects && <ProjectGrid />}
             </Grid>
           </Grid>
         )}
@@ -125,22 +128,20 @@ export default function ProjectDetail(props) {
   const ProjectGrid = () => {
     return (
       <React.Fragment>
-        {skill.projects && skill.projects != [] && (
-          <Grid container spacing={4} className={classes.main}>
-            <Grid item xs={12}>
-              <Typography
-                align='center'
-                variant='h3'
-                className={classes.relevantProjects}
-              >
-                Relevant Projects
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <ProjectGridList tileData={skill.projects} />
-            </Grid>
+        <Grid container spacing={4} className={classes.main}>
+          <Grid item xs={12}>
+            <Typography
+              align='center'
+              variant='h3'
+              className={classes.relevantProjects}
+            >
+              Relevant Projects
+            </Typography>
           </Grid>
-        )}
+          <Grid item xs={12}>
+            <ProjectGridList tileData={skill.projects} />
+          </Grid>
+        </Grid>
       </React.Fragment>
     );
   };
