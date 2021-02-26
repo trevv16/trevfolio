@@ -41,6 +41,7 @@ router.delete('/galleries/:galleryID', protect, galleryCon.remove);
 router.get('/skills', skillCon.getAll);
 router.get('/skills/search', projectCon.get);
 router.get('/skills/:skillID', protect, skillCon.getById);
+router.get('/skills/:skillID/projects', protect, skillCon.getSkillProjects);
 router.post('/skills', protect, skillCon.create);
 router.put('/skills/:skillID', protect, skillCon.update);
 router.delete('/skills/:skillID', protect, skillCon.remove);
