@@ -2,18 +2,21 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import {
+  ComingSoon,
   SignUp,
   SignIn,
   Forgot,
   Reset,
-  ComingSoon,
-  Dashboard,
   HomePage,
   AboutPage,
   ResumePage,
   ContactPage,
   ProjectDetailPage,
   ProjectPage,
+  SkillsPage,
+  SkillDetailPage,
+  SkillsProjectListPage,
+  Dashboard,
   DashboardPage,
   SettingsPage,
   AdminBlogPage,
@@ -45,10 +48,14 @@ function App() {
           <Route exact path='/about' component={AboutPage} />
           <Route exact path='/resume' component={ResumePage} />
           <Route exact path='/contact' component={ContactPage} />
-          <Route exact path='/projects' component={ProjectPage} />
           <Route exact path='/projects/:id' component={ProjectDetailPage} />
-          {/*<Route exact path='/projects?skill=' component={Project} />
-          <Route path='/skills' component={SkillList} /> */}
+          <Route exact path='/projects' component={ProjectPage} />
+          <Route
+            path='/skills/:skillID/projects'
+            component={SkillsProjectListPage}
+          />
+          <Route path='/skills/:skillID' component={SkillDetailPage} />
+          <Route path='/skills' component={SkillsPage} />
 
           {/* <Route exact path='/signup' component={SignUp} /> */}
           <Route exact path='/signin' component={SignIn} />
@@ -85,12 +92,12 @@ function App() {
           <AuthRoute exact path='/admin/resumes' component={AdminResumePage} />
           <AuthRoute
             exact
-            path='/admin/resumes/:resumeID'
+            path='/admin/resumes/create'
             component={AdminResumeDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/resumes/:resumeID/create'
+            path='/admin/resumes/:resumeID'
             component={AdminResumeDetailPage}
           />
 
@@ -101,24 +108,24 @@ function App() {
           />
           <AuthRoute
             exact
-            path='/admin/projects/:projectID'
+            path='/admin/projects/create'
             component={AdminProjectDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/projects/:projectID/create'
+            path='/admin/projects/:projectID'
             component={AdminProjectDetailPage}
           />
 
           <AuthRoute exact path='/admin/skills' component={AdminSkillPage} />
           <AuthRoute
             exact
-            path='/admin/skills/:skillID'
+            path='/admin/skills/create'
             component={AdminSkillDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/skills/:skillID/create'
+            path='/admin/skills/:skillID'
             component={AdminSkillDetailPage}
           />
 
@@ -129,12 +136,12 @@ function App() {
           />
           <AuthRoute
             exact
-            path='/admin/galleries/:blogID'
+            path='/admin/galleries/create'
             component={AdminGalleryDetailPage}
           />
           <AuthRoute
             exact
-            path='/admin/galleries/create'
+            path='/admin/galleries/:blogID'
             component={AdminGalleryDetailPage}
           />
 

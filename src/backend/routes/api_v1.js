@@ -25,19 +25,23 @@ router.put('/users/:userID', protect, userCon.update);
 router.delete('/users/:userID', protect, userCon.remove);
 
 router.get('/projects', projectCon.getAll);
+router.post('/projects/search', projectCon.get);
 router.get('/projects/:projectID', protect, projectCon.getById);
 router.post('/projects', protect, projectCon.create);
 router.put('/projects/:projectID', protect, projectCon.update);
 router.delete('/projects/:projectID', protect, projectCon.remove);
 
 router.get('/galleries', protect, galleryCon.getAll);
+router.get('/galleries/search', projectCon.get);
 router.get('/galleries/:galleryID', protect, galleryCon.getById);
 router.post('/galleries', protect, galleryCon.create);
 router.put('/galleries/:galleryID', protect, galleryCon.update);
 router.delete('/galleries/:galleryID', protect, galleryCon.remove);
 
 router.get('/skills', skillCon.getAll);
+router.post('/skills/search', projectCon.get);
 router.get('/skills/:skillID', protect, skillCon.getById);
+router.get('/skills/:skillID/projects', protect, skillCon.getSkillProjects);
 router.post('/skills', protect, skillCon.create);
 router.put('/skills/:skillID', protect, skillCon.update);
 router.delete('/skills/:skillID', protect, skillCon.remove);
@@ -68,6 +72,7 @@ router.put('/mailing_lists/:mailingListID', protect, mailingListCon.update);
 router.delete('/mailing_lists/:mailingListID', protect, mailingListCon.remove);
 
 router.get('/emails', protect, emailCon.getAll);
+router.get('/emails/search', projectCon.get);
 router.get('/emails/:emailID', protect, emailCon.getById);
 router.post('/emails', protect, emailCon.create);
 router.put('/emails/:emailID', protect, emailCon.update);
@@ -80,6 +85,7 @@ router.put('/inquiries/:inquiryID', protect, inquiryCon.update);
 router.delete('/inquiries/:inquiryID', protect, inquiryCon.remove);
 
 router.get('/subscribers', protect, subscriberCon.getAll);
+router.get('/emails/search', projectCon.get);
 router.get('/subscribers/:subscriberID', protect, subscriberCon.getById);
 router.post('/subscribers', subscriberCon.create);
 router.put('/subscribers/:subscriberID', protect, subscriberCon.update);

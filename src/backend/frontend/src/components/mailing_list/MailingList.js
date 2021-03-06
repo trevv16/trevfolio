@@ -64,16 +64,16 @@ const useStyles = makeStyles((theme) => ({
 
 const validate = (values) => {
   const errors = {};
-  if (!values.first_name) {
-    errors.first_name = 'Required';
-  } else if (values.first_name.length > 15) {
-    errors.first_name = 'Must be 15 characters or less';
+  if (!values.firstName) {
+    errors.firstName = 'Required';
+  } else if (values.firstName.length > 15) {
+    errors.firstName = 'Must be 15 characters or less';
   }
 
-  if (!values.last_name) {
-    errors.last_name = 'Required';
-  } else if (values.last_name.length > 20) {
-    errors.last_name = 'Must be 20 characters or less';
+  if (!values.lastName) {
+    errors.lastName = 'Required';
+  } else if (values.lastName.length > 20) {
+    errors.lastName = 'Must be 20 characters or less';
   }
 
   if (!values.email) {
@@ -89,15 +89,15 @@ function MailingList() {
   const [msgSuccess, setMsgStatus] = useState(false);
   const formik = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: ''
     },
     validate,
     onSubmit: (values) => {
       const subscriber = {
-        first_name: values.first_name.trim(),
-        last_name: values.last_name.trim(),
+        firstName: values.firstName.trim(),
+        lastName: values.lastName.trim(),
         email: values.email.trim(),
         main_newsletter: true
       };
@@ -166,12 +166,12 @@ function MailingList() {
         >
           <Grid item xs={12} className={classes.topFormRow}>
             <Grid item xs={6} className={'mb-2 mr-2'}>
-              {formik.errors.first_name ? (
-                <div>{formik.errors.first_name}</div>
+              {formik.errors.firstName ? (
+                <div>{formik.errors.firstName}</div>
               ) : null}
               <TextField
-                id='first_name'
-                name='first_name'
+                id='firstName'
+                name='firstName'
                 label='First Name'
                 variant='outlined'
                 className={classes.firstNameField}
@@ -179,24 +179,24 @@ function MailingList() {
                 type='text'
                 color='secondary'
                 autoComplete='fname'
-                value={formik.values.first_name}
+                value={formik.values.firstName}
                 onChange={formik.handleChange}
               />
             </Grid>
             <Grid item xs={6} className={'mb-2'}>
-              {formik.errors.last_name ? (
-                <div>{formik.errors.last_name}</div>
+              {formik.errors.lastName ? (
+                <div>{formik.errors.lastName}</div>
               ) : null}
               <TextField
-                id='last_name'
-                name='last_name'
+                id='lastName'
+                name='lastName'
                 label='Last Name'
                 variant='outlined'
                 placeholder='Last Name'
                 type='text'
                 color='secondary'
                 autoComplete='fname'
-                value={formik.values.last_name}
+                value={formik.values.lastName}
                 onChange={formik.handleChange}
               />
             </Grid>

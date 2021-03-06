@@ -44,7 +44,7 @@ function AdminMessagePage() {
           let messageIds = [];
           response.data.map((message) => {
             let created = message.createdAt ? message.createdAt : 'Unknown';
-            let name = message.first_name + ' ' + message.last_name;
+            let name = message.firstName + ' ' + message.lastName;
             messageRows.push([message.message, name, message.email, created]);
             messageIds.push(message._id);
           });
@@ -72,15 +72,15 @@ function AdminMessagePage() {
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Settings | Portfolio Admin</title>
+        <title>Messages | Portfolio Admin</title>
       </Helmet>
       <AdminNavigation />
       <AdminMainPage
         title='Messages'
-        primaryTxt='Create New'
-        primaryUrl={'/admin/messages/create'}
-        secondaryTxt={'Drafts'}
-        secondaryUrl={'#'}
+        // primaryTxt='Create New'
+        // primaryUrl={'/admin/messages/create'}
+        // secondaryTxt={'Drafts'}
+        // secondaryUrl={'#'}
         table={<CompiledTable />}
       />
       <AdminFooter />

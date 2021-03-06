@@ -13,7 +13,7 @@ module.exports = {
   ],
   plugins: ['promise', 'jest'],
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2017,
     sourceType: 'module'
   },
   rules: {

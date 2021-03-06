@@ -1,44 +1,96 @@
 const dbService = require('../services/dbService');
 const Email = require('../models/email');
+const ErrorResponse = require('../utils/errorResponse');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    const result = await dbService.findAll(Email);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const result = await dbService.findAll(Email);
+
+      if (!result) {
+        return next(new ErrorResponse('No emails found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   get: async (req, res, next) => {
-    const query = req.body;
-    const result = await dbService.find(Email, query);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const query = req.body;
+      const result = await dbService.find(Email, query);
+
+      if (!result) {
+        return next(new ErrorResponse('No Blog found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   getById: async (req, res, next) => {
-    const emailID = req.params.emailID;
-    const result = await dbService.find(Email, { _id: emailID });
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+    try {
+      const { emailID } = req.params;
+      const result = await dbService.find(Email, { _id: emailID });
+
+      if (!result) {
+        return next(new ErrorResponse('No email found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   create: async (req, res, next) => {
-    const genEmail = req.body;
-    const result = await dbService.create(Email, genEmail);
+    try {
+      const genEmail = req.body;
+      const result = await dbService.create(Email, genEmail);
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   update: async (req, res, next) => {
-    const emailID = req.params.emailID;
-    const updateEmail = req.body;
-    const result = await dbService.update(Email, { _id: emailID }, updateEmail);
+    try {
+      const { emailID } = req.params;
+      const updateEmail = req.body;
+      const result = await dbService.update(
+        Email,
+        { _id: emailID },
+        updateEmail
+      );
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No email found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   },
   remove: async (req, res, next) => {
-    const emailID = req.params.emailID;
-    const result = await dbService.remove(Email, { _id: emailID });
+    try {
+      const { emailID } = req.params;
+      const result = await dbService.remove(Email, { _id: emailID });
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(result);
+      if (!result) {
+        return next(new ErrorResponse('No email found', 404));
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
   }
 };
