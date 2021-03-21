@@ -1,9 +1,36 @@
+const path = require('path');
 const express = require('express');
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 
 const router = express.Router();
 
 // Middlewares
 const { protect } = require('../middlewares/auth');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../public', 'uploads'));
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${uuidv4()}${path.extname(file.originalname)}`);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: process.env.MAX_UPLOAD_FILE_BYTES }
+});
 
 // Controllers
 const userCon = require('../controllers/userController');
@@ -40,10 +67,15 @@ router.delete('/galleries/:galleryID', protect, galleryCon.remove);
 
 router.get('/skills', skillCon.getAll);
 router.post('/skills/search', projectCon.get);
-router.get('/skills/:skillID', protect, skillCon.getById);
-router.get('/skills/:skillID/projects', protect, skillCon.getSkillProjects);
-router.post('/skills', protect, skillCon.create);
-router.put('/skills/:skillID', protect, skillCon.update);
+router.get('/skills/:skillID', skillCon.getById);
+router.get('/skills/:skillID/projects', skillCon.getSkillProjects);
+router.post('/skills', protect, upload.single('thumbnail'), skillCon.create);
+router.put(
+  '/skills/:skillID',
+  protect,
+  upload.single('thumbnail'),
+  skillCon.update
+);
 router.delete('/skills/:skillID', protect, skillCon.remove);
 
 router.get('/resumes', protect, resumeCon.getAll);
