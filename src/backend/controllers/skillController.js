@@ -96,7 +96,6 @@ module.exports = {
           genSkill['thumbnail'] = data.Location;
 
           const result = await dbService.create(Skill, genSkill);
-
           res.setHeader('Content-Type', 'application/json');
           res.status(200).json({ success: true, data: result });
         }
@@ -109,6 +108,26 @@ module.exports = {
     try {
       const { skillID } = req.params;
       const updateSkill = req.body;
+
+      if (req.file) {
+        const thumbnail = req.file;
+        const s3FolderPath = 'uploads/skills';
+
+        uploadObject(
+          process.env.S3_PUBLIC_BUCKET,
+          s3FolderPath,
+          `${process.env.USER_UPLOADS_FOLDER}/${thumbnail.filename}`,
+          thumbnail.mimetype,
+          async (err, data) => {
+            if (err) {
+              return next(new ErrorResponse('Upload to S3 Failed', 404));
+            }
+
+            updateSkill['thumbnail'] = data.Location;
+          }
+        );
+      }
+
       const result = await dbService.update(
         Skill,
         { _id: skillID },
