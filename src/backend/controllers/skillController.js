@@ -1,6 +1,7 @@
 const dbService = require('../services/dbService');
 const Skill = require('../models/skill');
 const ErrorResponse = require('../utils/errorResponse');
+const { uploadObject } = require('../utils/s3_helpers');
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -67,12 +68,39 @@ module.exports = {
     }
   },
   create: async (req, res, next) => {
-    try {
-      const genSkill = req.body;
-      const result = await dbService.create(Skill, genSkill);
+    if (!req.file) {
+      return next(new ErrorResponse('No file found', 404));
+    }
 
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json({ success: true, data: result });
+    try {
+      const { name, description, published } = req.body;
+      const thumbnail = req.file;
+      const s3FolderPath = 'uploads/skills';
+
+      let genSkill = {
+        name,
+        description,
+        projects: req.body?.projects || [],
+        published: published === 'true'
+      };
+
+      uploadObject(
+        process.env.S3_PUBLIC_BUCKET,
+        s3FolderPath,
+        `${process.env.USER_UPLOADS_FOLDER}/${thumbnail.filename}`,
+        thumbnail.mimetype,
+        async (err, data) => {
+          if (err) {
+            return next(new ErrorResponse('Upload to S3 Failed', 404));
+          }
+          genSkill['thumbnail'] = data.Location;
+
+          const result = await dbService.create(Skill, genSkill);
+
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json({ success: true, data: result });
+        }
+      );
     } catch (err) {
       next(err);
     }
