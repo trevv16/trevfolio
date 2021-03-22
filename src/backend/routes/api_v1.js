@@ -51,6 +51,7 @@ router.post('/users', protect, userCon.create);
 router.put('/users/:userID', protect, userCon.update);
 router.delete('/users/:userID', protect, userCon.remove);
 
+// TODO: Handle upload for project thumbnail
 router.get('/projects', projectCon.getAll);
 router.post('/projects/search', projectCon.get);
 router.get('/projects/:projectID', protect, projectCon.getById);
@@ -58,6 +59,8 @@ router.post('/projects', protect, projectCon.create);
 router.put('/projects/:projectID', protect, projectCon.update);
 router.delete('/projects/:projectID', protect, projectCon.remove);
 
+// TODO: Handle upload galleries for thumbnail
+// TODO: Handle upload for galleries media[N].url
 router.get('/galleries', protect, galleryCon.getAll);
 router.get('/galleries/search', projectCon.get);
 router.get('/galleries/:galleryID', protect, galleryCon.getById);
@@ -78,6 +81,9 @@ router.put(
 );
 router.delete('/skills/:skillID', protect, skillCon.remove);
 
+// TODO: Add meta.file_url to resume schema
+// TODO: Handle upload for resume meta.file_url
+// TODO: Handle upload for resume profile_img
 router.get('/resumes', protect, resumeCon.getAll);
 router.get('/resumes/:resumeID', protect, resumeCon.getById);
 router.post('/resumes', protect, resumeCon.create);
@@ -91,6 +97,7 @@ router.post('/blogs', protect, blogCon.create);
 router.put('/blogs/:blogID', protect, blogCon.update);
 router.delete('/blogs/:blogID', protect, blogCon.remove);
 
+// TODO: Handle upload for post thumbnail
 router.get('/posts', protect, postCon.getAll);
 router.get('/posts/:postID', protect, postCon.getById);
 router.post('/posts', protect, postCon.create);
