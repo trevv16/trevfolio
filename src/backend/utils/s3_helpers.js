@@ -1,7 +1,7 @@
 // Load the SDK for JavaScript
-import { config, S3 } from 'aws-sdk';
-import { createReadStream } from 'fs';
-import { basename } from 'path';
+const { config, S3 } = require('aws-sdk');
+const { createReadStream } = require('fs');
+const { basename } = require('path');
 
 // Set the Region
 config.update({
@@ -95,12 +95,18 @@ module.exports = {
   /**
    * Uploads object to s3 bucket
    * @param {*} bucketName - Name of s3 bucket
-   * @param {*} user - name of user for path
+   * @param {*} folder - name of folder for path
    * @param {*} file - file object for upload
    * @param {*} cb - Takes in (err, data)
    */
-  uploadObject: (bucketName, user, file, cb) => {
-    const uploadParams = { Bucket: bucketName, Key: '', Body: '' };
+  uploadObject: (bucketName, folder, file, mime, cb) => {
+    const uploadParams = {
+      Bucket: bucketName,
+      Key: '',
+      Body: '',
+      ACL: 'public-read',
+      ContentType: mime
+    };
 
     const fileStream = createReadStream(file);
     fileStream.on('error', (err) => {
@@ -108,7 +114,7 @@ module.exports = {
       console.error('File Error', err);
     });
     uploadParams.Body = fileStream;
-    uploadParams.Key = basename(`${user}/${file}`);
+    uploadParams.Key = `${folder}/${basename(file)}`;
 
     // call S3 to retrieve upload file to specified bucket
     s3.upload(uploadParams, (err, data) => {
