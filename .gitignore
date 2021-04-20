@@ -67,3 +67,4 @@ typings/
 coverage
 settings.json
 lib
+src/backend/public/uploads/*
