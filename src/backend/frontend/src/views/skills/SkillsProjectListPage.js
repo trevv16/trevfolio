@@ -30,24 +30,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Project(props) {
+export default function SkillsProjectListPage(props) {
   const classes = useStyles();
-  const [projects, handleProjects] = useState([]);
+  const [skill, handleSkill] = useState({});
+  const [projects, handleProject] = useState([]);
   const [isBusy, setBusy] = useState(true);
+  const _id = props.match.params.skillID;
 
   useEffect(() => {
     api
-      .fetch(`v1/projects`)
+      .fetch(`v1/skills/${_id}/projects`)
       .then((response) => {
         const data = response.data.data;
-        const proj = data.filter((proj) => {
-          //Check if the project is published before storing
-          return proj.published !== false;
-        });
+        if (data.projects) {
+          const projData = data.projects.filter((proj) => {
+            //Check if the project is published before storing
+            return skill.published !== false;
+          });
 
-        if (proj && proj !== []) {
+          handleProject(projData);
+        }
+
+        if (data && data !== []) {
           setBusy(false);
-          handleProjects([...proj]);
+          handleSkill(data[0]);
         } else {
           setBusy(true);
         }
@@ -55,24 +61,19 @@ export default function Project(props) {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [_id]);
 
-  const ProjectGrid = () => {
+  const SkillGrid = () => {
+    const hasProjects = typeof projects !== 'undefined' && projects.length > 0;
     return (
       <React.Fragment>
-        {projects && (
+        {hasProjects && (
           <Grid container spacing={4} className={classes.main}>
-            <ProjectGridList tileData={projects} />
+            <Grid item xs={12}>
+              <ProjectGridList tileData={projects} />
+            </Grid>
           </Grid>
         )}
-      </React.Fragment>
-    );
-  };
-
-  const Loading = () => {
-    return (
-      <React.Fragment>
-        <CircularProgress color='secondary' className={classes.loading} />
       </React.Fragment>
     );
   };
@@ -81,18 +82,23 @@ export default function Project(props) {
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Projects | Trevor's Portfolio</title>
+        <title>Skills | Trevor's Portfolio</title>
       </Helmet>
       <CssBaseline />
       <Navigation />
       <Grid container spacing={1} className={classes.main}>
         <Grid item xs={12}>
           <Typography align='center' variant='h1'>
-            Projects
+            {`Projects with ${skill.name}`}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          {isBusy ? <Loading /> : <ProjectGrid />}
+          <Typography align='center' variant='body2'>
+            {skill.description}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          {isBusy && <SkillGrid />}
         </Grid>
       </Grid>
       <MailingList />

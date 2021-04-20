@@ -65,7 +65,8 @@ function MainSkills(props) {
     api
       .fetch('v1/skills')
       .then((response) => {
-        const data = response.data;
+        console.log(response);
+        const data = response.data.data;
         const skill = data.filter((sk) => {
           //Check if the skill is published before storing
           return sk.published !== false;

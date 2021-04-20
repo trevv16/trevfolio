@@ -37,14 +37,15 @@ function AdminMessagePage() {
       .fetch(`v1/inquiries`)
       .then((response) => {
         if (response && response.data !== []) {
-          handleMessages(response.data);
+          console.log(response.data.data);
+          handleMessages(response.data.data);
 
           //Reshape array for table
           let messageRows = [];
           let messageIds = [];
-          response.data.map((message) => {
+          response.data.data.map((message) => {
             let created = message.createdAt ? message.createdAt : 'Unknown';
-            let name = message.firstName + ' ' + message.lastName;
+            let name = message.first_name + ' ' + message.last_name;
             messageRows.push([message.message, name, message.email, created]);
             messageIds.push(message._id);
           });

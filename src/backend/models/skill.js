@@ -15,7 +15,6 @@ const skillSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
     trim: true
   },
   projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],

@@ -12,13 +12,14 @@
     "axios": "^0.21.1",
     "formik": "^2.2.5",
     "http-proxy-middleware": "^1.0.6",
+    "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.7",
     "react-material-ui-carousel": "^1.8.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "^3.4.3"
   },
   "homepage": "./",
   "scripts": {
