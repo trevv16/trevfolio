@@ -42,7 +42,7 @@ function AdminResumePage() {
           //Reshape array for table
           let resumeRows = [];
           let resumeIds = [];
-          response.data.map((resume) => {
+          response.data.data.map((resume) => {
             let status = resume.published ? 'Published' : 'Draft';
             let created = resume.createdAt ? resume.createdAt : 'Unknown';
             resumeRows.push([

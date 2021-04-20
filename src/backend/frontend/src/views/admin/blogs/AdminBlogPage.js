@@ -42,7 +42,7 @@ function AdminBlogPage() {
           //Reshape array for table
           let blogRows = [];
           let blogIds = [];
-          response.data.map((blog) => {
+          response.data.data.map((blog) => {
             let status = blog.published ? 'Published' : 'Draft';
             let created = blog.createdAt ? blog.createdAt : 'Unknown';
             blogRows.push([blog.title, blog.slug, status, created]);

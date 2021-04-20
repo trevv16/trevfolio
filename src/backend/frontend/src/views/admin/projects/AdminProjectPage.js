@@ -42,7 +42,7 @@ function AdminProjectPage() {
           //Reshape array for table
           let projRows = [];
           let projIds = [];
-          response.data.map((proj) => {
+          response.data.data.map((proj) => {
             let status = proj.published ? 'Published' : 'Draft';
             let created = proj.createdAt ? proj.createdAt : 'Unknown';
             projRows.push([proj.title, proj.github_url, status, created]);

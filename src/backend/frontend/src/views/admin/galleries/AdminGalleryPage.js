@@ -42,7 +42,7 @@ function AdminGalleryPage() {
           //Reshape array for table
           let galleryRows = [];
           let galleryIds = [];
-          response.data.map((gallery) => {
+          response.data.data.map((gallery) => {
             let status = gallery.published ? 'Published' : 'Draft';
             let created = gallery.createdAt ? gallery.createdAt : 'Unknown';
             let description = gallery.description.substring(0, 29) + '...';

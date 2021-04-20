@@ -42,7 +42,7 @@ function AdminSkillPage() {
           //Reshape array for table
           let skillRows = [];
           let skillIds = [];
-          response.data.map((skill) => {
+          response.data.data.map((skill) => {
             let status = skill.published ? 'Published' : 'Draft';
             let created = skill.createdAt ? skill.createdAt : 'Unknown';
             let description = skill.description.substring(0, 29) + '...';
