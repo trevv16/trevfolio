@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Grid,
@@ -11,12 +11,7 @@ import { Alert } from '@material-ui/lab';
 import SaveIcon from '@material-ui/icons/Save';
 import { useFormik } from 'formik';
 import api from '../../../utils/api';
-import {
-  AdminNavigation,
-  AdminFooter,
-  Toggle,
-  ResourceSearchBar
-} from '../../../components/index';
+import { AdminNavigation, AdminFooter } from '../../../components/index';
 
 const validate = (values) => {
   const errors = {};
@@ -79,7 +74,30 @@ const useStyles = makeStyles((theme) => ({
 
 function AdminSkillDetailPage(props) {
   const classes = useStyles();
+  const [skill, handleSkill] = useState({});
   const [msgSuccess, setMsgStatus] = useState(false);
+
+  useEffect(() => {
+    const id = props.match.params.skillID;
+    api
+      .fetch(`v1/skills/${id}`)
+      .then((response) => {
+        if (response && response.data !== []) {
+          let skillData = response.data.data[0];
+
+          skillData['status'] = skillData.published ? 'Published' : 'Draft';
+          skillData['created'] = skillData.createdAt
+            ? skill.createdAt
+            : 'Unknown';
+
+          handleSkill(skillData);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -127,98 +145,25 @@ function AdminSkillDetailPage(props) {
     <div className={classes.root}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Create Skill | Portfolio Admin</title>
+        <title>{`${skill.name || 'Skill Detail'} | Portfolio Admin`}</title>
       </Helmet>
       <AdminNavigation />
       <Grid container spacing={3} className={classes.main}>
         <Grid item xs={10}>
-          <Typography align='center' variant='h3' component='h3'>
-            Create Skill
+          <Typography align='center' variant='h2' component='h2'>
+            {skill.name || 'Skill Detail'}
           </Typography>
         </Grid>
-        <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={2} className={classes.form}>
-            <Grid item xs={12}>
-              {msgSuccess && renderStatusAlert(msgSuccess)}
-            </Grid>
-            <Grid item xs={6}>
-              {formik.errors.name ? <div>{formik.errors.name}</div> : null}
-              <TextField
-                id='name'
-                label='Skill Name'
-                variant='outlined'
-                name='name'
-                className={classes.nameField}
-                placeholder='Elon'
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                type='text'
-                color='secondary'
-              />
-            </Grid>
-            <Grid item xs={6}>
-              {formik.errors.thumbnail ? (
-                <div>{formik.errors.thumbnail}</div>
-              ) : null}
-              <TextField
-                id='thumbnail'
-                label='Thumbnail'
-                name='thumbnail'
-                variant='outlined'
-                className={classes.nameField}
-                placeholder='Position Title'
-                value={formik.values.thumbnail}
-                onChange={formik.handleChange}
-                type='text'
-                color='secondary'
-              />
-            </Grid>
-            <Grid item xs={6}>
-              {formik.errors.description ? (
-                <div>{formik.errors.description}</div>
-              ) : null}
-              <TextField
-                id='description'
-                label='Description'
-                variant='outlined'
-                name='description'
-                multiline
-                rows={3}
-                className={classes.emailField}
-                value={formik.values.description}
-                onChange={formik.handleChange}
-                type='textarea'
-                color='secondary'
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <ResourceSearchBar api='v1/projects/search' dataKey='title' />
-            </Grid>
-            <Grid item xs={6}>
-              {formik.errors.published ? (
-                <div>{formik.errors.published}</div>
-              ) : null}
-              <Toggle
-                value={formik.values.published}
-                onClick={() =>
-                  props.setFieldValue('published', !formik.values.published)
-                }
-              />
-            </Grid>
-            <Grid item xs={10}>
-              <Button
-                variant='contained'
-                color='secondary'
-                size='large'
-                type='submit'
-                className={classes.subButton}
-                startIcon={<SaveIcon />}
-              >
-                Save
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+        <Grid item xs={10}>
+          <Typography align='center' variant='body1'>
+            <img justify='center' src={skill.thumbnail} alt={skill.name} />
+          </Typography>
+        </Grid>
+        <Grid item xs={10}>
+          <Typography align='center' variant='body1'>
+            {skill.description}
+          </Typography>
+        </Grid>
       </Grid>
       <AdminFooter />
     </div>

@@ -37,12 +37,12 @@ function AdminSkillPage() {
       .fetch(`v1/skills`)
       .then((response) => {
         if (response && response.data !== []) {
-          handleSkills(response.data);
+          handleSkills(response.data.data);
 
           //Reshape array for table
           let skillRows = [];
           let skillIds = [];
-          response.data.map((skill) => {
+          response.data.data.map((skill) => {
             let status = skill.published ? 'Published' : 'Draft';
             let created = skill.createdAt ? skill.createdAt : 'Unknown';
             let description = skill.description.substring(0, 29) + '...';

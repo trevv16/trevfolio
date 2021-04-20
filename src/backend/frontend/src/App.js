@@ -29,6 +29,7 @@ import {
   AdminResumeDetailPage,
   AdminSkillPage,
   AdminSkillDetailPage,
+  AdminSkillCreatePage,
   AdminGalleryPage,
   AdminGalleryDetailPage,
   AdminMessagePage,
@@ -121,7 +122,7 @@ function App() {
           <AuthRoute
             exact
             path='/admin/skills/create'
-            component={AdminSkillDetailPage}
+            component={AdminSkillCreatePage}
           />
           <AuthRoute
             exact

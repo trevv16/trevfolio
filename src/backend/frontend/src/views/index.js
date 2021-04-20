@@ -32,6 +32,7 @@ export { default as AdminResumeDetailPage } from '../views/admin/resumes/AdminRe
 
 export { default as AdminSkillPage } from '../views/admin/skills/AdminSkillPage';
 export { default as AdminSkillDetailPage } from '../views/admin/skills/AdminSkillDetailPage';
+export { default as AdminSkillCreatePage } from '../views/admin/skills/AdminSkillCreatePage';
 
 export { default as AdminGalleryPage } from '../views/admin/galleries/AdminGalleryPage';
 export { default as AdminGalleryDetailPage } from '../views/admin/galleries/AdminGalleryDetailPage';
